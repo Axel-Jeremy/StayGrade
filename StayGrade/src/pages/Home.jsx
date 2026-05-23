@@ -16,6 +16,8 @@ function Home() {
       <A href="/login">Login Page </A>
       <br></br>
       <A href="/register">Register Page </A>
+      <br></br>
+      <A href="/Homepage_guest">Homepage </A>
 
       <For each={hotels}>
           {(hotel) => (
