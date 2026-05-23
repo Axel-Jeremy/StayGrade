@@ -1,12 +1,15 @@
 import { A, useNavigate } from "@solidjs/router"
+import { useAuth } from "../components/AuthContext";
 
 function Login() {
     const navigate = useNavigate();
 
     function handleClick() {
-        // ........
         navigate('/')
     }
+
+    const { setRole } = useAuth();
+
     return (
         <div>
             <h1>Login</h1>
@@ -20,11 +23,12 @@ function Login() {
                 <input type="text" placeholder="Masukkan Password" />
             </div>
 
-            <button onClick={handleClick}>Log In</button>
-            <div>
+            <button onClick={() => {setRole("user");handleClick();}}>Log In as user</button>
+            <button onClick={() => {setRole("guest");handleClick();}}>Log In as guest</button>
+            <div>   
                 <label>Belum Punya Akun?</label><A href="/register">Daftar</A>
             </div>
-        </div>
+        </div >
     );
 };
 
