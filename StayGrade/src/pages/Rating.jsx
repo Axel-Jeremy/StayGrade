@@ -7,6 +7,10 @@ import AboutCard from "../components/AboutCard";
 import { createSignal} from "solid-js";
 import ReviewModal from "../components/ReviewModal";
 import "../style/Header.css";
+import "../style/Facility.css";
+import "../style/ReviewModal.css";
+import "../style/ReviewCard.css";
+import style from "../style/Rate.module.css"
 import catoImage from "../cato.jpg";
 
 function Rating(props) {
@@ -36,32 +40,33 @@ function Rating(props) {
         >
             <HeaderCard login={true} />
 
-            <div class="hotelBanner">
+            <div class={style.hotelBanner}>
                 <img
                     src={hotel.image}
                     alt={hotel.alternative}
                 />
-
-                <h1 class="hotelName">
-                    {hotel.name}
-                </h1>
+                <div class={style.hotelInfo}>
+                    <h1 class={style.hotelName}>
+                        {hotel.name}
+                    </h1>
+                </div>
             </div>
 
-            <div style={{ display: "grid", "grid-template-columns": "2fr 2fr" }}>
+            <div class={style.containerGrid}>
                 <AboutCard about={"dummy about hotel"} />
                 <FacilityCard />
             </div>
 
             <div>
-                <div>
+                <div class={style.containerUpperContent}>
                     <h1>Review</h1>
 
-                    <button onClick={() => setShowModal(true)}>
+                    <button onClick={() => setShowModal(true)} class={style.btnReview}>
                         Tulis Review
                     </button>
                 </div>
 
-                <div id="kotakLuar">
+                <div class={style.containerBottomContent}>
                     <For each={ratings}>
                         {(rating) => (
                             <ReviewCard

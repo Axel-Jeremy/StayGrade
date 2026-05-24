@@ -1,4 +1,3 @@
-import "../style/ReviewModal.css";
 import { createSignal, For } from "solid-js";
 
 function ReviewModal(props) {

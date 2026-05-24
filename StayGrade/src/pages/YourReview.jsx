@@ -4,6 +4,8 @@ import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import { useLocation } from "@solidjs/router";
 import "../style/Header.css";
+import style from "../style/Rate.module.css"
+import "../style/ReviewCard.css";
 
 function YourReview() {
     const ratings = [
@@ -13,22 +15,26 @@ function YourReview() {
     const location = useLocation();
     console.log(location.pathname)
     return (
-        
-        <div>
-            <HeaderCard login={true}/>
-            <div>
-                <h1>Review</h1>
-                <For each={ratings}>
-                    {(rating) => (
-                        <ReviewCard
-                            rating={rating.rating}
-                            name={rating.name}
-                            comment={rating.comment}
-                            time={rating.time}
 
-                        />
-                    )}
-                </For>
+        <div>
+            <HeaderCard login={true} />
+            <div>
+                <div class={style.containerUpperContent}>
+                    <h1>Review</h1>
+                </div>
+                <div class={style.containerBottomContent}>
+                    <For each={ratings}>
+                        {(rating) => (
+                            <ReviewCard
+                                rating={rating.rating}
+                                name={rating.name}
+                                comment={rating.comment}
+                                time={rating.time}
+
+                            />
+                        )}
+                    </For>
+                </div>
             </div>
 
         </div>

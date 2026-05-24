@@ -1,0 +1,43 @@
+.containerReviewCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+}
+
+.containerReviewLeftContent {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex: 1;
+}
+
+.containerProfileBulat {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.containerKomentar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ContainerWaktu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}

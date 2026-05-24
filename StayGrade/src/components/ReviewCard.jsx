@@ -1,4 +1,6 @@
 import { useLocation } from "@solidjs/router";
+import EditIcon from "../style/Asset/edit-line.svg";
+import DelIcon from "../style/Asset/delete-bin-line.svg";
 
 function ReviewCard(props) {
     const location = useLocation();
@@ -6,49 +8,16 @@ function ReviewCard(props) {
     return (
         <div>
             {/*tolong dibagusin si letak letaknya  */}
-            <div
-                style={{
-                    display: "flex",
-                    "justify-content": "space-between",
-                    "align-items": "center",
-                    border: "1px solid black",
-                    padding: "1rem",
-                    "border-radius": "12px",
-                    width: "100%",
-                    "box-sizing": "border-box",
-                    "background-color": "#f5f5f5"
-                }}>
+            <div class="containerReviewCard">
                 {/* kiri */}
-                <div
-                    style={{
-                        display: "flex",
-                        gap: "1rem",
-                        "align-items": "center",
-                        flex: 1
-                    }}>
+                <div class="containerReviewLeftContent">
                     {/* profile bulat */}
-                    <div
-                        style={{
-                            width: "45px",
-                            height: "45px",
-                            "border-radius": "100%",
-                            "background-color": "#d9d9d9",
-                            display: "flex",
-                            "justify-content": "center",
-                            "align-items": "center",
-                            "font-weight": "bold",
-                            "font-size": "1.1rem"
-                        }}>
+                    <div class="containerProfileBulat">
                         {props.rating}
                     </div>
 
                     {/* nama + komentar */}
-                    <div
-                        style={{
-                            display: "flex",
-                            "flex-direction": "column",
-                            gap: "0.25rem"
-                        }}>
+                    <div class="containerKomentar">
                         <span style={{ "font-weight": "bold", "font-size": "1.2rem" }}>
                             {props.name}
                         </span>
@@ -60,18 +29,15 @@ function ReviewCard(props) {
                 </div>
 
                 {/* kanan */}
-                <div
-                    style={{
-                        display: "flex",
-                        "flex-direction": "column",
-                        "align-items": "flex-end",
-                        gap: "0.5rem"
-                    }}
-                >
+                <div class="ContainerWaktu">
                     {location.pathname === "/yourReview"? (
                         <div style={{ display: "flex", gap: "0.5rem" }}>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="containerProfileBulat">
+                                <img src={EditIcon} alt="Edit" style={{ width: "16px", height: "16px" }} />
+                            </button>
+                            <button class="containerProfileBulat">
+                                <img src={DelIcon} alt="Delete" style={{ width: "16px", height: "16px" }} />
+                            </button>
                         </div>
                     ):null}
 
@@ -79,7 +45,7 @@ function ReviewCard(props) {
                         {props.time}
                     </span>
                 </div>
-            </div>
+            </div>  
 
         </div>
     );
