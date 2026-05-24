@@ -26,12 +26,13 @@ function Login() {
                     <input type="text" placeholder="Masukkan Password" class={style.inputField} />
                 </div>
 
-            <button onClick={() => {setRole("user");handleClick();}}>Log In as user</button>
-            <button onClick={() => {setRole("guest");handleClick();}}>Log In as guest</button>
-            <div>   
-                <label>Belum Punya Akun?</label><A href="/register">Daftar</A>
-            </div>
-        </div >
+                <button onClick={() => { setRole("user"); handleClick(); }}>Log In as user</button>
+                <button onClick={() => { setRole("guest"); handleClick(); }}>Log In as guest</button>
+                <div>
+                    <label>Belum Punya Akun?</label><A href="/register">Daftar</A>
+                </div>
+            </div >
+        </div>
     );
 };
 

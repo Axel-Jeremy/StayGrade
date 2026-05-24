@@ -1,18 +1,21 @@
 function HotelCard(props) {
     return (
-        <div id="Isian" style={{ display: "grid", " grid-template-columns": "1fr 3fr 1fr;" }}>
-            <img src={props.image} alt={props.name}/>
-
+        <div class="content">
+            <div class="containerImg">
+                <img src={props.image} alt={props.name} />
+            </div>
             <div  id="deskripsi hotel">
-                <p style={{ "font-weight": "bold" }}>{props.name}</p>
-                <p>{props.location}</p>
-                <p>{props.prices} / night</p>
+                <p class="text">{props.name}</p>
+                <p class="text">{props.location}</p>
+                <p class="text">{props.prices} / night</p>
             </div>
             <div>
-                <p>{props.rating} / 5.0</p>
-                <p>{props.reviewCount} Reviews</p>
+                <p class="text">{props.rating} / 5.0</p>
+                <p class="text">{props.reviewCount} Reviews</p>
                 {props.reviewClick && (
-                <button onClick={props.onReviewClick}>Review</button>
+                <button class="btnReview" onClick={props.onReviewClick}>
+                    Review
+                </button>
             )}
             </div>
         </div>
