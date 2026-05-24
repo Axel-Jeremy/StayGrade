@@ -1,17 +1,20 @@
 import { A } from "@solidjs/router"
 import { For } from "solid-js"
-import HeaderCard from "~/components/HeaderCard";
-import ReviewCard from "~/components/ReviewCard";
+import HeaderCard from "../components/HeaderCard";
+import ReviewCard from "../components/ReviewCard";
+import { useLocation } from "@solidjs/router";
 
 function YourReview() {
     const ratings = [
-        { rating: 5, name: "Alek", comment: "Pengalaman menginap luar biasa.", time: "5" },
-        { rating: 4, name: "Alek", comment: "Mantap.", time: "3" },
+        { rating: 5, name: "Alek", comment: "Pengalaman menginap luar biasa.", time: "5 hari lalu" },
+        { rating: 4, name: "Alek", comment: "Mantap.", time: "3 hari lalu" },
     ]
-
+    const location = useLocation();
+    console.log(location.pathname)
     return (
+        
         <div>
-            <HeaderCard />
+            <HeaderCard login={true}/>
             <div>
                 <h1>Review</h1>
                 <For each={ratings}>
@@ -21,7 +24,7 @@ function YourReview() {
                             name={rating.name}
                             comment={rating.comment}
                             time={rating.time}
-                            crud={true}
+
                         />
                     )}
                 </For>
