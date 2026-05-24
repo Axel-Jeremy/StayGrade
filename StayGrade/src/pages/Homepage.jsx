@@ -6,6 +6,7 @@ import { For } from "solid-js";
 import "../style/Header.css";
 import style from "../style/Home.module.css"
 import "../style/HotelCard.css";
+import HeaderCard from "../components/HeaderCard";
 
 
 

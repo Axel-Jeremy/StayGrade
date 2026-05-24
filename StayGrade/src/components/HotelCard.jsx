@@ -1,4 +1,7 @@
+import { useNavigate } from "@solidjs/router";
+
 function HotelCard(props) {
+    const navigate = useNavigate();
     return (
         <div class="content">
             <div class="containerImg">
@@ -13,7 +16,7 @@ function HotelCard(props) {
                 <p class="text">{props.rating} / 5.0</p>
                 <p class="text">{props.reviewCount} Reviews</p>
                 {props.reviewClick && (
-                <button class="btnReview" onClick={props.onReviewClick}>
+                <button class="btnReview" onClick={()=>{props.onReviewClick;navigate("/rating");}}>
                     Review
                 </button>
             )}
