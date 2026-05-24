@@ -4,6 +4,9 @@ import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import FacilityCard from "../components/FacilityCard";
 import AboutCard from "../components/AboutCard";
+import { createSignal} from "solid-js";
+import ReviewModal from "../components/ReviewModal";
+import catoImage from "../cato.jpg";
 
 function Rating(props) {
     const hotel = {
@@ -22,39 +25,42 @@ function Rating(props) {
         { rating: 3, name: "Alek", comment: "Mantap.", time: "2 hari lalu" },
     ]
 
+    const [showModal, setShowModal] = createSignal(false);
+
     return (
-        <div id="body">
+    <>
+        <div
+            id="body"
+            class={showModal() ? "blurred" : ""}
+        >
             <HeaderCard login={true} />
 
-            <div id="GambarHotel" style={{ display: "flex" }}>
-                <div style={{ position: "relative", width: "100vw", height: "30vw", display: "flex", "align-items": "flex-end" }}>
-                    <img
-                        src={hotel.image}
-                        alt={hotel.alternative}
-                        style={{ width: "100%", height: "100%", display: "block", position: "absolute" }}
-                    />
-                    <h1 style={{ position: "absolute", "z-index": 2, color: "white", borderRadius: "6px", "padding-left": "10px" }}>
-                        {/*color dari nama hotel ntar tolong diubah*/}
-                        {hotel.name}
-                    </h1>
-                </div>
+            <div class="hotelBanner">
+                <img
+                    src={hotel.image}
+                    alt={hotel.alternative}
+                />
+
+                <h1 class="hotelName">
+                    {hotel.name}
+                </h1>
             </div>
 
             <div style={{ display: "grid", "grid-template-columns": "2fr 2fr" }}>
-                <AboutCard
-                    about={"dummy about hotel"}
-                />
+                <AboutCard about={"dummy about hotel"} />
                 <FacilityCard />
             </div>
 
             <div>
                 <div>
                     <h1>Review</h1>
-                    {true && ( //dummy
-                        <button onClick={props.onReviewClick}>Tulis Review</button>
-                    )}
+
+                    <button onClick={() => setShowModal(true)}>
+                        Tulis Review
+                    </button>
                 </div>
-                <div id="kotakLuar" >
+
+                <div id="kotakLuar">
                     <For each={ratings}>
                         {(rating) => (
                             <ReviewCard
@@ -67,8 +73,15 @@ function Rating(props) {
                     </For>
                 </div>
             </div>
-
         </div>
+
+        {showModal() && (
+            <ReviewModal
+                hotelName={hotel.name}
+                onClose={() => setShowModal(false)}
+            />
+        )}
+    </>
     );
 };
 
