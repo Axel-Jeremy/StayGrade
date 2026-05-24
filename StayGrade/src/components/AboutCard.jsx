@@ -2,7 +2,7 @@ function AboutCard(props) {
     return (
         <div>
             <h1>Tentang Hotel</h1>
-            <p>${props.about}</p>
+            <p>{props.about}</p>
         </div>
     );
 }
