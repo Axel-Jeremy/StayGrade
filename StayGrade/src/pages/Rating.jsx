@@ -6,6 +6,7 @@ import FacilityCard from "../components/FacilityCard";
 import AboutCard from "../components/AboutCard";
 import { createSignal} from "solid-js";
 import ReviewModal from "../components/ReviewModal";
+import "../style/Header.css";
 import catoImage from "../cato.jpg";
 
 function Rating(props) {

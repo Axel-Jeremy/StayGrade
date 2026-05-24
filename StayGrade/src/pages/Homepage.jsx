@@ -1,5 +1,4 @@
 import { Navigate, useNavigate } from "@solidjs/router";
-import Header from "../components/Header"
 import HotelCard from "../components/HotelCard"
 import { useAuth } from "../components/AuthContext";
 import { For } from "solid-js";
@@ -24,7 +23,7 @@ export default function Homepage() {
     ]
     return (
         <div>
-            <Header login={false} />
+            <HeaderCard login={false} />
 
             <div class={style.containerMain}>
                 <div class={style.containerImg}>

@@ -3,6 +3,7 @@ import { For } from "solid-js"
 import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import { useLocation } from "@solidjs/router";
+import "../style/Header.css";
 
 function YourReview() {
     const ratings = [
