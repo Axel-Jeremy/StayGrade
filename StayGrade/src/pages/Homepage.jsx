@@ -1,5 +1,5 @@
     import { Navigate, useNavigate } from "@solidjs/router";
-    import Header from "../components/Header"
+    import HeaderCard from "../components/HeaderCard"
     import HotelCard from "../components/HotelCard"
     import { useAuth } from "../components/AuthContext";
     import { For } from "solid-js";
@@ -20,7 +20,7 @@
         ]
         return (
             <div>
-                <Header login={false} />
+                <HeaderCard login={false} />
 
                 <div id="Body" style={{ "justify-items": "center", "padding-top": "25px" }}>
                     <div class="Iklan" style={{ border: `2px solid black` }}>
@@ -28,6 +28,23 @@
                     </div>
                     <br />
                     <div style={{ display: "flex", gap: "10px", "flex-direction": "column" }}>
+                        {role() === "guest" && (
+                            <For each={hotelsNotLogin}>
+                                {(hotel) => (
+                                    <div id="boxLuar" style={{ border: `2px solid black`, width: "auto", height: "auto", "border-radius": 10, padding: "10px" }}>
+                                        <HotelCard
+                                            image={hotel.image}
+                                            name={hotel.name}
+                                            location={hotel.location}
+                                            prices={hotel.prices}
+                                            rating={hotel.rating}
+                                            reviewCount={hotel.reviewCount}
+                                        />
+                                    </div>
+                                )}
+                            </For>
+                        )
+                        }
                         {role() === "user" && (
                             <For each={hotels}>
                                 {(hotel) => (
@@ -46,7 +63,7 @@
                             </For>
                         )}
 
-                        {role() === "guest" && (
+                        {role() === "admin" && (
                             <For each={hotelsNotLogin}>
                                 {(hotel) => (
                                     <div id="boxLuar" style={{ border: `2px solid black`, width: "auto", height: "auto", "border-radius": 10, padding: "10px" }}>

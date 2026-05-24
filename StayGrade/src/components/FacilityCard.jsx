@@ -10,7 +10,7 @@ function FacilityCard() {
                 <For each={facilities}>
                     {(facility) => (
                         <div>
-                            <p>${facility}</p>
+                            <p>{facility}</p>
                         </div>
                     )}
                 </For>
