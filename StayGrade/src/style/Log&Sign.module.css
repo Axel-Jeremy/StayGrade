@@ -1,9 +1,15 @@
-.containerRoot {
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    overflow: hidden;
+}
+
+h1{
+    margin: 2vh 0 0 0;
+    font-size: 2.5rem;
 }
 
 .mainContainer {
@@ -12,36 +18,48 @@
     align-items: center;
     justify-content: center;
     background-color: #f5f5f5;
-    row-gap: 1.5rem;
+    row-gap: 1rem;
     border: 2px solid #000000;
-    padding: 2rem;
+    padding: 0.75rem 2rem;
     border-radius: 20px;
 }
 
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+}
+
 .textLabel {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     font-weight: bold;
     color: #000000;
     padding: 0rem;
-    margin: 1rem 0rem;
+    margin: 1rem 1rem 0.2rem 0rem;
+}
+
+.link{
+    display: flex;
+    justify-content: center;
+    font-size: small;
 }
 
 .inputField {
-    width: 305px;
-    height: 29px;
+    width: 250px;
+    height: 25px;
     padding: 0.5rem;
     border: 1px solid #000000;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.75rem;
 }
 
 .btnsubmit {
-    width: 324px;
+    width: 270px;
     height: 41px;
     border: 1px solid #000000;
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
+    margin: 1rem 0 1rem 0;
 }
 
 .decoLink {
