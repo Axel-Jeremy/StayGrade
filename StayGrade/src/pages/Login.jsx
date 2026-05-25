@@ -16,20 +16,36 @@ function Login() {
         <div class={style.containerRoot}>
             <div class={style.mainContainer}>
                 <h1>Login</h1>
-                <nav>
+                {/* <nav>
                     <A href="/">Home Page</A>
-                </nav>
+                </nav> */}
                 <div>
-                    <h2 class={style.textLabel}>Email</h2>
-                    <input type="text" placeholder="Masukkan Email Anda" class={style.inputField} />
-                    <h2 class={style.textLabel}>Password</h2>
-                    <input type="text" placeholder="Masukkan Password" class={style.inputField} />
+                    <h4 class={style.textLabel}>Email</h4>
+                    <input type="text"
+                        placeholder="Masukkan Email Anda"
+                        class={style.inputField} />
+                    <h4 class={style.textLabel}>
+                        Password
+                    </h4>
+                    <input type="text"
+                        placeholder="Masukkan Password"
+                        class={style.inputField} />
                 </div>
 
-                <button onClick={() => { setRole("user"); handleClick(); }}>Log In as user</button>
-                <button onClick={() => { setRole("guest"); handleClick(); }}>Log In as guest</button>
-                <div>
-                    <label>Belum Punya Akun?</label><A href="/register">Daftar</A>
+                <div class={style.buttonContainer}>
+                    <button onClick={() => { setRole("user"); handleClick(); }}
+                        class={style.btnsubmit}>
+                        Log In
+                    </button>
+                    <div class={style.link}>
+                        <div>
+                            <label>Belum Punya Akun?</label>
+                            <A href="/register">Daftar</A>
+                        </div>
+                        <button class={style.guest} onClick={() => { setRole("guest"); handleClick(); }}>
+                            Continue as guest
+                        </button>
+                    </div>
                 </div>
             </div >
         </div>
