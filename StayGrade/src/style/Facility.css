@@ -1,0 +1,15 @@
+.containerFacility {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.containerContentFacility {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid #000000;
+}

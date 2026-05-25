@@ -1,8 +1,8 @@
 function AboutCard(props) {
     return (
-        <div>
+        <div style={{ "padding": "20px" }}>
             <h1>Tentang Hotel</h1>
-            <p>{props.about}</p>
+            <p style={{ "padding-left": "0.3rem" }}>{props.about}</p>
         </div>
     );
 }

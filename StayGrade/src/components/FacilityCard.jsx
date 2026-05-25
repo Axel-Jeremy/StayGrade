@@ -5,11 +5,11 @@ function FacilityCard() {
 
     return (
         <div>
-            <h1>Fasilitas</h1>
-            <div>
+            <h1 style={{"margin-bottom": "0px"}}>Fasilitas</h1>
+            <div class="containerFacility">
                 <For each={facilities}>
                     {(facility) => (
-                        <div>
+                        <div class="containerContentFacility">
                             <p>{facility}</p>
                         </div>
                     )}
