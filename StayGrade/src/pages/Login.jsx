@@ -26,6 +26,7 @@ function Login() {
                     <input type="text" placeholder="Masukkan Password" class={style.inputField} />
                 </div>
 
+                <button onClick={() => { setRole("admin"); handleClick(); }}>Log In as admin</button>
                 <button onClick={() => { setRole("user"); handleClick(); }}>Log In as user</button>
                 <button onClick={() => { setRole("guest"); handleClick(); }}>Log In as guest</button>
                 <div>

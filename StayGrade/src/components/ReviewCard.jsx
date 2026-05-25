@@ -1,10 +1,13 @@
 import { useLocation } from "@solidjs/router";
+import { useAuth } from "../components/AuthContext";
 import EditIcon from "../style/Asset/edit-line.svg";
 import DelIcon from "../style/Asset/delete-bin-line.svg";
 
 function ReviewCard(props) {
     const location = useLocation();
     console.log(location.pathname)
+
+    const { role } = useAuth();
     return (
         <div>
             {/*tolong dibagusin si letak letaknya  */}
@@ -30,11 +33,19 @@ function ReviewCard(props) {
 
                 {/* kanan */}
                 <div class="ContainerWaktu">
-                    {location.pathname === "/yourReview"? (
+                    {location.pathname === "/yourReview" ? (
                         <div style={{ display: "flex", gap: "0.5rem" }}>
                             <button class="containerProfileBulat">
                                 <img src={EditIcon} alt="Edit" style={{ width: "16px", height: "16px" }} />
                             </button>
+                            <button class="containerProfileBulat">
+                                <img src={DelIcon} alt="Delete" style={{ width: "16px", height: "16px" }} />
+                            </button>
+                        </div>
+                    ):null}
+
+                    {role() === 'admin' ? (
+                        <div style={{ display: "flex", gap: "0.5rem" }}>
                             <button class="containerProfileBulat">
                                 <img src={DelIcon} alt="Delete" style={{ width: "16px", height: "16px" }} />
                             </button>

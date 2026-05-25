@@ -1,5 +1,6 @@
 import { A } from "@solidjs/router"
 import { For } from "solid-js"
+import { useAuth } from "../components/AuthContext";
 import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import FacilityCard from "../components/FacilityCard";
@@ -32,6 +33,7 @@ function Rating(props) {
 
     const [showModal, setShowModal] = createSignal(false);
 
+    const { role } = useAuth();
     return (
     <>
         <div
@@ -61,9 +63,10 @@ function Rating(props) {
                 <div class={style.containerUpperContent}>
                     <h1>Review</h1>
 
-                    <button onClick={() => setShowModal(true)} class={style.btnReview}>
+                    {role() === 'user' ? (<button onClick={() => setShowModal(true)} class={style.btnReview}>
                         Tulis Review
-                    </button>
+                    </button>) : null}
+                    
                 </div>
 
                 <div class={style.containerBottomContent}>
