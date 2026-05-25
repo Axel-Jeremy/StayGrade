@@ -30,7 +30,6 @@ function YourReview() {
                                 name={rating.name}
                                 comment={rating.comment}
                                 time={rating.time}
-
                             />
                         )}
                     </For>

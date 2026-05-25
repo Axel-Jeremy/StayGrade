@@ -5,43 +5,43 @@ function HotelCard(props) {
 
     // logika buat delete hotel by admin
     function handleDelete() {
-        
+
     }
     return (
         <div class="content">
             <div class="containerImg">
                 <img src={props.image} alt={props.name} />
             </div>
-            <div  id="deskripsi hotel">
+            <div id="deskripsi hotel">
                 <p class="text">{props.name}</p>
                 <p class="text">{props.location}</p>
                 <p class="text">{props.prices} / night</p>
             </div>
-            <div>
-                <p class="text">{props.rating} / 5.0</p>
-                <p class="text">{props.reviewCount} Reviews</p>
-                
+            <div style={{ display: "flex", "flex-direction": "column"}}>
+                <div class="containerParagraph ">
+                    <p class="text">{props.rating} / 5.0</p>
+                    <p class="text">{props.reviewCount} Reviews</p>
+                </div>
+
                 {props.reviewClick && (
-                <button class="btnReview" onClick={()=>{props.onReviewClick;navigate("/rating");}}>
-                    Review
-                </button>)}
+                    <button class="btnReview" onClick={() => { props.onReviewClick; navigate("/rating"); }}>
+                        Review
+                    </button>)}
 
-                {/* urus CSS 2 ini ya fajar - kin */}
-                {props.detailClick && (
-                <button class="btnReview" onClick={()=>{props.onDetailClick;navigate("/rating");}}>
-                    Details
-                </button>)}
+                <div class="ContainerBtnCard">
+                    {/* urus CSS 2 ini ya fajar - kin */}
+                    {props.detailClick && (
+                        <button class="btnDD" onClick={() => { props.onDetailClick; navigate("/rating"); }}>
+                            Details
+                        </button>)}
 
-                {props.deleteClick && (
-                <button class="btnReview" onClick={handleDelete}>
-                    Delete
-                </button>)}
-            
+                    {props.deleteClick && (
+                        <button class="btnDD" onClick={handleDelete}>
+                            Delete
+                        </button>)}
+                </div>
             </div>
         </div>
-
-
-
     );
 }
 

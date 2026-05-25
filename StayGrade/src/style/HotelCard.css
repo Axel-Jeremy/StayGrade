@@ -30,3 +30,28 @@
     width: 10rem;
     height: 5rem;
 }
+
+.btnDD {
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    font-size: 1.2rem;
+    width:7.5rem;
+    height: 2.5rem;
+}
+
+.ContainerBtnCard {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.containerParagraph {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    flex-direction: column;
+}
