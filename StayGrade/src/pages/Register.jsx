@@ -11,30 +11,38 @@ function Register() {
     }
     return (
         <div class={style.containerRoot}>
+
             <div class={style.mainContainer}>
                 <h1>Register</h1>
-                <nav>
+                {/* <nav>
                     <A href="/">Home Page</A>
-                </nav>
+                </nav> */}
                 <div>
-                    <h2 class={style.textLabel}>Nama Lengkap*</h2>
+                    <h4 class={style.textLabel}>Nama Lengkap*</h4>
                     <input type="text" placeholder="Masukkan Nama Lengkap Anda" class={style.inputField} />
-                    <h2 class={style.textLabel}>Email*</h2>
+                    <h4 class={style.textLabel}>Email*</h4>
                     <input type="text" placeholder="Masukkan Email Anda" class={style.inputField} />
-                    <h2 class={style.textLabel}>Password*</h2>
+                    <h4 class={style.textLabel}>Password*</h4>
                     <input type="text" placeholder="Masukkan Password Anda" class={style.inputField} />
-                    <h2 class={style.textLabel}>Konfirmasi Password*</h2>
+                    <h4 class={style.textLabel}>Konfirmasi Password*</h4>
                     <input type="text" placeholder="Masukkan Konfirmasi Password Anda" class={style.inputField} />
                 </div>
 
-                <button onClick={handleClick} class={style.btnsubmit}>
-                    Register
-                </button>
-                <div>
-                    <label>Sudah Punya Akun?</label><A href="/login">Log In</A>
+                <div class={style.buttonContainer}>
+                    <button onClick={handleClick} class={style.btnsubmit}>
+                        Register
+                    </button>
+                    <div class={style.link}>
+                        <div>
+                            <label>Sudah Punya Akun?</label>
+                            <A href="/login">Log In</A>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
+
     );
 };
 
