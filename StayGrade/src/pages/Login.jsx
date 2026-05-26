@@ -42,6 +42,7 @@ function Login() {
                             <label>Belum Punya Akun?</label>
                             <A href="/register">Daftar</A>
                         </div>
+                            <button onClick={() => { setRole("admin"); handleClick(); }}>Log In as admin</button>
                         <button class={style.guest} onClick={() => { setRole("guest"); handleClick(); }}>
                             Continue as guest
                         </button>

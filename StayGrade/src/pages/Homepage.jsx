@@ -21,6 +21,11 @@ export default function Homepage() {
         { id: 1, image: "aaa", name: "Hotel A", location: "Menteng, Jakarta", prices: "100-200", rating: "4.8", reviewCount: "70", reviewClick: true },
         { id: 2, image: "aaa", name: "Hotel B", location: "Taman Kopo indah, Bandung", prices: "100-200", rating: "4.3", reviewCount: "10", reviewClick: true },
     ]
+
+    const hotelsAdmin = [
+        { id: 1, image: "aaa", name: "Hotel A", location: "Menteng, Jakarta", prices: "100-200", rating: "4.8", reviewCount: "70", detailClick: true, deleteClick: true },
+        { id: 2, image: "aaa", name: "Hotel B", location: "Taman Kopo indah, Bandung", prices: "100-200", rating: "4.3", reviewCount: "10", detailClick: true, deleteClick: true},
+    ]
     return (
         <div>
             <HeaderCard login={false} />
@@ -60,6 +65,25 @@ export default function Homepage() {
                                         prices={hotel.prices}
                                         rating={hotel.rating}
                                         reviewCount={hotel.reviewCount}
+                                    />
+                                </div>
+                            )}
+                        </For>
+                        )
+                    }
+
+                    {role() === "admin" && (
+                        <For each={hotelsAdmin}>
+                            {(hotel) => (
+                                <div class={style.Card}>
+                                    <HotelCard
+                                        image={hotel.image}
+                                        name={hotel.name}
+                                        location={hotel.location}
+                                        prices={hotel.prices}
+                                        rating={hotel.rating}
+                                        detailClick={hotel.detailClick}
+                                        deleteClick={hotel.deleteClick}
                                     />
                                 </div>
                             )}
