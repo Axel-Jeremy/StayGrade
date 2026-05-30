@@ -32,16 +32,19 @@ function Login() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/users`, {
+            const response = await fetch(`http://localhost:5000/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     email: email(),
-                    password: password()
+                    password: password(),
                 })
             });
 
             const data = await response.json();
+
+            console.log("Data dari server:", data);
+            console.log(data.role)
 
             if (response.ok) {
                 setRole(data.role);
@@ -51,6 +54,7 @@ function Login() {
             }
         } catch (error) {
             console.error("Error logging in:", error);
+            alert("Login failed: " + data.message);
         }
     }
 

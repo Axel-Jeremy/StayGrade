@@ -2,7 +2,8 @@
   "users": [
     {
       "email" : "axel@gmail.com",
-      "password" : "axel123"
+      "password" : "axel123",
+      "role" : "user"
     }
   ],
   "hotels": [
@@ -42,6 +43,14 @@
       "rating": 3,
       "name": "Alek",
       "comment": "Mantap.",
+      "time": "2 hari lalu"
+    },
+    {
+      "id": 3,
+      "hotelId": 2,
+      "rating": 5,
+      "name": "Kin",
+      "comment": "Resepsionisnya Mantap.",
       "time": "2 hari lalu"
     }
   ]

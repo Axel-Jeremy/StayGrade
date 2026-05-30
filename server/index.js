@@ -33,16 +33,23 @@ app.get('/api/hotels', (req, res) => {
     res.send(JSON.stringify(data.hotels, null, 2));
 });
 
-app.post('/api/users', (req, res) => {
+app.post('/api/login', (req, res) => {
+    const { email, password } = req.body;
     const data = readDB();
 
-    // Nanti kamu bisa mengadaptasi logika filter atau pagination dari tugas lamamu di sini
-    // contoh: const filtered = filterHotels(data.hotels, req.query.search);
+    // Cari user yang email dan password-nya cocok
+    const user = data.users.find(u => u.email === email && u.password === password);
 
-    res.header('Content-Type', 'application/json');
-    // res.json(data.hotels) sebenarnya adalah versi modern dari res.send(JSON.stringify(...)), 
-    // namun saya pertahankan gayamu dari referensi sebelumnya.
-    res.send(JSON.stringify(data.users, null, 2));
+    if (user) {
+        // Jika ketemu, kirim balik role-nya
+        res.json({ 
+            role: user.role, 
+            email: user.email 
+        });
+    } else {
+        // Jika tidak ketemu, kirim error
+        res.status(401).json({ message: "Email atau password salah" });
+    }
 });
 
 // Endpoint untuk mengambil detail SATU hotel berdasarkan ID
