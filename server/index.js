@@ -33,21 +33,22 @@ app.get('/api/hotels', (req, res) => {
     res.send(JSON.stringify(data.hotels, null, 2));
 });
 
-app.post('/api/login', (req, res) => {
-    const { email, password } = req.body;
+app.post('/api/users', (req, res) => {
+    // tangkep email dan password yang dikirim oleh frontend
+    const { email, password } = req.body; 
+    
+    // Baca seluruh isi database JSON kamu
     const data = readDB();
 
-    // Cari user yang email dan password-nya cocok
-    const user = data.users.find(u => u.email === email && u.password === password);
+    // cari satu user yang email dan passwordnya cocok
+    const foundUser = data.users.find(
+        (user) => user.email === email && user.password === password
+    );
 
-    if (user) {
-        // Jika ketemu, kirim balik role-nya
-        res.json({ 
-            role: user.role, 
-            email: user.email 
-        });
+    if (foundUser) {
+        res.json(foundUser); 
     } else {
-        // Jika tidak ketemu, kirim error
+        // salah email/password
         res.status(401).json({ message: "Email atau password salah" });
     }
 });

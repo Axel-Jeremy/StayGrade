@@ -43,9 +43,6 @@ function Login() {
 
             const data = await response.json();
 
-            console.log("Data dari server:", data);
-            console.log(data.role)
-
             if (response.ok) {
                 setRole(data.role);
                 navigate('/');
