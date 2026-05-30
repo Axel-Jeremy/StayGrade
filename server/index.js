@@ -34,15 +34,23 @@ app.get('/api/hotels', (req, res) => {
 });
 
 app.post('/api/users', (req, res) => {
+    // tangkep email dan password yang dikirim oleh frontend
+    const { email, password } = req.body; 
+    
+    // Baca seluruh isi database JSON kamu
     const data = readDB();
 
-    // Nanti kamu bisa mengadaptasi logika filter atau pagination dari tugas lamamu di sini
-    // contoh: const filtered = filterHotels(data.hotels, req.query.search);
+    // cari satu user yang email dan passwordnya cocok
+    const foundUser = data.users.find(
+        (user) => user.email === email && user.password === password
+    );
 
-    res.header('Content-Type', 'application/json');
-    // res.json(data.hotels) sebenarnya adalah versi modern dari res.send(JSON.stringify(...)), 
-    // namun saya pertahankan gayamu dari referensi sebelumnya.
-    res.send(JSON.stringify(data.users, null, 2));
+    if (foundUser) {
+        res.json(foundUser); 
+    } else {
+        // salah email/password
+        res.status(401).json({ message: "Email atau password salah" });
+    }
 });
 
 // Endpoint untuk mengambil detail SATU hotel berdasarkan ID

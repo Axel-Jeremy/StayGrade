@@ -42,7 +42,8 @@ function Login() {
             });
 
             const data = await response.json();
-
+console.log("Data utuh dari server:", data); // <-- Tambahkan ini
+console.log("Role yang akan diset:", data.role); // <-- Tambahkan ini
             if (response.ok) {
                 setRole(data.role);
                 navigate('/');

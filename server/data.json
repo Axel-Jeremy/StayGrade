@@ -2,7 +2,8 @@
   "users": [
     {
       "email" : "axel@gmail.com",
-      "password" : "axel123"
+      "password" : "axel123",
+      "role" : "user"
     }
   ],
   "hotels": [
