@@ -44,6 +44,14 @@
       "name": "Alek",
       "comment": "Mantap.",
       "time": "2 hari lalu"
+    },
+    {
+      "id": 3,
+      "hotelId": 2,
+      "rating": 5,
+      "name": "Kin",
+      "comment": "Resepsionisnya Mantap.",
+      "time": "2 hari lalu"
     }
   ]
 }

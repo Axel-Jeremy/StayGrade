@@ -5,7 +5,7 @@ import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import FacilityCard from "../components/FacilityCard";
 import AboutCard from "../components/AboutCard";
-import { createSignal} from "solid-js";
+import { createSignal } from "solid-js";
 import ReviewModal from "../components/ReviewModal";
 import "../style/Header.css";
 import "../style/Facility.css";
@@ -36,62 +36,65 @@ function Rating(props) {
     const [hotel] = createResource(() => params.id, fetchHotelDetail);
     const [ratings] = createResource(() => params.id, fetchReviews);
     return (
-    <Show when={hotel()} fallback={<p>Loading...</p>}>
-        <div
-            id="body"
-            class={showModal() ? "blurred" : ""}
-        >
-            <HeaderCard login={true} />
+        <Show when={hotel()} fallback={<p>Loading...</p>}>
+            <div
+                id="body"
+                class={showModal() ? "blurred" : ""}
+            >
+                <HeaderCard login={true} />
 
-            <div class={style.hotelBanner}>
-                <img
-                    src={hotel.image}
-                    alt={hotel.alternative}
+                <div class={style.hotelBanner}>
+                    <img
+                        src={hotel().image}
+                        alt={hotel().alternative}
+                    />
+                    <div class={style.hotelInfo}>
+                        <h1 class={style.hotelName}>
+                            {hotel().name}
+                        </h1>
+                    </div>
+                </div>
+
+                <div class={style.containerGrid}>
+                    <AboutCard about={hotel().about} />
+                    <FacilityCard facilities={hotel().facilities} />
+                </div>
+
+                <div>
+                    <div class={style.containerUpperContent}>
+                        <h1>Review</h1>
+
+                        {role() === 'user' ? (<button onClick={() => setShowModal(true)} class={style.btnReview}>
+                            Tulis Review
+                        </button>) : null}
+
+                    </div>
+
+                    <div class={style.containerBottomContent}>
+                        <Show when={ratings()} fallback={<p>Loading reviews...</p>}>
+                            <For each={ratings()}>
+                                {(rating) => (
+                                    <ReviewCard
+                                        rating={rating.rating}
+                                        name={rating.name}
+                                        comment={rating.comment}
+                                        time={rating.time}
+                                    />
+                                )}
+                            </For>
+                        </Show>
+
+                    </div>
+                </div>
+            </div>
+
+            {showModal() && (
+                <ReviewModal
+                    hotelName={hotel().name}
+                    onClose={() => setShowModal(false)}
                 />
-                <div class={style.hotelInfo}>
-                    <h1 class={style.hotelName}>
-                        {hotel.name}
-                    </h1>
-                </div>
-            </div>
-
-            <div class={style.containerGrid}>
-                <AboutCard about={"dummy about hotel"} />
-                <FacilityCard />
-            </div>
-
-            <div>
-                <div class={style.containerUpperContent}>
-                    <h1>Review</h1>
-
-                    {role() === 'user' ? (<button onClick={() => setShowModal(true)} class={style.btnReview}>
-                        Tulis Review
-                    </button>) : null}
-                    
-                </div>
-
-                <div class={style.containerBottomContent}>
-                    <For each={ratings}>
-                        {(rating) => (
-                            <ReviewCard
-                                rating={rating.rating}
-                                name={rating.name}
-                                comment={rating.comment}
-                                time={rating.time}
-                            />
-                        )}
-                    </For>
-                </div>
-            </div>
-        </div>
-
-        {showModal() && (
-            <ReviewModal
-                hotelName={hotel.name}
-                onClose={() => setShowModal(false)}
-            />
-        )}
-    </Show>
+            )}
+        </Show>
     );
 };
 

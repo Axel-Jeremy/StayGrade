@@ -32,18 +32,17 @@ function Login() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/users`, {
+            const response = await fetch(`http://localhost:5000/api/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     email: email(),
-                    password: password()
+                    password: password(),
                 })
             });
 
             const data = await response.json();
-console.log("Data utuh dari server:", data); // <-- Tambahkan ini
-console.log("Role yang akan diset:", data.role); // <-- Tambahkan ini
+
             if (response.ok) {
                 setRole(data.role);
                 navigate('/');
@@ -52,6 +51,7 @@ console.log("Role yang akan diset:", data.role); // <-- Tambahkan ini
             }
         } catch (error) {
             console.error("Error logging in:", error);
+            alert("Login failed: " + data.message);
         }
     }
 
