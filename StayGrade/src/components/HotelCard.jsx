@@ -24,14 +24,14 @@ function HotelCard(props) {
                 </div>
 
                 {props.reviewClick && (
-                    <button class="btnReview" onClick={() => { props.onReviewClick; navigate("/rating"); }}>
+                    <button class="btnReview" onClick={() => { props.onReviewClick; navigate(`/rating/${props.id}`); }}>
                         Review
                     </button>)}
 
                 <div class="ContainerBtnCard">
                     {/* urus CSS 2 ini ya fajar - kin */}
                     {props.detailClick && (
-                        <button class="btnDD" onClick={() => { props.onDetailClick; navigate("/rating"); }}>
+                        <button class="btnDD" onClick={() => { props.onDetailClick; navigate(`/rating/${props.id}`); }}>
                             Details
                         </button>)}
 

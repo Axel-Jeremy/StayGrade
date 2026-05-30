@@ -1,5 +1,5 @@
-import { A } from "@solidjs/router"
-import { For } from "solid-js"
+import { A, useParams } from "@solidjs/router"
+import { For, createResource, Show } from "solid-js"
 import { useAuth } from "../components/AuthContext";
 import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
@@ -14,28 +14,29 @@ import "../style/ReviewCard.css";
 import style from "../style/Rate.module.css"
 import catoImage from "../cato.jpg";
 
+// 1. Buat fungsi fetcher untuk Hotel dan Review
+const fetchHotelDetail = async (id) => {
+    const response = await fetch(`http://localhost:5000/api/hotels/${id}`);
+    if (!response.ok) throw new Error("Gagal mengambil data hotel");
+    return response.json();
+};
+
+const fetchReviews = async (id) => {
+    const response = await fetch(`http://localhost:5000/api/reviews/${id}`);
+    if (!response.ok) throw new Error("Gagal mengambil ulasan");
+    return response.json();
+};
+
 function Rating(props) {
-    const hotel = {
-        id: 1,
-        image: "src/cato.jpg",
-        alternative: "Gambar hotel",
-        name: "Hotel A",
-        location: "Menteng, Jakarta",
-        prices: "100-200",
-        rating: "4.8",
-        reviewCount: "70"
-    }
-
-    const ratings = [
-        { rating: 5, name: "Fadjar", comment: "Pengalaman menginap luar biasa.", time: "5 hari lalu" },
-        { rating: 3, name: "Alek", comment: "Mantap.", time: "2 hari lalu" },
-    ]
-
     const [showModal, setShowModal] = createSignal(false);
 
     const { role } = useAuth();
+    const params = useParams();
+
+    const [hotel] = createResource(() => params.id, fetchHotelDetail);
+    const [ratings] = createResource(() => params.id, fetchReviews);
     return (
-    <>
+    <Show when={hotel()} fallback={<p>Loading...</p>}>
         <div
             id="body"
             class={showModal() ? "blurred" : ""}
@@ -90,7 +91,7 @@ function Rating(props) {
                 onClose={() => setShowModal(false)}
             />
         )}
-    </>
+    </Show>
     );
 };
 

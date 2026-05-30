@@ -1,31 +1,22 @@
 import { Navigate, useNavigate } from "@solidjs/router";
 import HotelCard from "../components/HotelCard"
 import { useAuth } from "../components/AuthContext";
-import { For } from "solid-js";
+import { For, createResource } from "solid-js";
 import "../style/Header.css";
 import style from "../style/Home.module.css"
 import "../style/HotelCard.css";
 import HeaderCard from "../components/HeaderCard";
 
-
+const fetchHotels = async () => {
+    const response = await fetch("http://localhost:5000/api/hotels");
+    if (!response.ok) throw new Error("Gagal mengambil data");
+    return response.json();
+};
 
 export default function Homepage() {
     const { role } = useAuth();
 
-    const hotelsNotLogin = [
-        { id: 1, image: "aaa", name: "Hotel A", location: "Menteng, Jakarta", prices: "100-200", rating: "4.8", reviewCount: "70" },
-        { id: 2, image: "aaa", name: "Hotel B", location: "Taman Kopo indah, Bandung", prices: "100-200", rating: "4.3", reviewCount: "10" },
-
-    ]
-    const hotels = [
-        { id: 1, image: "aaa", name: "Hotel A", location: "Menteng, Jakarta", prices: "100-200", rating: "4.8", reviewCount: "70", reviewClick: true },
-        { id: 2, image: "aaa", name: "Hotel B", location: "Taman Kopo indah, Bandung", prices: "100-200", rating: "4.3", reviewCount: "10", reviewClick: true },
-    ]
-
-    const hotelsAdmin = [
-        { id: 1, image: "aaa", name: "Hotel A", location: "Menteng, Jakarta", prices: "100-200", rating: "4.8", reviewCount: "70", detailClick: true, deleteClick: true },
-        { id: 2, image: "aaa", name: "Hotel B", location: "Taman Kopo indah, Bandung", prices: "100-200", rating: "4.3", reviewCount: "10", detailClick: true, deleteClick: true},
-    ]
+    const [hotels] = createResource(fetchHotels)
     return (
         <div>
             <HeaderCard login={false} />
@@ -37,17 +28,18 @@ export default function Homepage() {
                 <br />
                 <div class={style.containerCard}>
                     {role() === "user" && (
-                        <For each={hotels}>
+                        <For each={hotels()}>
                             {(hotel) => (
                                 <div class={style.Card}>
                                     <HotelCard
+                                        id={hotel.id}
                                         image={hotel.image}
                                         name={hotel.name}
                                         location={hotel.location}
                                         prices={hotel.prices}
                                         rating={hotel.rating}
                                         reviewCount={hotel.reviewCount}
-                                        reviewClick={hotel.reviewClick}
+                                        reviewClick={true}
                                     />
                                 </div>
                             )}
@@ -55,10 +47,11 @@ export default function Homepage() {
                     )}
 
                     {role() === "guest" && (
-                        <For each={hotelsNotLogin}>
+                        <For each={hotels()}>
                             {(hotel) => (
                                 <div class={style.Card}>
                                     <HotelCard
+                                        id={hotel.id}
                                         image={hotel.image}
                                         name={hotel.name}
                                         location={hotel.location}
@@ -73,17 +66,18 @@ export default function Homepage() {
                     }
 
                     {role() === "admin" && (
-                        <For each={hotelsAdmin}>
+                        <For each={hotels()}>
                             {(hotel) => (
                                 <div class={style.Card}>
                                     <HotelCard
+                                        id={hotel.id}
                                         image={hotel.image}
                                         name={hotel.name}
                                         location={hotel.location}
                                         prices={hotel.prices}
                                         rating={hotel.rating}
-                                        detailClick={hotel.detailClick}
-                                        deleteClick={hotel.deleteClick}
+                                        detailClick={true}
+                                        deleteClick={true}
                                     />
                                 </div>
                             )}

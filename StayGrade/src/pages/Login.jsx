@@ -32,7 +32,7 @@ function Login() {
         }
 
         try {
-            const response = await fetch(`/api/login`, {
+            const response = await fetch(`http://localhost:5000/api/users`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -42,7 +42,8 @@ function Login() {
             });
 
             const data = await response.json();
-
+console.log("Data utuh dari server:", data); // <-- Tambahkan ini
+console.log("Role yang akan diset:", data.role); // <-- Tambahkan ini
             if (response.ok) {
                 setRole(data.role);
                 navigate('/');
