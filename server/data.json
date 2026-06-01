@@ -3,7 +3,14 @@
     {
       "email" : "axel@gmail.com",
       "password" : "axel123",
-      "role" : "user"
+      "role" : "user",
+      "name" : "Axel"
+    },
+    {
+      "email" : "admin@gmail.com",
+      "password" : "admin",
+      "role" : "admin",
+      "name" : "Admin"
     }
   ],
   "hotels": [

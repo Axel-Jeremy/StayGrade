@@ -11,7 +11,7 @@ function Login() {
         navigate('/')
     }
 
-    const { setRole } = useAuth();
+    const { setRole, setName } = useAuth();
 
     // Create signals to store form input
     const [email, setEmail] = createSignal("");
@@ -46,6 +46,7 @@ function Login() {
 
             if (response.ok) {
                 setRole(data.role);
+                setName(data.name);
                 navigate('/');
             } else {
                 alert("Login failed: " + data.message);
@@ -92,10 +93,12 @@ function Login() {
                             <label>Belum Punya Akun?</label>
                             <A href="/register">Daftar</A>
                         </div>
-                        {/* nanti yg admin apus */}
+
+
+                        {/* nanti yg admin apus
                         <button onClick={() => { setRole("admin"); handleClick(); }}>
                             Log In as admin
-                        </button>
+                        </button> */}
 
                         <button class={style.guest} onClick={() => { setRole("guest"); handleClick(); }}>
                             Continue as guest
