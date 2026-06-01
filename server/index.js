@@ -79,6 +79,49 @@ app.post('/api/register', (req, res) => {
     res.status(201).json(newUser);
 });
 
+app.post('/api/hotels', (req, res) => {
+    // 1. Ambil data dari request body yang dikirim frontend
+    const { name, location, image, description, facilities, price } = req.body;
+    const data = readDB();
+
+    // 2. Validasi
+    if (!name || !location || !image || !description || !facilities || !price) {
+        return res.status(400).json({ message: "Semua field harus diisi" });
+    }
+
+    let newId = "1"; // Default jika array hotels masih kosong sama sekali
+
+    if (data.hotels && data.hotels.length > 0) {
+        const maxId = data.hotels.reduce((max, hotel) => {
+            const currentId = parseInt(hotel.id, 10);
+            return currentId > max ? currentId : max;
+        }, 0);
+
+        // Tambahkan 1 dari ID tertinggi, lalu ubah kembali jadi string
+        newId = (maxId + 1);
+    }
+
+    // 3. Buat objek hotel baru
+    const newHotel = {
+        id: newId,
+        name: name,
+        location: location,
+        image: image,
+        about: description,
+        facilities: facilities.split(',').map(item => item.trim()), 
+        prices: price, 
+        rating: 0, 
+        reviewCount: 0
+    };
+
+    // 4. Masukkan ke array hotels dan simpan ke file JSON
+    data.hotels.push(newHotel);
+    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
+
+    // 5. Kirim respon sukses
+    res.status(201).json(newHotel);
+});
+
 // Endpoint untuk mengambil detail SATU hotel berdasarkan ID
 app.get('/api/hotels/:id', (req, res) => {
     const data = readDB();
