@@ -1,13 +1,11 @@
 function GreetingCard(props) {
     const greeting = getCustomGreeting();
     return (
-        <div>
-
+        <div class="greetingContainer">
             {props.login !== 'guest' ?
                 (<h2 class="">{greeting}{props.name}!</h2>)
                 : (<h2 class="">{greeting}Guest!</h2>)
             }
-
         </div>
     )
 }
