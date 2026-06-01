@@ -54,6 +54,32 @@ app.post('/api/users', (req, res) => {
     }
 });
 
+app.post('/api/register', (req, res) => {
+    const { name, email, password } = req.body;
+    const data = readDB();
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ message: "Semua field harus diisi" });
+    }
+
+    const existingUser = data.users.find(user => user.email === email);
+    if (existingUser) {
+        return res.status(409).json({ message: "Email sudah terdaftar" });
+    }
+
+    const newUser = {
+        name,
+        email,
+        password,
+        role: "user"
+    };
+
+    data.users.push(newUser);
+    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
+
+    res.status(201).json(newUser);
+});
+
 // Endpoint untuk mengambil detail SATU hotel berdasarkan ID
 app.get('/api/hotels/:id', (req, res) => {
     const data = readDB();

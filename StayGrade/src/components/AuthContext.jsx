@@ -5,16 +5,20 @@ const AuthContext = createContext();
 export function AuthProvider(props) {
 
     const [role, setRole] = createSignal("guest");
+    const [name, setName] = createSignal("guest");
 
     return (
         <AuthContext.Provider
             value={{
                 role,
-                setRole
+                setRole,
+                name,
+                setName
             }}
         >
             {props.children}
         </AuthContext.Provider>
+        
     );
 }
 

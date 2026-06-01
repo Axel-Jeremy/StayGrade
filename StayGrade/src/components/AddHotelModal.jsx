@@ -1,4 +1,4 @@
-import "./AddHotelModal.css";
+import "../style/AddHotelModal.css";
 
 function AddHotelModal(props) {
     return (
@@ -46,7 +46,7 @@ function AddHotelModal(props) {
                         <label>Deskripsi *</label>
                         <textarea
                             rows="4"
-                            placeholder="Preview Gambar"
+                            placeholder="Deskripsi Hotel"
                         />
                     </div>
 
