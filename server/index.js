@@ -2,14 +2,30 @@ const path = require('node:path');
 const fs = require('node:fs');
 const express = require('express');
 const cors = require('cors'); // Wajib ditambahkan agar SolidJS bisa akses
+const session = require('express-session');
 
 const app = express();
 
 // --- MIDDLEWARE ---
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true // ngebolehin cookie session dikirim antar port
+}));
+
 // express.json() sangat penting di sini karena SolidJS akan mengirim data (POST) dalam format JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: 'staygrade',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true, // Mencegah pencurian cookie lewat JavaScript di browser
+        secure: false,
+        maxAge: 1000 * 60 * 60 * 24 // 1 hari
+    }
+}));
 
 // --- DATABASE PATH ---
 const dbPath = path.resolve(__dirname, 'data.json');
@@ -22,6 +38,22 @@ const readDB = () => JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
 // --- ROUTES / ENDPOINTS ---
+app.get('/api/login', (req, res) => {
+    if (req.session.user) {
+        res.json(req.session.user);
+    } else {
+        res.status(401).json({ message: 'Belum login' });
+    }
+});
+
+app.post('/api/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) return res.status(500).json({ message: 'Gagal logout' });
+        res.clearCookie('connect.sid'); 
+        res.json({ message: 'Logout berhasil' });
+    });
+});
+
 app.get('/api/hotels', (req, res) => {
     const data = readDB();
 
@@ -47,7 +79,12 @@ app.post('/api/users', (req, res) => {
     );
 
     if (foundUser) {
-        res.json(foundUser); 
+        req.session.user = {
+            name: foundUser.name,
+            email: foundUser.email,
+            role: foundUser.role
+        };
+        res.json(foundUser);
     } else {
         // salah email/password
         res.status(401).json({ message: "Email atau password salah" });
@@ -77,6 +114,11 @@ app.post('/api/register', (req, res) => {
     data.users.push(newUser);
     fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
+    req.session.user = {
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role
+    };
     res.status(201).json(newUser);
 });
 
@@ -149,9 +191,20 @@ app.get('/api/reviews/:hotelId', (req, res) => {
     res.json(reviews);
 });
 
+// buat ngambil daftar ulasan berdasarkan email user
+app.get('/api/reviews/user/:email', (req, res) => {
+    const data = readDB();
+    const userEmail = req.params.email;
+
+    // filter review cuma email yang cocok
+    const userReviews = data.reviews.filter(r => r.email === userEmail);
+
+    res.json(userReviews);
+});
+
 app.post('/api/reviews', (req, res) => {
     const data = readDB();
-    const { hotelId, rating, name, comment, time } = req.body;
+    const { hotelId, rating, name, email, comment, time } = req.body;
     const parsedHotelId = parseInt(hotelId, 10);
 
     //Ngecheck si hotelid dari review yang dikirim ada engga di data.json
@@ -170,6 +223,7 @@ app.post('/api/reviews', (req, res) => {
         hotelId: parsedHotelId,
         rating: parseInt(rating, 10),
         name: name,
+        email: email,
         comment: comment,
         time: time
     };

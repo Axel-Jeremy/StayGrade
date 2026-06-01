@@ -30,7 +30,7 @@ const fetchReviews = async (id) => {
 function Rating(props) {
     const [showModal, setShowModal] = createSignal(false);
 
-    const { role, name } = useAuth();
+    const { role, name, email } = useAuth();
     const params = useParams();
 
     const [hotel] = createResource(() => params.id, fetchHotelDetail);
@@ -92,6 +92,7 @@ function Rating(props) {
                     hotelId={params.id}
                     hotelName={hotel().name}
                     userName={name() || "Stranger"}
+                    userEmail={email()}
                     onClose={() => setShowModal(false)}
                     onSuccess={() => {
                         refetch();

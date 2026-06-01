@@ -1,4 +1,4 @@
-import { createContext, createSignal, useContext } from "solid-js";
+import { createContext, createSignal, useContext, onMount } from "solid-js";
 
 const AuthContext = createContext();
 
@@ -6,6 +6,31 @@ export function AuthProvider(props) {
 
     const [role, setRole] = createSignal("guest");
     const [name, setName] = createSignal("guest");
+    const [email, setEmail] = createSignal("guest");
+
+    onMount(async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/login", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setRole(data.role);
+                setName(data.name);
+                setEmail(data.email);
+            } else {
+                setRole("guest");
+                setName("guest");
+                setEmail("guest");
+            }
+        } catch (error) {
+            console.error("Gagal memverifikasi session:", error);
+            setRole("guest");
+            setName("guest");
+        }
+    });
 
     return (
         <AuthContext.Provider
@@ -13,12 +38,13 @@ export function AuthProvider(props) {
                 role,
                 setRole,
                 name,
-                setName
+                setName,
+                email,
+                setEmail
             }}
         >
             {props.children}
         </AuthContext.Provider>
-        
     );
 }
 

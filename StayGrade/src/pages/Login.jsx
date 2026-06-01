@@ -12,7 +12,7 @@ function Login() {
         navigate('/')
     }
 
-    const { setRole, setName } = useAuth();
+    const { setRole, setName, setEmail: setAuthEmail } = useAuth();
 
     // Create signals to store form input
     const [email, setEmail] = createSignal("");
@@ -32,11 +32,11 @@ function Login() {
             return;
         }
 
-
         try {
             const response = await fetch(`http://localhost:5000/api/users`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({
                     email: email(),
                     password: password(),
@@ -48,13 +48,14 @@ function Login() {
             if (response.ok) {
                 setRole(data.role);
                 setName(data.name);
+                setAuthEmail(data.email);
                 navigate('/');
             } else {
                 alert("Login failed: " + data.message);
             }
         } catch (error) {
             console.error("Error logging in:", error);
-            alert("Login failed: " + data.message);
+            alert("Login failed");
         }
     }
 

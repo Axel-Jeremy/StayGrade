@@ -18,6 +18,7 @@ function ReviewModal(props) {
             hotelId: props.hotelId,
             rating: rating(),
             name: props.userName || "Anonim", // <-- Pengaman wajib
+            email: props.userEmail,
             comment: comment(),
             time : time(),
         }
