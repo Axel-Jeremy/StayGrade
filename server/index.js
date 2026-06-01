@@ -19,6 +19,7 @@ const dbPath = path.resolve(__dirname, 'data.json');
 // Jika ditaruh di luar (seperti kodemu sebelumnya), server tidak akan membaca data baru 
 // jika nanti kamu melakukan POST (tambah ulasan/user baru) tanpa merestart server.
 const readDB = () => JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
+const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
 // --- ROUTES / ENDPOINTS ---
 app.get('/api/hotels', (req, res) => {
@@ -77,6 +78,36 @@ app.get('/api/reviews/:hotelId', (req, res) => {
     const reviews = data.reviews.filter(r => r.hotelId === hotelId);
 
     res.json(reviews);
+});
+
+app.post('/api/reviews', (req, res) => {
+    const data = readDB();
+    const { hotelId, rating, name, comment } = req.body;
+    const parsedHotelId = parseInt(hotelId, 10);
+
+    //Ngecheck si hotelid dari review yang dikirim ada engga di data.json
+    const cekHotel = data.hotels.find(hotel => hotel.id === parsedHotelId);
+    if (!cekHotel) {
+        return res.status(400).json({ message: "Gagal menambah review. Hotel tidak ditemukan!" });
+    }
+
+    //Id review baru bakal selalu +1 dari id review terakhir di data.json
+    const idBaru = data.reviews.length > 0
+    ? Math.max(...data.reviews.map(reviews => reviews.id)) + 1
+    :1;
+
+    const reviewBaru = {
+        id: idBaru,
+        hotelId: parsedHotelId,
+        rating: parseInt(rating, 10),
+        name: name,
+        comment: comment,
+        time: "Gua gatau carannya (Urusan Axel) makasih - Fadjar"
+    };
+
+    data.reviews.push(reviewBaru);
+    writeDB(data);
+    res.status(201).json(reviewBaru);
 });
 
 // --- SERVER LISTENER ---

@@ -1,14 +1,14 @@
 {
   "users": [
     {
-      "email" : "axel@gmail.com",
-      "password" : "axel123",
-      "role" : "user"
+      "email": "axel@gmail.com",
+      "password": "axel123",
+      "role": "user"
     },
     {
-      "email" : "admin@gmail.com",
-      "password" : "admin",
-      "role" : "admin"
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "role": "admin"
     }
   ],
   "hotels": [
@@ -20,17 +20,24 @@
       "rating": "4.8",
       "reviewCount": "70",
       "about": "dummy about hotel",
-      "facilities": ["Free Wifi", "Kolam Renang", "Free Breakfast"]
+      "facilities": [
+        "Free Wifi",
+        "Kolam Renang",
+        "Free Breakfast"
+      ]
     },
-    { 
-      "id": 2, 
-      "name": "Hotel B", 
-      "location": "Taman Kopo indah, Bandung", 
-      "prices": "100-200", 
-      "rating": "4.3", 
+    {
+      "id": 2,
+      "name": "Hotel B",
+      "location": "Taman Kopo indah, Bandung",
+      "prices": "100-200",
+      "rating": "4.3",
       "reviewCount": "10",
       "about": "Ini adalah deskripsi untuk Hotel B.",
-      "facilities": ["Free Wifi", "Parkir Luas"]
+      "facilities": [
+        "Free Wifi",
+        "Parkir Luas"
+      ]
     }
   ],
   "reviews": [
