@@ -1,11 +1,12 @@
 import { Navigate, useNavigate } from "@solidjs/router";
 import HotelCard from "../components/HotelCard"
 import { useAuth } from "../components/AuthContext";
-import { For, createResource } from "solid-js";
+import { For, createResource, createSignal } from "solid-js";
 import "../style/Header.css";
 import style from "../style/Home.module.css"
 import "../style/HotelCard.css";
 import HeaderCard from "../components/HeaderCard";
+import AddHotelModal from "../components/AddHotelModal";
 import GreetingCard from "../components/GreetingCard";
 import "../style/GreetingCard.css"
 
@@ -16,18 +17,26 @@ const fetchHotels = async () => {
 };
 
 export default function Homepage() {
+    const [showModal, setShowModal] = createSignal(false);
     const { role, name } = useAuth();
 
     const [hotels] = createResource(fetchHotels)
     return (
-        <div>
-            <HeaderCard login={role()} />
+        <>
+            <div class={showModal() ? "blurred" : ""}>
+                <HeaderCard login={role()} />
 
-            <div class={style.containerMain}>
-                <div class={style.containerImg}>
-                    <img src="" alt="GAMBAR IKLAN" />
-                </div>
-                <br />
+                <div class={style.containerMain}>
+                    {role() !== "admin" ? (<div class={style.containerImg}>
+                        <img src="" alt="GAMBAR IKLAN" />
+                    </div>) : (<div>
+                        <h2>Management Hotel</h2>
+                        <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
+                        <br />
+                        <button onClick={() => setShowModal(true)}>Tambah Hotel</button>
+                    </div>)}
+
+                    <br />
                 <div>
                     <GreetingCard login={role()} name={name()} />
                     <div class={style.containerCard}>
@@ -92,6 +101,13 @@ export default function Homepage() {
                 </div>
 
             </div>
-        </div>
+            {
+                showModal() && (
+                    <AddHotelModal
+                        onClose={() => setShowModal(false)}
+                    />
+                )
+            }
+        </>
     );
 }
