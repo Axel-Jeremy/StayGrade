@@ -49,7 +49,7 @@
       "rating": 5,
       "name": "Fadjar",
       "comment": "Pengalaman menginap luar biasa.",
-      "time": "5 hari lalu"
+      "time": "31-12-2024"
     },
     {
       "id": 2,
@@ -57,7 +57,7 @@
       "rating": 3,
       "name": "Alek",
       "comment": "Mantap.",
-      "time": "2 hari lalu"
+      "time": "1-2-2025"
     },
     {
       "id": 3,
@@ -65,7 +65,7 @@
       "rating": 5,
       "name": "Kin",
       "comment": "Resepsionisnya Mantap.",
-      "time": "2 hari lalu"
+      "time": "3-4-2025"
     },
     {
       "id": 4,
@@ -73,7 +73,39 @@
       "rating": 5,
       "name": "Axel",
       "comment": "Inikah my Review",
-      "time": "Gua gatau carannya (Urusan Axel) makasih - Fadjar"
+      "time": "7-4-2025"
+    },
+    {
+      "id": 5,
+      "hotelId": 1,
+      "rating": 4,
+      "name": "Axel",
+      "comment": "tes",
+      "time": "9-6-2025"
+    },
+    {
+      "id": 6,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "Axel",
+      "comment": "tes2",
+      "time": "28-12-2025"
+    },
+    {
+      "id": 7,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "Axel",
+      "comment": "tes3",
+      "time": "3-1-2026"
+    },
+    {
+      "id": 8,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "Axel",
+      "comment": "tes4",
+      "time": "1-5-2026"
     }
   ]
 }
