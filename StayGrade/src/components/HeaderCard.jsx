@@ -11,11 +11,13 @@ function HeaderCard(props) {
                     <img src={searchIcon} alt="Logo magnifying glass" />
                     <input type="text" placeholder="Search" class="searchInput"></input>
                 </div>
-                {!props.login ?
+                {props.login === 'guest'  ?
                     (<button class="btnLogin" onclick={() => navigate("/Login")}>Sign in</button>)
-                    :
+                    : props.login === 'user' ? 
                     (<div class="containerCL">
                         <A href="/yourReview" class="link"><u>Your Review</u></A>
+                        <div class="containerCircle">H</div>
+                    </div>) : (<div class="containerCL">
                         <div class="containerCircle">H</div>
                     </div>)
                 }
