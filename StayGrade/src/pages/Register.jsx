@@ -92,9 +92,9 @@ function Register() {
                     <h4 class={style.textLabel}>Email*</h4>
                     <input type="text" placeholder="Masukkan Email Anda" class={style.inputField} oninput={handleEmailInput} value={email()} />
                     <h4 class={style.textLabel}>Password*</h4>
-                    <input type="text" placeholder="Masukkan Password Anda" class={style.inputField} oninput={handlePasswordInput} value={password()}/>
+                    <input type="password" placeholder="Masukkan Password Anda" class={style.inputField} oninput={handlePasswordInput} value={password()}/>
                     <h4 class={style.textLabel}>Konfirmasi Password*</h4>
-                    <input type="text" placeholder="Masukkan Konfirmasi Password Anda" class={style.inputField} oninput={handleConfirmPasswordInput} value={confirmPassword()}/>
+                    <input type="password" placeholder="Masukkan Konfirmasi Password Anda" class={style.inputField} oninput={handleConfirmPasswordInput} value={confirmPassword()}/>
                 </div>
 
                 <div class={style.buttonContainer}>
