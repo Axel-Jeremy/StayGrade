@@ -31,6 +31,7 @@ function Login() {
             return;
         }
 
+        
         try {
             const response = await fetch(`http://localhost:5000/api/users`, {
                 method: "POST",
@@ -91,10 +92,12 @@ function Login() {
                             <label>Belum Punya Akun?</label>
                             <A href="/register">Daftar</A>
                         </div>
-                        {/* nanti yg admin apus */}
+
+                        
+                        {/* nanti yg admin apus
                         <button onClick={() => { setRole("admin"); handleClick(); }}>
                             Log In as admin
-                        </button>
+                        </button> */}
 
                         <button class={style.guest} onClick={() => { setRole("guest"); handleClick(); }}>
                             Continue as guest

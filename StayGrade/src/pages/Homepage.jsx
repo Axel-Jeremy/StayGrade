@@ -19,7 +19,7 @@ export default function Homepage() {
     const [hotels] = createResource(fetchHotels)
     return (
         <div>
-            <HeaderCard login={false} />
+            <HeaderCard login={role()} />
 
             <div class={style.containerMain}>
                 {role() !== "admin" ? (<div class={style.containerImg}>
