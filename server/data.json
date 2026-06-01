@@ -11,6 +11,12 @@
       "password": "admin",
       "role": "admin",
       "name": "Admin"
+    },
+    {
+      "name": "axel",
+      "email": "axel123@gmail.com",
+      "password": "axel123",
+      "role": "user"
     }
   ],
   "hotels": [
@@ -49,7 +55,8 @@
       "rating": 5,
       "name": "Fadjar",
       "comment": "Pengalaman menginap luar biasa.",
-      "time": "31-12-2024"
+      "time": "31-12-2024",
+      "email": "fadjar@gmail.com"
     },
     {
       "id": 2,
@@ -57,7 +64,8 @@
       "rating": 3,
       "name": "Alek",
       "comment": "Mantap.",
-      "time": "1-2-2025"
+      "time": "1-2-2025",
+      "email": "alek@gmail.com"
     },
     {
       "id": 3,
@@ -65,7 +73,8 @@
       "rating": 5,
       "name": "Kin",
       "comment": "Resepsionisnya Mantap.",
-      "time": "3-4-2025"
+      "time": "3-4-2025",
+      "email": "kin@gmail.com"
     },
     {
       "id": 4,
@@ -73,7 +82,8 @@
       "rating": 5,
       "name": "Axel",
       "comment": "Inikah my Review",
-      "time": "7-4-2025"
+      "time": "7-4-2025",
+      "email": "axel@gmail.com"
     },
     {
       "id": 5,
@@ -81,7 +91,8 @@
       "rating": 4,
       "name": "Axel",
       "comment": "tes",
-      "time": "9-6-2025"
+      "time": "9-6-2025",
+      "email": "axel@gmail.com"
     },
     {
       "id": 6,
@@ -89,7 +100,8 @@
       "rating": 5,
       "name": "Axel",
       "comment": "tes2",
-      "time": "28-12-2025"
+      "time": "28-12-2025",
+      "email": "axel@gmail.com"
     },
     {
       "id": 7,
@@ -97,7 +109,8 @@
       "rating": 5,
       "name": "Axel",
       "comment": "tes3",
-      "time": "3-1-2026"
+      "time": "3-1-2026",
+      "email": "axel@gmail.com"
     },
     {
       "id": 8,
@@ -105,6 +118,34 @@
       "rating": 5,
       "name": "Axel",
       "comment": "tes4",
+      "time": "1-5-2026",
+      "email": "axel@gmail.com"
+    },
+    {
+      "id": 9,
+      "hotelId": 2,
+      "rating": 5,
+      "name": "Axel",
+      "comment": "tes5",
+      "time": "1-5-2026",
+      "email": "axel@gmail.com"
+    },
+    {
+      "id": 10,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "Axel",
+      "comment": "tes6",
+      "time": "1-5-2026",
+      "email": "axel@gmail.com"
+    },
+    {
+      "id": 11,
+      "hotelId": 2,
+      "rating": 5,
+      "name": "Axel",
+      "email": "axel@gmail.com",
+      "comment": "tes7",
       "time": "1-5-2026"
     }
   ]

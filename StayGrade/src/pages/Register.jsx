@@ -9,7 +9,6 @@ function Register() {
     const navigate = useNavigate();
     const { setRole, setName } = useAuth();
 
-    // Create signals to store form input
     const [namaLengkap, setNamaLengkap] = createSignal("");
     const [email, setEmail] = createSignal("");
     const [password, setPassword] = createSignal("");
@@ -57,6 +56,7 @@ function Register() {
             const response = await fetch(`http://localhost:5000/api/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({
                     name: namaLengkap(),
                     email: email(),
