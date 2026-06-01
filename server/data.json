@@ -1,16 +1,16 @@
 {
   "users": [
     {
-      "email" : "axel@gmail.com",
-      "password" : "axel123",
-      "role" : "user",
-      "name" : "Axel"
+      "email": "axel@gmail.com",
+      "password": "axel123",
+      "role": "user",
+      "name": "Axel"
     },
     {
-      "email" : "admin@gmail.com",
-      "password" : "admin",
-      "role" : "admin",
-      "name" : "Admin"
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "role": "admin",
+      "name": "Admin"
     }
   ],
   "hotels": [
@@ -22,17 +22,24 @@
       "rating": "4.8",
       "reviewCount": "70",
       "about": "dummy about hotel",
-      "facilities": ["Free Wifi", "Kolam Renang", "Free Breakfast"]
+      "facilities": [
+        "Free Wifi",
+        "Kolam Renang",
+        "Free Breakfast"
+      ]
     },
-    { 
-      "id": 2, 
-      "name": "Hotel B", 
-      "location": "Taman Kopo indah, Bandung", 
-      "prices": "100-200", 
-      "rating": "4.3", 
+    {
+      "id": 2,
+      "name": "Hotel B",
+      "location": "Taman Kopo indah, Bandung",
+      "prices": "100-200",
+      "rating": "4.3",
       "reviewCount": "10",
       "about": "Ini adalah deskripsi untuk Hotel B.",
-      "facilities": ["Free Wifi", "Parkir Luas"]
+      "facilities": [
+        "Free Wifi",
+        "Parkir Luas"
+      ]
     }
   ],
   "reviews": [
@@ -59,6 +66,14 @@
       "name": "Kin",
       "comment": "Resepsionisnya Mantap.",
       "time": "2 hari lalu"
+    },
+    {
+      "id": 4,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "Axel",
+      "comment": "Inikah my Review",
+      "time": "Gua gatau carannya (Urusan Axel) makasih - Fadjar"
     }
   ]
 }
