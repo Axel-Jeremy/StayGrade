@@ -37,69 +37,69 @@ export default function Homepage() {
                     </div>)}
 
                     <br />
-                <div>
-                    <GreetingCard login={role()} name={name()} />
-                    <div class={style.containerCard}>
-                        {role() === "user" && (
-                            <For each={hotels()}>
-                                {(hotel) => (
-                                    <div class={style.Card}>
-                                        <HotelCard
-                                            id={hotel.id}
-                                            image={hotel.image}
-                                            name={hotel.name}
-                                            location={hotel.location}
-                                            prices={hotel.prices}
-                                            rating={hotel.rating}
-                                            reviewCount={hotel.reviewCount}
-                                            reviewClick={true}
-                                        />
-                                    </div>
-                                )}
-                            </For>
-                        )}
+                    <div>
+                        <GreetingCard login={role()} name={name()} />
+                        <div class={style.containerCard}>
+                            {role() === "user" && (
+                                <For each={hotels()}>
+                                    {(hotel) => (
+                                        <div class={style.Card}>
+                                            <HotelCard
+                                                id={hotel.id}
+                                                image={hotel.image}
+                                                name={hotel.name}
+                                                location={hotel.location}
+                                                prices={hotel.prices}
+                                                rating={hotel.rating}
+                                                reviewCount={hotel.reviewCount}
+                                                reviewClick={true}
+                                            />
+                                        </div>
+                                    )}
+                                </For>
+                            )}
 
-                        {role() === "guest" && (
-                            <For each={hotels()}>
-                                {(hotel) => (
-                                    <div class={style.Card}>
-                                        <HotelCard
-                                            id={hotel.id}
-                                            image={hotel.image}
-                                            name={hotel.name}
-                                            location={hotel.location}
-                                            prices={hotel.prices}
-                                            rating={hotel.rating}
-                                            reviewCount={hotel.reviewCount}
-                                        />
-                                    </div>
-                                )}
-                            </For>
-                        )
-                        }
+                            {role() === "guest" && (
+                                <For each={hotels()}>
+                                    {(hotel) => (
+                                        <div class={style.Card}>
+                                            <HotelCard
+                                                id={hotel.id}
+                                                image={hotel.image}
+                                                name={hotel.name}
+                                                location={hotel.location}
+                                                prices={hotel.prices}
+                                                rating={hotel.rating}
+                                                reviewCount={hotel.reviewCount}
+                                            />
+                                        </div>
+                                    )}
+                                </For>
+                            )
+                            }
 
-                        {role() === "admin" && (
-                            <For each={hotels()}>
-                                {(hotel) => (
-                                    <div class={style.Card}>
-                                        <HotelCard
-                                            id={hotel.id}
-                                            image={hotel.image}
-                                            name={hotel.name}
-                                            location={hotel.location}
-                                            prices={hotel.prices}
-                                            rating={hotel.rating}
-                                            detailClick={true}
-                                            deleteClick={true}
-                                        />
-                                    </div>
-                                )}
-                            </For>
-                        )
-                        }
+                            {role() === "admin" && (
+                                <For each={hotels()}>
+                                    {(hotel) => (
+                                        <div class={style.Card}>
+                                            <HotelCard
+                                                id={hotel.id}
+                                                image={hotel.image}
+                                                name={hotel.name}
+                                                location={hotel.location}
+                                                prices={hotel.prices}
+                                                rating={hotel.rating}
+                                                detailClick={true}
+                                                deleteClick={true}
+                                            />
+                                        </div>
+                                    )}
+                                </For>
+                            )
+                            }
+                        </div>
                     </div>
                 </div>
-
             </div>
             {
                 showModal() && (
