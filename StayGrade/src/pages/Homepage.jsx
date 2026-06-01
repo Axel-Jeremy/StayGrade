@@ -6,6 +6,7 @@ import "../style/Header.css";
 import style from "../style/Home.module.css"
 import "../style/HotelCard.css";
 import HeaderCard from "../components/HeaderCard";
+import GreetingCard from "../components/GreetingCard";
 
 const fetchHotels = async () => {
     const response = await fetch("http://localhost:5000/api/hotels");
@@ -14,7 +15,7 @@ const fetchHotels = async () => {
 };
 
 export default function Homepage() {
-    const { role } = useAuth();
+    const { role, name } = useAuth();
 
     const [hotels] = createResource(fetchHotels)
     return (
@@ -26,6 +27,7 @@ export default function Homepage() {
                     <img src="" alt="GAMBAR IKLAN" />
                 </div>
                 <br />
+                <GreetingCard login = {role()} name = {name()}/>
                 <div class={style.containerCard}>
                     {role() === "user" && (
                         <For each={hotels()}>
