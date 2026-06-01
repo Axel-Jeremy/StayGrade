@@ -14,7 +14,7 @@ function ReviewModal(props) {
         const templateData = {
             hotelId: props.hotelId,
             rating: rating(),
-            name: props.userName,
+            name: props.userName || "Anonim", // <-- Pengaman wajib
             comment: comment(),
         }
 

@@ -30,11 +30,11 @@ const fetchReviews = async (id) => {
 function Rating(props) {
     const [showModal, setShowModal] = createSignal(false);
 
-    const { role, users } = useAuth();
+    const { role, name } = useAuth();
     const params = useParams();
 
     const [hotel] = createResource(() => params.id, fetchHotelDetail);
-    const [ratings, {refetch}] = createResource(() => params.id, fetchReviews);
+    const [ratings, { refetch }] = createResource(() => params.id, fetchReviews);
     return (
         <Show when={hotel()} fallback={<p>Loading...</p>}>
             <div
@@ -91,10 +91,10 @@ function Rating(props) {
                 <ReviewModal
                     hotelId={params.id}
                     hotelName={hotel().name}
-                    userName={users?.name}
+                    userName={name() || "Stranger"}
                     onClose={() => setShowModal(false)}
                     onSuccess={() => {
-                        refetch(); // Biar otomatis refresh review
+                        refetch();
                         setShowModal(false);
                     }}
                 />
