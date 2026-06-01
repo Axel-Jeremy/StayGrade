@@ -6,7 +6,7 @@ function Register() {
     const navigate = useNavigate();
 
     function handleClick() {
-        // ........
+        // logika untuk handle register
         navigate('/')
     }
     return (

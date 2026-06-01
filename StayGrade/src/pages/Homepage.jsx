@@ -15,16 +15,22 @@ const fetchHotels = async () => {
 
 export default function Homepage() {
     const { role } = useAuth();
-
+    const [showModal, setShowModal] = createSignal(false);
     const [hotels] = createResource(fetchHotels)
     return (
         <div>
             <HeaderCard login={false} />
 
             <div class={style.containerMain}>
-                <div class={style.containerImg}>
+                {role() !== "admin" ? (<div class={style.containerImg}>
                     <img src="" alt="GAMBAR IKLAN" />
-                </div>
+                </div>) : (<div>
+                    <h2>Management Hotel</h2>
+                    <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
+                    <br/>
+                    <button onClick={() => setShowModal(true)}>Tambah Hotel</button>
+                </div>)}
+                
                 <br />
                 <div class={style.containerCard}>
                     {role() === "user" && (
