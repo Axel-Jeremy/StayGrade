@@ -7,6 +7,8 @@ import style from "../style/Home.module.css"
 import "../style/HotelCard.css";
 import HeaderCard from "../components/HeaderCard";
 import AddHotelModal from "../components/AddHotelModal";
+import GreetingCard from "../components/GreetingCard";
+import "../style/GreetingCard.css"
 
 const fetchHotels = async () => {
     const response = await fetch("http://localhost:5000/api/hotels");
@@ -15,8 +17,9 @@ const fetchHotels = async () => {
 };
 
 export default function Homepage() {
-    const { role } = useAuth();
     const [showModal, setShowModal] = createSignal(false);
+    const { role, name } = useAuth();
+
     const [hotels] = createResource(fetchHotels)
     return (
         <>
@@ -34,6 +37,8 @@ export default function Homepage() {
                     </div>)}
 
                     <br />
+                <div>
+                    <GreetingCard login={role()} name={name()} />
                     <div class={style.containerCard}>
                         {role() === "user" && (
                             <For each={hotels()}>
