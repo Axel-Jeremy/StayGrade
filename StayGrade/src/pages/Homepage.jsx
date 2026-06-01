@@ -1,11 +1,12 @@
 import { Navigate, useNavigate } from "@solidjs/router";
 import HotelCard from "../components/HotelCard"
 import { useAuth } from "../components/AuthContext";
-import { For, createResource } from "solid-js";
+import { For, createResource, createSignal } from "solid-js";
 import "../style/Header.css";
 import style from "../style/Home.module.css"
 import "../style/HotelCard.css";
 import HeaderCard from "../components/HeaderCard";
+import AddHotelModal from "../components/AddHotelModal";
 
 const fetchHotels = async () => {
     const response = await fetch("http://localhost:5000/api/hotels");
@@ -18,80 +19,90 @@ export default function Homepage() {
     const [showModal, setShowModal] = createSignal(false);
     const [hotels] = createResource(fetchHotels)
     return (
-        <div>
-            <HeaderCard login={role()} />
+        <>
+            <div class={showModal() ? "blurred" : ""}>
+                <HeaderCard login={role()} />
 
-            <div class={style.containerMain}>
-                {role() !== "admin" ? (<div class={style.containerImg}>
-                    <img src="" alt="GAMBAR IKLAN" />
-                </div>) : (<div>
-                    <h2>Management Hotel</h2>
-                    <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
-                    <br/>
-                    <button onClick={() => setShowModal(true)}>Tambah Hotel</button>
-                </div>)}
-                
-                <br />
-                <div class={style.containerCard}>
-                    {role() === "user" && (
-                        <For each={hotels()}>
-                            {(hotel) => (
-                                <div class={style.Card}>
-                                    <HotelCard
-                                        id={hotel.id}
-                                        image={hotel.image}
-                                        name={hotel.name}
-                                        location={hotel.location}
-                                        prices={hotel.prices}
-                                        rating={hotel.rating}
-                                        reviewCount={hotel.reviewCount}
-                                        reviewClick={true}
-                                    />
-                                </div>
-                            )}
-                        </For>
-                    )}
+                <div class={style.containerMain}>
+                    {role() !== "admin" ? (<div class={style.containerImg}>
+                        <img src="" alt="GAMBAR IKLAN" />
+                    </div>) : (<div>
+                        <h2>Management Hotel</h2>
+                        <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
+                        <br />
+                        <button onClick={() => setShowModal(true)}>Tambah Hotel</button>
+                    </div>)}
 
-                    {role() === "guest" && (
-                        <For each={hotels()}>
-                            {(hotel) => (
-                                <div class={style.Card}>
-                                    <HotelCard
-                                        id={hotel.id}
-                                        image={hotel.image}
-                                        name={hotel.name}
-                                        location={hotel.location}
-                                        prices={hotel.prices}
-                                        rating={hotel.rating}
-                                        reviewCount={hotel.reviewCount}
-                                    />
-                                </div>
-                            )}
-                        </For>
+                    <br />
+                    <div class={style.containerCard}>
+                        {role() === "user" && (
+                            <For each={hotels()}>
+                                {(hotel) => (
+                                    <div class={style.Card}>
+                                        <HotelCard
+                                            id={hotel.id}
+                                            image={hotel.image}
+                                            name={hotel.name}
+                                            location={hotel.location}
+                                            prices={hotel.prices}
+                                            rating={hotel.rating}
+                                            reviewCount={hotel.reviewCount}
+                                            reviewClick={true}
+                                        />
+                                    </div>
+                                )}
+                            </For>
+                        )}
+
+                        {role() === "guest" && (
+                            <For each={hotels()}>
+                                {(hotel) => (
+                                    <div class={style.Card}>
+                                        <HotelCard
+                                            id={hotel.id}
+                                            image={hotel.image}
+                                            name={hotel.name}
+                                            location={hotel.location}
+                                            prices={hotel.prices}
+                                            rating={hotel.rating}
+                                            reviewCount={hotel.reviewCount}
+                                        />
+                                    </div>
+                                )}
+                            </For>
                         )
-                    }
+                        }
 
-                    {role() === "admin" && (
-                        <For each={hotels()}>
-                            {(hotel) => (
-                                <div class={style.Card}>
-                                    <HotelCard
-                                        id={hotel.id}
-                                        image={hotel.image}
-                                        name={hotel.name}
-                                        location={hotel.location}
-                                        prices={hotel.prices}
-                                        rating={hotel.rating}
-                                        detailClick={true}
-                                        deleteClick={true}
-                                    />
-                                </div>
-                            )}
-                        </For>
+                        {role() === "admin" && (
+                            <For each={hotels()}>
+                                {(hotel) => (
+                                    <div class={style.Card}>
+                                        <HotelCard
+                                            id={hotel.id}
+                                            image={hotel.image}
+                                            name={hotel.name}
+                                            location={hotel.location}
+                                            prices={hotel.prices}
+                                            rating={hotel.rating}
+                                            detailClick={true}
+                                            deleteClick={true}
+                                        />
+                                    </div>
+                                )}
+                            </For>
                         )
-                    }
+                        }
+                    </div>
                 </div>
+
             </div>
-        </div>
+            {
+                showModal() && (
+                    <AddHotelModal
+                        onClose={() => setShowModal(false)}
+                    />
+                )
+            }
+        </>
     );
 }
