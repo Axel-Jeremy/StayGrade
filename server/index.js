@@ -151,7 +151,7 @@ app.get('/api/reviews/:hotelId', (req, res) => {
 
 app.post('/api/reviews', (req, res) => {
     const data = readDB();
-    const { hotelId, rating, name, comment } = req.body;
+    const { hotelId, rating, name, comment, time } = req.body;
     const parsedHotelId = parseInt(hotelId, 10);
 
     //Ngecheck si hotelid dari review yang dikirim ada engga di data.json
@@ -171,7 +171,7 @@ app.post('/api/reviews', (req, res) => {
         rating: parseInt(rating, 10),
         name: name,
         comment: comment,
-        time: "Gua gatau carannya (Urusan Axel) makasih - Fadjar"
+        time: time
     };
 
     data.reviews.push(reviewBaru);

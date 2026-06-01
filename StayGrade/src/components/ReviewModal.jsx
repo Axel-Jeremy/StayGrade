@@ -4,6 +4,7 @@ function ReviewModal(props) {
     const [rating, setRating] = createSignal(0);
     const stars = [1, 2, 3, 4, 5];
     const [comment, setComment] = createSignal("");
+    const [time, setTime] = createSignal("");
 
     const handlePost = async () => {
         if (!comment() || rating() === 0) {
@@ -11,11 +12,14 @@ function ReviewModal(props) {
             return;
         }
 
+        setTime(new Date().getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear());
+        console.log(time());
         const templateData = {
             hotelId: props.hotelId,
             rating: rating(),
             name: props.userName || "Anonim", // <-- Pengaman wajib
             comment: comment(),
+            time : time(),
         }
 
         try {
