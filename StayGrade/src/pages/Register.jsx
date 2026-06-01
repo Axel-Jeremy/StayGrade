@@ -3,6 +3,7 @@ import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
 import { createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
+import logo from '../style/Asset/Logo/logo.svg';
 
 function Register() {
     const navigate = useNavigate();
@@ -35,19 +36,19 @@ function Register() {
             alert("Nama lengkap tidak boleh kosong!");
             return;
         }
-        if (!email()){
+        if (!email()) {
             alert("Email tidak boleh kosong!");
             return;
         }
-        if (!password()){
+        if (!password()) {
             alert("Password tidak boleh kosong!");
             return;
         }
-        if (!confirmPassword()){
+        if (!confirmPassword()) {
             alert("Konfirmasi password tidak boleh kosong!");
             return;
         }
-        if (password() !== confirmPassword()){
+        if (password() !== confirmPassword()) {
             alert("Password dan konfirmasi password tidak sama");
             return;
         }
@@ -80,7 +81,7 @@ function Register() {
 
     return (
         <div class={style.containerRoot}>
-
+            <img class={style.logo} src={logo} alt="Logo Aplikasi" />
             <div class={style.mainContainer}>
                 <h1>Register</h1>
                 {/* <nav>
@@ -88,13 +89,13 @@ function Register() {
                 </nav> */}
                 <div>
                     <h4 class={style.textLabel}>Nama Lengkap*</h4>
-                    <input type="text" placeholder="Masukkan Nama Lengkap Anda" class={style.inputField}oninput={handleNamaInput} value={namaLengkap()}/>
+                    <input type="text" placeholder="Masukkan Nama Lengkap Anda" class={style.inputField} oninput={handleNamaInput} value={namaLengkap()} />
                     <h4 class={style.textLabel}>Email*</h4>
                     <input type="text" placeholder="Masukkan Email Anda" class={style.inputField} oninput={handleEmailInput} value={email()} />
                     <h4 class={style.textLabel}>Password*</h4>
-                    <input type="password" placeholder="Masukkan Password Anda" class={style.inputField} oninput={handlePasswordInput} value={password()}/>
+                    <input type="password" placeholder="Masukkan Password Anda" class={style.inputField} oninput={handlePasswordInput} value={password()} />
                     <h4 class={style.textLabel}>Konfirmasi Password*</h4>
-                    <input type="password" placeholder="Masukkan Konfirmasi Password Anda" class={style.inputField} oninput={handleConfirmPasswordInput} value={confirmPassword()}/>
+                    <input type="password" placeholder="Masukkan Konfirmasi Password Anda" class={style.inputField} oninput={handleConfirmPasswordInput} value={confirmPassword()} />
                 </div>
 
                 <div class={style.buttonContainer}>

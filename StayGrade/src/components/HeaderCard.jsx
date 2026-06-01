@@ -1,12 +1,13 @@
 import { A, useNavigate } from "@solidjs/router";
 import searchIcon from "../style/Asset/search-line.svg";
+import logo from '../style/Asset/Logo/logo.svg';
 
 function HeaderCard(props) {
     const navigate = useNavigate();
     return (
         <div>
             <div class="containerHeader">
-                <img src="" alt="Logo Aplikasi" />
+                <img class="logoimg" src={logo} alt="Logo Aplikasi" />
                 <div class="containerSearch">
                     <img src={searchIcon} alt="Logo magnifying glass" />
                     <input type="text" placeholder="Search" class="searchInput"></input>

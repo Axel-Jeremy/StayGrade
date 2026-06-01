@@ -3,6 +3,7 @@ import { createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
 import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
+import logo from '../style/Asset/Logo/logo.svg';
 
 function Login() {
     const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Login() {
             return;
         }
 
-        
+
         try {
             const response = await fetch(`http://localhost:5000/api/users`, {
                 method: "POST",
@@ -59,6 +60,7 @@ function Login() {
 
     return (
         <div class={style.containerRoot}>
+            <img class={style.logo} src={logo} alt="Logo Aplikasi" />
             <div class={style.mainContainer}>
                 <h1>Login</h1>
                 {/* <nav>
@@ -69,8 +71,8 @@ function Login() {
                     <input type="text"
                         placeholder="Masukkan Email Anda"
                         class={style.inputField}
-                        onInput={handleEmailInput} 
-                        value={email()}/>
+                        onInput={handleEmailInput}
+                        value={email()} />
 
                     <h4 class={style.textLabel}>
                         Password
@@ -78,8 +80,8 @@ function Login() {
                     <input type="password"
                         placeholder="Masukkan Password"
                         class={style.inputField}
-                        onInput={handlePasswordInput} 
-                        value={password()}/>
+                        onInput={handlePasswordInput}
+                        value={password()} />
                 </div>
 
                 <div class={style.buttonContainer}>
@@ -87,7 +89,7 @@ function Login() {
                         class={style.btnsubmit}>
                         Log In
                     </button>
-                    
+
                     <div class={style.link}>
                         <div>
                             <label>Belum Punya Akun?</label>

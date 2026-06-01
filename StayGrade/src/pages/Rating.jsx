@@ -41,7 +41,7 @@ function Rating(props) {
                 id="body"
                 class={showModal() ? "blurred" : ""}
             >
-                <HeaderCard login={true} />
+                <HeaderCard login={role()} />
 
                 <div class={style.hotelBanner}>
                     <img
