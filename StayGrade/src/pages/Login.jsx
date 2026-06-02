@@ -1,10 +1,10 @@
 import { A, useNavigate } from "@solidjs/router"
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
 import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
-import logo from '../style/Asset/Logo/logo.svg';
 import "../style/body.css"
+import logo from '../style/Asset/Logo/logo.png';
 
 function Login() {
     const navigate = useNavigate();
@@ -13,11 +13,16 @@ function Login() {
         navigate('/')
     }
 
-    const { setRole, setName, setEmail: setAuthEmail } = useAuth();
+    const { role, setRole, setName, setEmail: setAuthEmail } = useAuth();
 
-    // Create signals to store form input
     const [email, setEmail] = createSignal("");
     const [password, setPassword] = createSignal("");
+
+    createEffect(() => {
+        if (role() !== 'guest') {
+            navigate('/', { replace: true })
+        }
+    })
 
     function handleEmailInput(event) {
         setEmail(event.target.value);
@@ -50,7 +55,7 @@ function Login() {
                 setRole(data.role);
                 setName(data.name);
                 setAuthEmail(data.email);
-                navigate('/');
+                navigate('/', { replace: true });
             } else {
                 alert("Login failed: " + data.message);
             }
@@ -65,9 +70,6 @@ function Login() {
             <img class={style.logo} src={logo} alt="Logo Aplikasi" />
             <div class={style.mainContainer}>
                 <h1>Login</h1>
-                {/* <nav>
-                    <A href="/">Home Page</A>
-                </nav> */}
                 <div>
                     <h4 class={style.textLabel}>Email</h4>
                     <input type="text"

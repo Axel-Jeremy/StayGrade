@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "@solidjs/router";
+// import { Navigate, useNavigate } from "@solidjs/router";
 import HotelCard from "../components/HotelCard"
 import { useAuth } from "../components/AuthContext";
 import { For, createResource, createSignal } from "solid-js";
@@ -19,26 +19,29 @@ const fetchHotels = async () => {
 
 export default function Homepage() {
     const [showModal, setShowModal] = createSignal(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = createSignal(false);
     const { role, name } = useAuth();
 
     const [hotels, { refetch }] = createResource(fetchHotels);
 
     return (
         <>
-            <div class={showModal() ? "blurred" : ""}>
+            <div class={showModal() || isDeleteModalOpen() ? "blurred" : ""}>
                 <HeaderCard login={role()} />
 
                 <div class={style.containerMain}>
                     {role() !== "admin" ? (<div class={style.containerImg}>
                         <img src="" alt="GAMBAR IKLAN" />
-                    </div>) : (<div>
-                        <h2>Management Hotel</h2>
-                        <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
-                        <br />
-                        <button class={style.btnAddHotel} onClick={() => setShowModal(true)}>
-                            Tambah Hotel
-                        </button>
-                    </div>)}
+                    </div>) :
+                        (
+                            <div>
+                                <h2>Management Hotel</h2>
+                                <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
+                                <br />
+                                <button class={style.btnAddHotel} onClick={() => setShowModal(true)}>Tambah Hotel</button>
+                            </div>
+                        )
+                    }
 
                     <br />
                     <div>
@@ -96,6 +99,10 @@ export default function Homepage() {
                                                 rating={hotel.rating}
                                                 detailClick={true}
                                                 deleteClick={true}
+                                                refetch={refetch}
+
+                                                onOpenDeleteModal={() => setIsDeleteModalOpen(true)}
+                                                onCloseDeleteModal={() => setIsDeleteModalOpen(false)}
                                             />
                                         </div>
                                     )}

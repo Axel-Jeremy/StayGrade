@@ -1,11 +1,9 @@
 import { For } from "solid-js"
 
 function FacilityCard(props) {
-    const facilities = ["Free Wifi", "Kolam Renang", "Free Breakfast"];
-
     return (
         <div>
-            <h1 style={{"margin-bottom": "0px"}}>Fasilitas</h1>
+            <h1 style={{ "margin-bottom": "0px" }}>Fasilitas</h1>
             <div class="containerFacility">
                 <For each={props.facilities}>
                     {(facility) => (

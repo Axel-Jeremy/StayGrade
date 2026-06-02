@@ -15,14 +15,14 @@ const fetchUserReviews = async (userEmail) => {
 
     const response = await fetch(`http://localhost:5000/api/reviews/user/${userEmail}`);
     if (!response.ok) throw new Error("Gagal mengambil data review");
-    
+
     return response.json();
 };
 
 function YourReview() {
-    const { role, email } = useAuth(); 
+    const { role, email } = useAuth();
     // const location = useLocation();
-    
+
     const [ratings] = createResource(email, fetchUserReviews);
 
     return (
@@ -32,13 +32,14 @@ function YourReview() {
                 <div class={style.containerUpperContent}>
                     <h1>Review Kamu</h1>
                 </div>
-                
+
                 <div class={style.containerBottomContent}>
                     <Show when={ratings()} fallback={<p>Loading reviews...</p>}>
                         <Show when={ratings().length > 0} fallback={<p>Kamu belum menulis review apa pun.</p>}>
                             <For each={ratings()}>
                                 {(rating) => (
                                     <ReviewCard
+                                        id={rating.id}
                                         rating={rating.rating}
                                         name={rating.name}
                                         comment={rating.comment}
@@ -47,7 +48,7 @@ function YourReview() {
                                 )}
                             </For>
                         </Show>
-                        
+
                     </Show>
                 </div>
             </div>
