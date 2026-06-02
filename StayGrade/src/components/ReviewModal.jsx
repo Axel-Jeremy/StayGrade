@@ -13,7 +13,7 @@ function ReviewModal(props) {
         }
 
         setTime(new Date().getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear());
-        console.log(time());
+        // console.log(time());
         const templateData = {
             hotelId: props.hotelId,
             rating: rating(),
