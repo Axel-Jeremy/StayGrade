@@ -1,7 +1,7 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const express = require('express');
-const cors = require('cors'); // wajib ditambahkan agar SolidJS bisa akses
+const cors = require('cors');
 const session = require('express-session');
 
 const app = express();
@@ -26,11 +26,6 @@ app.use(session({
 }));
 
 const dbPath = path.resolve(__dirname, 'data.json');
-
-// --- HELPER FUNCTION ---
-// Perbedaan dari tugas lamamu: Kita buat sebagai fungsi agar data dibaca ulang setiap kali ada request.
-// Jika ditaruh di luar (seperti kodemu sebelumnya), server tidak akan membaca data baru 
-// jika nanti kamu melakukan POST (tambah ulasan/user baru) tanpa merestart server.
 const readDB = () => JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
@@ -59,7 +54,7 @@ app.get('/api/hotels', (req, res) => {
 });
 
 app.post('/api/users', (req, res) => {
-    // tangkep email dan password yang dikirim oleh frontend
+    // tangkep email dan password yang dikirim frontend
     const { email, password } = req.body; 
     
     // baca seluruh isi database JSON
@@ -147,7 +142,7 @@ app.post('/api/hotels', (req, res) => {
         reviewCount: 0
     };
 
-    // push data hotel baru ke array hotels dan simpan ke file JSON
+    // push data hotel baru ke array hotels terus simpan ke file JSON
     data.hotels.push(newHotel);
     fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
