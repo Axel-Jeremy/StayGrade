@@ -17,10 +17,8 @@ function HotelCard(props) {
 
             if (response.ok) {
                 alert("Hotel berhasil dihapus");
-
-                // Memicu fungsi refetch dari parent component tanpa perlu reload halaman
-                if (props.onDeleteSuccess) {
-                    props.onDeleteSuccess();
+                if (props.refetch) {
+                    props.refetch();
                 }
             } else {
                 const data = await response.json();
@@ -30,7 +28,6 @@ function HotelCard(props) {
             console.error(error);
             alert("Terjadi kesalahan");
         } finally {
-            // Tutup modal setelah proses selesai (berhasil maupun gagal)
             setShowDeleteModal(false);
         }
     }
@@ -79,7 +76,7 @@ function HotelCard(props) {
 
                     <Show when={showDeleteModal()}>
                         <DeleteConfirmationModal
-                            onCancel={() => setShowDeleteModal(false)}
+                            onCancel={() => {setShowDeleteModal(false)}}
                             onConfirm={handleDelete}
                         />
                     </Show>

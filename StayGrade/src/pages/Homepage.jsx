@@ -19,14 +19,13 @@ const fetchHotels = async () => {
 
 export default function Homepage() {
     const [showModal, setShowModal] = createSignal(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = createSignal(false);
     const { role, name } = useAuth();
 
     const [hotels, { refetch }] = createResource(fetchHotels);
 
     return (
         <>
-            <div class={showModal() || isDeleteModalOpen() ? "blurred" : ""}>
+            <div class={showModal() ? "blurred" : ""}>
                 <HeaderCard login={role()} />
 
                 <div class={style.containerMain}>
@@ -100,9 +99,6 @@ export default function Homepage() {
                                                 detailClick={true}
                                                 deleteClick={true}
                                                 refetch={refetch}
-
-                                                onOpenDeleteModal={() => setIsDeleteModalOpen(true)}
-                                                onCloseDeleteModal={() => setIsDeleteModalOpen(false)}
                                             />
                                         </div>
                                     )}
