@@ -1,18 +1,24 @@
 import { A, useNavigate } from "@solidjs/router"
 import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
-import { createSignal } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
 import logo from '../style/Asset/Logo/logo.svg';
 
 function Register() {
     const navigate = useNavigate();
-    const { setRole, setName } = useAuth();
+    const { role, setRole, setName } = useAuth();
 
     const [namaLengkap, setNamaLengkap] = createSignal("");
     const [email, setEmail] = createSignal("");
     const [password, setPassword] = createSignal("");
     const [confirmPassword, setConfirmPassword] = createSignal("");
+
+    createEffect(() => {
+        if (role() !== 'guest') {
+            navigate('/', { replace: true })
+        }
+    })
 
     function handleNamaInput(event) {
         setNamaLengkap(event.target.value);
@@ -69,7 +75,7 @@ function Register() {
             if (response.ok) {
                 setRole(data.role);
                 setName(data.name || namaLengkap());
-                navigate('/');
+                navigate('/', { replace: true });
             } else {
                 alert("Register failed: " + data.message);
             }
