@@ -20,7 +20,8 @@ export default function Homepage() {
     const [showModal, setShowModal] = createSignal(false);
     const { role, name } = useAuth();
 
-    const [hotels] = createResource(fetchHotels)
+    const [hotels, { refetch }] = createResource(fetchHotels);
+
     return (
         <>
             <div class={showModal() ? "blurred" : ""}>
@@ -105,6 +106,10 @@ export default function Homepage() {
                 showModal() && (
                     <AddHotelModal
                         onClose={() => setShowModal(false)}
+                        onSuccess={() => {
+                            refetch();
+                            setShowModal(false);
+                        }}
                     />
                 )
             }

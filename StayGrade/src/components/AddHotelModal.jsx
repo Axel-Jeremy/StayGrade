@@ -37,8 +37,7 @@ function AddHotelModal(props) {
 
             if (response.ok) {
                 alert("Hotel berhasil ditambahkan!");
-                props.onClose(); 
-                window.location.reload;
+                props.onSuccess();
             } else {
                 alert("Gagal menambahkan hotel: " + data.message);
             }
