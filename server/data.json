@@ -147,6 +147,15 @@
       "email": "axel@gmail.com",
       "comment": "tes7",
       "time": "1-5-2026"
+    },
+    {
+      "id": 12,
+      "hotelId": 1,
+      "rating": 1,
+      "name": "Axel",
+      "email": "axel@gmail.com",
+      "comment": "Hotel ngodok",
+      "time": "2-5-2026"
     }
   ]
 }

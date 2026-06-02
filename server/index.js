@@ -233,6 +233,80 @@ app.post('/api/reviews', (req, res) => {
     res.status(201).json(reviewBaru);
 });
 
+app.delete('/api/reviews/:id', (req, res) => {
+    const reviewId = parseInt(req.params.id, 10);
+    const data = readDB();
+
+    const reviewIndex = data.reviews.findIndex(
+        r => r.id === reviewId
+    );
+
+    if (reviewIndex === -1) {
+        return res.status(404).json({
+            message: 'Review tidak ditemukan'
+        });
+    }
+
+    data.reviews.splice(reviewIndex, 1);
+
+    writeDB(data);
+
+    res.json({
+        message: 'Review berhasil dihapus'
+    });
+});
+
+app.delete('/api/hotels/:id', (req, res) => {
+    const hotelId = parseInt(req.params.id, 10);
+    const data = readDB();
+
+    const hotelIndex = data.hotels.findIndex(
+        h => h.id === hotelId
+    );
+
+    if (hotelIndex === -1) {
+        return res.status(404).json({
+            message: 'Hotel tidak ditemukan'
+        });
+    }
+
+    data.hotels.splice(hotelIndex, 1);
+
+    data.reviews = data.reviews.filter(
+        review => review.hotelId !== hotelId
+    );
+
+    writeDB(data);
+
+    res.json({
+        message: 'Hotel berhasil dihapus'
+    });
+});
+
+app.put('/api/reviews/:id', (req, res) => {
+    const reviewId = parseInt(req.params.id, 10);
+    const { rating, comment } = req.body;
+
+    const data = readDB();
+
+    const review = data.reviews.find(
+        r => r.id === reviewId
+    );
+
+    if (!review) {
+        return res.status(404).json({
+            message: 'Review tidak ditemukan'
+        });
+    }
+
+    review.rating = parseInt(rating, 10);
+    review.comment = comment;
+
+    writeDB(data);
+
+    res.json(review);
+});
+
 // --- SERVER LISTENER ---
 app.listen(5000, () => {
     console.log('Listening at http://localhost:5000 ...');
