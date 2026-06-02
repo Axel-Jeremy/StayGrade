@@ -75,15 +75,6 @@
       "comment": "Resepsionisnya Mantap.",
       "time": "3-4-2025",
       "email": "kin@gmail.com"
-    },
-    {
-      "id": 4,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "email": "axel@gmail.com",
-      "comment": "tes",
-      "time": "2-5-2026"
     }
   ]
 }

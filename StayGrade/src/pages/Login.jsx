@@ -96,8 +96,8 @@ function Login() {
 
                     <div class={style.link}>
                         <div>
-                            <label>Belum Punya Akun?</label>
-                            <A href="/register">Daftar</A>
+                            <label>Belum Punya Akun?       </label>
+                            <A href="/register">   Daftar</A>
                         </div>
 
 

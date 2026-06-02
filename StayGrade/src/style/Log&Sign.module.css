@@ -11,7 +11,7 @@
 h1{
     margin: 2vh 0 0 0;
     font-size: 2.5rem;
-    color: #6B9080; /* Jungle Teal */
+    color: #3a5d4e; /* Jungle Teal */
 }
 
 .mainContainer {
@@ -33,7 +33,7 @@ h1{
 
 .textLabel {
     font-weight: bold;
-    color: #6B9080; /* Jungle Teal */
+    color: #3a5d4e; /* Jungle Teal */
     padding: 0rem;
     margin: 1rem 1rem 0.2rem 0rem;
 }
@@ -54,7 +54,7 @@ h1{
     border-radius: 10px;
     font-size: 0.75rem;
     background: #EAF4F4; /* Azure Mist */
-    color: #6B9080; /* Jungle Teal */
+    color: black; /* Jungle Teal */
 }
 
 .btnsubmit {
@@ -65,8 +65,16 @@ h1{
     font-size: 1rem;
     cursor: pointer;
     margin: 1rem 0 1rem 0;
-    background: #6B9080; /* Jungle Teal */
+    background: #3a5d4e; /* Jungle Teal */
     color: #F6FFF8; /* Mint Cream */
+}
+
+.guest{
+    background: #3a5d4e; /* Jungle Teal */
+    color: #F6FFF8; /* Mint Cream */
+    border: 1px solid #6B9080; /* Jungle Teal */
+    border-radius: 5px;
+    margin: 8px 0 0 0;
 }
 
 .decoLink {
