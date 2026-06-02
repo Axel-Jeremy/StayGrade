@@ -50,7 +50,7 @@ function HeaderCard() {
                 )}
             </div>
 
-            <hr class="line" />
+            <hr style={{ "border-color": "black", "border-width": "1px", width: "100%" }} />
         </div>
     )
 }
