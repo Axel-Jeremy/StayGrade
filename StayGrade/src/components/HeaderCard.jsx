@@ -31,7 +31,7 @@ function HeaderCard() {
     return (
         <div>
             <div class="containerHeader">
-                <A href="/"><img class="logoimg" src={logo} alt="Logo Aplikasi" /></A>
+                <A href="/" class="logoHeader"><img class="logoimg" src={logo} alt="Logo Aplikasi" /></A>
 
                 <div class="containerSearch">
                     <img src={searchIcon} alt="Logo magnifying glass" />

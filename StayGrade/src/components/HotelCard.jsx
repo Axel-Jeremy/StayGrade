@@ -42,7 +42,7 @@ function HotelCard(props) {
                 <p class="text">{props.location}</p>
                 <p class="text">{props.prices} / night</p>
             </div>
-            <div style={{ display: "flex", "flex-direction": "column" }}>
+            <div style={{ display: "flex", "flex-direction": "column", "justify-content": "space-between" }}>
                 <div class="containerParagraph ">
                     <p class="text">{props.rating} / 5.0</p>
                     <p class="text">{props.reviewCount} Reviews</p>
@@ -60,27 +60,32 @@ function HotelCard(props) {
                     </button>
                 )}
 
-                <div class="ContainerBtnCard">
-                    {/* urus CSS 2 ini ya fajar - kin */}
-                    {props.detailClick && (
-                        <button class="btnDetail" onClick={() => { props.onDetailClick; navigate(`/rating/${props.id}`); }}>
-                            Details
-                        </button>
-                    )}
+                {(props.detailClick || props.deleteClick) &&
+                    (
+                        <div class="ContainerBtnCard">
+                            {/* urus CSS 2 ini ya fajar - kin */}
+                            {props.detailClick && (
+                                <button class="btnDetail" onClick={() => { props.onDetailClick; navigate(`/rating/${props.id}`); }}>
+                                    Details
+                                </button>
+                            )}
 
-                    {props.deleteClick && (
-                        <button class="btnDelete" onClick={() => setShowDeleteModal(true)}>
-                            Delete
-                        </button>
-                    )}
+                            {props.deleteClick && (
+                                <button class="btnDelete" onClick={() => setShowDeleteModal(true)}>
+                                    Delete
+                                </button>
+                            )}
 
-                    <Show when={showDeleteModal()}>
-                        <DeleteConfirmationModal
-                            onCancel={() => {setShowDeleteModal(false)}}
-                            onConfirm={handleDelete}
-                        />
-                    </Show>
-                </div>
+                            <Show when={showDeleteModal()}>
+                                <DeleteConfirmationModal
+                                    onCancel={() => { setShowDeleteModal(false) }}
+                                    onConfirm={handleDelete}
+                                />
+                            </Show>
+                        </div>
+                    )
+                }
+
             </div>
         </div>
     );
