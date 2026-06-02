@@ -1,11 +1,11 @@
 import { A, useNavigate } from "@solidjs/router";
 import { useAuth } from "./AuthContext";
 import searchIcon from "../style/Asset/search-line.svg";
-import logo from '../style/Asset/Logo/logo.svg';
+import logo from '../style/Asset/Logo/logo.png';
 
 function HeaderCard() {
     const navigate = useNavigate();
-    const { role, setRole, setName, setEmail } = useAuth();
+    const { role, setRole, setName, setEmail, name } = useAuth();
 
     const handleLogout = async () => {
         try {
@@ -32,7 +32,7 @@ function HeaderCard() {
         <div>
             <div class="containerHeader">
                 <A href="/"><img class="logoimg" src={logo} alt="Logo Aplikasi" /></A>
-                
+
                 <div class="containerSearch">
                     <img src={searchIcon} alt="Logo magnifying glass" />
                     <input type="text" placeholder="Search" class="searchInput"></input>
@@ -44,8 +44,8 @@ function HeaderCard() {
                         {role() === 'user' && (
                             <A href="/yourReview" class="link"><u>Your Review</u></A>
                         )}
-                        <button class="btnLogin" onClick={handleLogout}>Logout</button>
-                        <div class="containerCircle">H</div>
+                        <button class="btnLogin" onClick={handleLogout}><div class="containerCircle">{name()[0]}</div> Log out</button>
+                        
                     </div>
                 )}
             </div>

@@ -1,18 +1,16 @@
 const path = require('node:path');
 const fs = require('node:fs');
 const express = require('express');
-const cors = require('cors'); // Wajib ditambahkan agar SolidJS bisa akses
+const cors = require('cors'); // wajib ditambahkan agar SolidJS bisa akses
 const session = require('express-session');
 
 const app = express();
 
-// --- MIDDLEWARE ---
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true // ngebolehin cookie session dikirim antar port
 }));
 
-// express.json() sangat penting di sini karena SolidJS akan mengirim data (POST) dalam format JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,7 +25,6 @@ app.use(session({
     }
 }));
 
-// --- DATABASE PATH ---
 const dbPath = path.resolve(__dirname, 'data.json');
 
 // --- HELPER FUNCTION ---
@@ -37,7 +34,6 @@ const dbPath = path.resolve(__dirname, 'data.json');
 const readDB = () => JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
-// --- ROUTES / ENDPOINTS ---
 app.get('/api/login', (req, res) => {
     if (req.session.user) {
         res.json(req.session.user);
@@ -57,20 +53,16 @@ app.post('/api/logout', (req, res) => {
 app.get('/api/hotels', (req, res) => {
     const data = readDB();
 
-    // Nanti kamu bisa mengadaptasi logika filter atau pagination dari tugas lamamu di sini
-    // contoh: const filtered = filterHotels(data.hotels, req.query.search);
-
     res.header('Content-Type', 'application/json');
-    // res.json(data.hotels) sebenarnya adalah versi modern dari res.send(JSON.stringify(...)), 
-    // namun saya pertahankan gayamu dari referensi sebelumnya.
-    res.send(JSON.stringify(data.hotels, null, 2));
+    res.json(data.hotels) 
+    //res.send(JSON.stringify(data.hotels, null, 2));
 });
 
 app.post('/api/users', (req, res) => {
     // tangkep email dan password yang dikirim oleh frontend
     const { email, password } = req.body; 
     
-    // Baca seluruh isi database JSON kamu
+    // baca seluruh isi database JSON
     const data = readDB();
 
     // cari satu user yang email dan passwordnya cocok
@@ -123,16 +115,15 @@ app.post('/api/register', (req, res) => {
 });
 
 app.post('/api/hotels', (req, res) => {
-    // 1. Ambil data dari request body yang dikirim frontend
     const { name, location, image, description, facilities, price } = req.body;
     const data = readDB();
 
-    // 2. Validasi
     if (!name || !location || !image || !description || !facilities || !price) {
         return res.status(400).json({ message: "Semua field harus diisi" });
     }
 
-    let newId = "1"; // Default jika array hotels masih kosong sama sekali
+    // logic buat auto incremental penambahan hotel
+    let newId = "1"; 
 
     if (data.hotels && data.hotels.length > 0) {
         const maxId = data.hotels.reduce((max, hotel) => {
@@ -140,11 +131,10 @@ app.post('/api/hotels', (req, res) => {
             return currentId > max ? currentId : max;
         }, 0);
 
-        // Tambahkan 1 dari ID tertinggi, lalu ubah kembali jadi string
+        
         newId = (maxId + 1);
     }
 
-    // 3. Buat objek hotel baru
     const newHotel = {
         id: newId,
         name: name,
@@ -157,20 +147,18 @@ app.post('/api/hotels', (req, res) => {
         reviewCount: 0
     };
 
-    // 4. Masukkan ke array hotels dan simpan ke file JSON
+    // push data hotel baru ke array hotels dan simpan ke file JSON
     data.hotels.push(newHotel);
     fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
 
-    // 5. Kirim respon sukses
     res.status(201).json(newHotel);
 });
 
-// Endpoint untuk mengambil detail SATU hotel berdasarkan ID
 app.get('/api/hotels/:id', (req, res) => {
     const data = readDB();
     const hotelId = parseInt(req.params.id, 10);
 
-    // Mencari hotel yang ID-nya cocok
+    // cari hotel yang id-nya sesuai
     const hotel = data.hotels.find(h => h.id === hotelId);
 
     if (!hotel) {
@@ -180,12 +168,11 @@ app.get('/api/hotels/:id', (req, res) => {
     res.json(hotel);
 });
 
-// Endpoint untuk mengambil daftar ulasan berdasarkan ID hotel
 app.get('/api/reviews/:hotelId', (req, res) => {
     const data = readDB();
     const hotelId = parseInt(req.params.hotelId, 10);
 
-    // Memfilter ulasan yang hanya memiliki hotelId yang cocok
+    // filter review sesuai hotel yang dipilih
     const reviews = data.reviews.filter(r => r.hotelId === hotelId);
 
     res.json(reviews);
@@ -307,7 +294,6 @@ app.put('/api/reviews/:id', (req, res) => {
     res.json(review);
 });
 
-// --- SERVER LISTENER ---
 app.listen(5000, () => {
     console.log('Listening at http://localhost:5000 ...');
 });

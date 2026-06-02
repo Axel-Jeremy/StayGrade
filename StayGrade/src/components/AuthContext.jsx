@@ -21,6 +21,7 @@ export function AuthProvider(props) {
                 setName(data.name);
                 setEmail(data.email);
             } else {
+                //belom login, set default jadi guest
                 setRole("guest");
                 setName("guest");
                 setEmail("guest");
@@ -29,6 +30,7 @@ export function AuthProvider(props) {
             console.error("Gagal memverifikasi session:", error);
             setRole("guest");
             setName("guest");
+            setEmail("guest");
         }
     });
 
