@@ -26,7 +26,7 @@ function YourReview() {
 
     return (
         <div>
-            <HeaderCard login={role() !== "guest"} />
+            <HeaderCard login={role()} />
             <div>
                 <div class={style.containerUpperContent}>
                     <h1>Review Kamu</h1>
