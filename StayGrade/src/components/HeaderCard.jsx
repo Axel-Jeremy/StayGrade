@@ -7,7 +7,8 @@ function HeaderCard(props) {
     return (
         <div>
             <div class="containerHeader">
-                <img class="logoimg" src={logo} alt="Logo Aplikasi" />
+                <A href="/"><img class="logoimg" src={logo} alt="Logo Aplikasi" /></A>
+                
                 <div class="containerSearch">
                     <img src={searchIcon} alt="Logo magnifying glass" />
                     <input type="text" placeholder="Search" class="searchInput"></input>

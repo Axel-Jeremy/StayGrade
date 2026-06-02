@@ -42,7 +42,7 @@ app.get('/api/login', (req, res) => {
     if (req.session.user) {
         res.json(req.session.user);
     } else {
-        res.status(401).json({ message: 'Belum login' });
+        res.status(401).json({ message: 'User Belum login' });
     }
 });
 

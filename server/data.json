@@ -46,6 +46,45 @@
         "Free Wifi",
         "Parkir Luas"
       ]
+    },
+    {
+      "id": 3,
+      "name": "tes",
+      "location": "tes",
+      "image": "tes",
+      "about": "tes",
+      "facilities": [
+        "tes"
+      ],
+      "prices": "50",
+      "rating": 0,
+      "reviewCount": 0
+    },
+    {
+      "id": 4,
+      "name": "tes2",
+      "location": "tes2",
+      "image": "tes2",
+      "about": "tes2",
+      "facilities": [
+        "tes2"
+      ],
+      "prices": "50",
+      "rating": 0,
+      "reviewCount": 0
+    },
+    {
+      "id": 5,
+      "name": "tes3",
+      "location": "tes3",
+      "image": "tes3",
+      "about": "tes3",
+      "facilities": [
+        "tes3"
+      ],
+      "prices": "50",
+      "rating": 0,
+      "reviewCount": 0
     }
   ],
   "reviews": [
@@ -147,6 +186,24 @@
       "email": "axel@gmail.com",
       "comment": "tes7",
       "time": "1-5-2026"
+    },
+    {
+      "id": 12,
+      "hotelId": 3,
+      "rating": 5,
+      "name": "Axel",
+      "email": "axel@gmail.com",
+      "comment": "tes8",
+      "time": "2-5-2026"
+    },
+    {
+      "id": 13,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "axel",
+      "email": "axel123@gmail.com",
+      "comment": "tes",
+      "time": "2-5-2026"
     }
   ]
 }

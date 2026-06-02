@@ -5,7 +5,7 @@ import DelIcon from "../style/Asset/delete-bin-line.svg";
 
 function ReviewCard(props) {
     const location = useLocation();
-    console.log(location.pathname)
+    // console.log(location.pathname)
 
     const { role } = useAuth();
     return (
