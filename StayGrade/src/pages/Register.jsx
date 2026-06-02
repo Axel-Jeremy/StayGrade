@@ -90,9 +90,6 @@ function Register() {
             <img class={style.logo} src={logo} alt="Logo Aplikasi" />
             <div class={style.mainContainer}>
                 <h1>Register</h1>
-                {/* <nav>
-                    <A href="/">Home Page</A>
-                </nav> */}
                 <div>
                     <h4 class={style.textLabel}>Nama Lengkap*</h4>
                     <input type="text" placeholder="Masukkan Nama Lengkap Anda" class={style.inputField} oninput={handleNamaInput} value={namaLengkap()} />
