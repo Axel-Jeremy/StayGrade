@@ -6,6 +6,7 @@ import "../style/Header.css";
 import style from "../style/Rate.module.css"
 import "../style/ReviewCard.css";
 import { useAuth } from "../components/AuthContext";
+import "../style/body.css"
 
 
 const fetchUserReviews = async (userEmail) => {

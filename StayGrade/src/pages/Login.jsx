@@ -4,6 +4,7 @@ import { useAuth } from "../components/AuthContext";
 import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
 import logo from '../style/Asset/Logo/logo.svg';
+import "../style/body.css"
 
 function Login() {
     const navigate = useNavigate();

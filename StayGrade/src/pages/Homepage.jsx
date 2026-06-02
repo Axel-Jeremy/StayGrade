@@ -9,6 +9,7 @@ import HeaderCard from "../components/HeaderCard";
 import AddHotelModal from "../components/AddHotelModal";
 import GreetingCard from "../components/GreetingCard";
 import "../style/GreetingCard.css"
+import "../style/body.css"
 
 const fetchHotels = async () => {
     const response = await fetch("http://localhost:5000/api/hotels");
@@ -34,7 +35,9 @@ export default function Homepage() {
                         <h2>Management Hotel</h2>
                         <h2>Kelola daftar hotel yang tersedia di aplikasi</h2>
                         <br />
-                        <button onClick={() => setShowModal(true)}>Tambah Hotel</button>
+                        <button class={style.btnAddHotel} onClick={() => setShowModal(true)}>
+                            Tambah Hotel
+                        </button>
                     </div>)}
 
                     <br />
@@ -72,6 +75,7 @@ export default function Homepage() {
                                                 prices={hotel.prices}
                                                 rating={hotel.rating}
                                                 reviewCount={hotel.reviewCount}
+                                                detailClick={true}
                                             />
                                         </div>
                                     )}

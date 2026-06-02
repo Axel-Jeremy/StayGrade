@@ -31,12 +31,12 @@ function HotelCard(props) {
                 <div class="ContainerBtnCard">
                     {/* urus CSS 2 ini ya fajar - kin */}
                     {props.detailClick && (
-                        <button class="btnDD" onClick={() => { props.onDetailClick; navigate(`/rating/${props.id}`); }}>
+                        <button class="btnDetail" onClick={() => { props.onDetailClick; navigate(`/rating/${props.id}`); }}>
                             Details
                         </button>)}
 
                     {props.deleteClick && (
-                        <button class="btnDD" onClick={handleDelete}>
+                        <button class="btnDelete" onClick={handleDelete}>
                             Delete
                         </button>)}
                 </div>

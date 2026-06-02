@@ -4,6 +4,7 @@ import "../style/font.css"
 import { createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
 import logo from '../style/Asset/Logo/logo.svg';
+import "../style/body.css"
 
 function Register() {
     const navigate = useNavigate();

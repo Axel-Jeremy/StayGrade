@@ -1,6 +1,10 @@
 .content {
-    display:grid;
+    display: grid;
     grid-template-columns: 1fr 3fr 0.5fr;
+    background: #F6FFF8;
+    /* Mint Cream */
+    color: #000000;
+    /* Jungle Teal */
 }
 
 .text {
@@ -14,8 +18,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #000000;
-    background-color: #FFFFFF;
+    border: 2px solid #CCE3DE;
+    /* Frozen Water */
+    background-color: #EAF4F4;
+    /* Azure Mist */
     border-radius: 10px;
     height: 10rem;
     margin-right: 1rem;
@@ -25,20 +31,66 @@
     padding: 0.5rem;
     border-radius: 10px;
     cursor: pointer;
-    border: 1px solid #000000;
     font-size: 1.2rem;
     width: 10rem;
     height: 5rem;
+    background: #6B9080;
+    /* Jungle Teal */
+    color: #ffffff;
+    /* Mint Cream */
+    border: none;
+    box-shadow: 0 4px 15px rgba(107, 144, 128, 0.2);
 }
 
-.btnDD {
+.btnReview:hover {
+    border-color: #6B9080;
+    background: #5A7A6D;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(107, 144, 128, 0.3);
+}
+
+.btnDetail {
     padding: 0.5rem;
     border-radius: 10px;
     cursor: pointer;
-    border: 1px solid #000000;
     font-size: 1.2rem;
-    width:7.5rem;
+    width: 7.5rem;
     height: 2.5rem;
+    background: #6B9080;
+    /* Jungle Teal */
+    color: #000000;
+    /* Mint Cream */
+    border: none;
+    box-shadow: 0 4px 15px rgba(107, 144, 128, 0.2);
+}
+
+.btnDetail:hover {
+    border-color: #6B9080;
+    color: #F6FFF8;
+    background: #5A7A6D;
+    /* Tone Jungle Teal yang sedikit lebih gelap untuk hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(107, 144, 128, 0.3);
+}
+
+.btnDelete {
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 7.5rem;
+    height: 2.5rem;
+    background: transparent;
+    color: #C55A5A;
+    /* Tetap merah untuk fungsi destruktif / delete */
+    border: 1px solid #A63A3A;
+}
+
+.btnDelete:hover {
+    background: #A63A3A;
+    color: #F6FFF8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(166, 58, 58, 0.3);
 }
 
 .ContainerBtnCard {
