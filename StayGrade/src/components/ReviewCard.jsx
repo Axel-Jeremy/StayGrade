@@ -15,12 +15,11 @@ function ReviewCard(props) {
     <>
       <div>
         <div class="containerReviewCard">
-          {/* kiri */}
+
           <div class="containerReviewLeftContent">
-            {/* rating bulat */}
+
             <div class="containerProfileBulat">{props.rating}</div>
 
-            {/* nama + komentar */}
             <div class="containerKomentar">
               <span
                 style={{
@@ -35,9 +34,9 @@ function ReviewCard(props) {
             </div>
           </div>
 
-          {/* kanan */}
+
           <div class="ContainerWaktu">
-            {/* USER */}
+
             {location.pathname === "/yourReview" ? (
               <div
                 style={{
@@ -75,7 +74,6 @@ function ReviewCard(props) {
               </div>
             ) : null}
 
-            {/* ADMIN */}
             {role() === "admin" ? (
               <div
                 style={{
@@ -111,7 +109,6 @@ function ReviewCard(props) {
         </div>
       </div>
 
-      {/* Modal Edit Review */}
       {showEditModal() && (
         <EditReviewModal
           id={props.id}

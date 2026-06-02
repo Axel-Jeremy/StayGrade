@@ -1,12 +1,11 @@
 import { useNavigate } from "@solidjs/router";
 import { createSignal, Show } from "solid-js";
-import DeleteConfirmationModal from "../components/DeleteHotelModal"
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal"
 
 function HotelCard(props) {
     const navigate = useNavigate();
     const [showDeleteModal, setShowDeleteModal] = createSignal(false);
 
-    // logika buat delete hotel by admin
     async function handleDelete() {
         try {
             const response = await fetch(
@@ -18,9 +17,11 @@ function HotelCard(props) {
 
             if (response.ok) {
                 alert("Hotel berhasil dihapus");
-                props.onDeleteSuccess();
-                // Catatan: Jika ingin lebih "SolidJS", alih-alih reload, 
-                // Anda bisa memanggil props.onDeleteSuccess() untuk me-refresh list
+
+                // Memicu fungsi refetch dari parent component tanpa perlu reload halaman
+                if (props.onDeleteSuccess) {
+                    props.onDeleteSuccess();
+                }
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -28,6 +29,9 @@ function HotelCard(props) {
         } catch (error) {
             console.error(error);
             alert("Terjadi kesalahan");
+        } finally {
+            // Tutup modal setelah proses selesai (berhasil maupun gagal)
+            setShowDeleteModal(false);
         }
     }
 
@@ -80,9 +84,9 @@ function HotelCard(props) {
                     )}
 
                     <Show when={showDeleteModal()}>
-                        <DeleteConfirmationModal 
-                            onCancel={() => setShowDeleteModal(false)} 
-                            onConfirm={handleDelete} 
+                        <DeleteConfirmationModal
+                            onCancel={() => setShowDeleteModal(false)}
+                            onConfirm={handleDelete}
                         />
                     </Show>
                 </div>
