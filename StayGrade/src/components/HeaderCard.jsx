@@ -18,7 +18,7 @@ function HeaderCard() {
                 setRole("guest");
                 setName("guest");
                 setEmail("guest");
-                navigate("/");
+                navigate("/login");
             } else {
                 const errorData = await response.json();
                 console.error("Logout gagal:", errorData.message);
