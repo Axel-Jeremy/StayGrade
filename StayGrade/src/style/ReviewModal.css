@@ -1,7 +1,7 @@
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(107, 144, 128, 0.6); /* Jungle Teal Transparan */
+    background: rgba(107, 144, 128, 0.6); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,9 +12,9 @@
     position: relative;
     width: 850px;
     max-width: 90vw;
-    background: #F6FFF8; /* Mint Cream */
-    color: #6B9080; /* Jungle Teal */
-    border: 1px solid #A4C3B2; /* Muted Teal */
+    background: #F6FFF8; 
+    color: #6B9080; 
+    border: 1px solid #A4C3B2; 
     border-radius: 4px;
     padding: 32px;
     box-sizing: border-box;
@@ -28,7 +28,7 @@
     background: none;
     cursor: pointer;
     font-size: 24px;
-    color: #A4C3B2; /* Muted Teal */
+    color: #A4C3B2;
 }
 
 .hotel-title {
@@ -47,11 +47,11 @@
 .star {
     font-size: 34px;
     cursor: pointer;
-    color: #CCE3DE; /* Frozen Water (bintang kosong) */
+    color: #CCE3DE; 
 }
 
 .star.active {
-    color: #6B9080; /* Jungle Teal (bintang isi) */
+    color: #6B9080;
 }
 
 .review-input {
@@ -60,9 +60,9 @@
     resize: none;
     padding: 14px;
     font-size: 16px;
-    border: 1px solid #CCE3DE; /* Frozen Water */
-    background: #EAF4F4; /* Azure Mist */
-    color: #6B9080; /* Jungle Teal */
+    border: 1px solid #CCE3DE; 
+    background: #EAF4F4; 
+    color: #6B9080; 
     box-sizing: border-box;
 }
 
@@ -83,14 +83,14 @@
 
 .cancel-button {
     background: transparent;
-    border: 1px solid #A4C3B2; /* Muted Teal */
-    color: #6B9080; /* Jungle Teal */
+    border: 1px solid #A4C3B2; 
+    color: #6B9080; 
 }
 
 .post-button {
-    background: #6B9080; /* Jungle Teal */
+    background: #6B9080; 
     border: 1px solid #6B9080;
-    color: #F6FFF8; /* Mint Cream */
+    color: #F6FFF8; 
 }
 
 .blurred {

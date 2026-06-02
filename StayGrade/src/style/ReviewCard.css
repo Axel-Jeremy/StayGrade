@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #CCE3DE; /* Frozen Water */
+    border: 1px solid #CCE3DE;
     padding: 0.5rem;
     border-radius: 12px;
     width: 100%;
     box-sizing: border-box;
-    background-color: #F6FFF8; /* Mint Cream */
-    color: #6B9080; /* Jungle Teal */
+    background-color: #F6FFF8; 
+    color: #6B9080; 
 }
 
 .containerReviewLeftContent {
@@ -22,8 +22,8 @@
     width: 45px;
     height: 45px;
     border-radius: 100%;
-    background-color: #CCE3DE; /* Frozen Water */
-    color: #6B9080; /* Jungle Teal */
+    background-color: #CCE3DE;
+    color: #6B9080; 
     display: flex;
     justify-content: center;
     align-items: center;
