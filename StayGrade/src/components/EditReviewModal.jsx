@@ -8,12 +8,10 @@ function EditReviewModal(props) {
     const [comment, setComment] =
         createSignal(props.comment);
 
-    const stars = [1,2,3,4,5];
+    const stars = [1, 2, 3, 4, 5];
 
     async function handleSave() {
-
         try {
-
             const response = await fetch(
                 `http://localhost:5000/api/reviews/${props.id}`,
                 {
@@ -29,13 +27,13 @@ function EditReviewModal(props) {
                 }
             );
 
-            if(response.ok){
+            if (response.ok) {
                 alert("Review berhasil diupdate");
 
                 props.onSuccess();
             }
 
-        } catch(error){
+        } catch (error) {
             console.error(error);
         }
     }
@@ -75,9 +73,7 @@ function EditReviewModal(props) {
                     }
                 />
 
-                <button
-                    onClick={handleSave}
-                >
+                <button onClick={handleSave}>
                     Save
                 </button>
 

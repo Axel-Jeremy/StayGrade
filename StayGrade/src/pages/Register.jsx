@@ -3,7 +3,7 @@ import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
 import { createEffect, createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
-import logo from '../style/Asset/Logo/logo.svg';
+import logo from '../style/Asset/Logo/logo.png';
 
 function Register() {
     const navigate = useNavigate();

@@ -11,31 +11,37 @@
     align-items: center;
     column-gap: 0.3rem;
     height: 80%;
+    margin-left: 4rem;
+    /* align-self: center;
+    justify-self: center; */
 }
 
 .searchInput {
     padding: 0.5rem;
     border: 1px solid #000000;
     border-radius: 10px;
-    width: 15rem;
+    width: 18rem;
 }
 
 .btnLogin {
-    padding: 0.5rem;
+    padding: 0.75rem;
     border-radius: 10px;
     cursor: pointer;
     border: 1px solid #000000;
-    width: 5rem;
-    height: 2rem;
+    width: 7rem;
+    height: 2.5rem;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .containerCircle {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border-radius: 100%;
     background-color: #D9D9D9;
     color: #000000;
@@ -44,15 +50,16 @@
 
 .link {
     color: #000000;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
+    /* margin-right: 10px; */
 }
 
 .containerCL {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .line {
