@@ -46,46 +46,8 @@
         "Free Wifi",
         "Parkir Luas"
       ]
-    },
-    {
-      "id": 3,
-      "name": "tes",
-      "location": "tes",
-      "image": "tes",
-      "about": "tes",
-      "facilities": [
-        "tes"
-      ],
-      "prices": "50",
-      "rating": 0,
-      "reviewCount": 0
-    },
-    {
-      "id": 4,
-      "name": "tes2",
-      "location": "tes2",
-      "image": "tes2",
-      "about": "tes2",
-      "facilities": [
-        "tes2"
-      ],
-      "prices": "50",
-      "rating": 0,
-      "reviewCount": 0
-    },
-    {
-      "id": 5,
-      "name": "tes3",
-      "location": "tes3",
-      "image": "tes3",
-      "about": "tes3",
-      "facilities": [
-        "tes3"
-      ],
-      "prices": "50",
-      "rating": 0,
-      "reviewCount": 0
     }
+
   ],
   "reviews": [
     {
@@ -114,96 +76,7 @@
       "comment": "Resepsionisnya Mantap.",
       "time": "3-4-2025",
       "email": "kin@gmail.com"
-    },
-    {
-      "id": 4,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "comment": "Inikah my Review",
-      "time": "7-4-2025",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 5,
-      "hotelId": 1,
-      "rating": 4,
-      "name": "Axel",
-      "comment": "tes",
-      "time": "9-6-2025",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 6,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "comment": "tes2",
-      "time": "28-12-2025",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 7,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "comment": "tes3",
-      "time": "3-1-2026",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 8,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "comment": "tes4",
-      "time": "1-5-2026",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 9,
-      "hotelId": 2,
-      "rating": 5,
-      "name": "Axel",
-      "comment": "tes5",
-      "time": "1-5-2026",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 10,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "comment": "tes6",
-      "time": "1-5-2026",
-      "email": "axel@gmail.com"
-    },
-    {
-      "id": 11,
-      "hotelId": 2,
-      "rating": 5,
-      "name": "Axel",
-      "email": "axel@gmail.com",
-      "comment": "tes7",
-      "time": "1-5-2026"
-    },
-    {
-      "id": 12,
-      "hotelId": 3,
-      "rating": 5,
-      "name": "Axel",
-      "email": "axel@gmail.com",
-      "comment": "tes8",
-      "time": "2-5-2026"
-    },
-    {
-      "id": 13,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "axel",
-      "email": "axel123@gmail.com",
-      "comment": "tes",
-      "time": "2-5-2026"
     }
+    
   ]
 }
