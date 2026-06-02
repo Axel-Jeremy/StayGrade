@@ -13,7 +13,7 @@ h2{
 .containerImg {
     width: 90%;
     height: 15rem;
-    border: 2px solid #6B9080; /* Jungle Teal */
+    border: 2px solid #6B9080;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@ h2{
 }
 
 .Card {
-    border: 2px solid #3a5d4e75; /* Muted Teal */
+    border: 2px solid #3a5d4e75; 
     border-radius: 10px;
     width: 57rem;
     height: 10rem;
@@ -39,8 +39,8 @@ h2{
 }
 
 .btnAddHotel {
-    background: #6B9080; /* Jungle Teal */
-    color: #000000; /* Mint Cream */
+    background: #6B9080;
+    color: #000000; 
     border: none;
     box-shadow: 0 4px 15px rgba(107, 144, 128, 0.3);
     padding: 0.5rem 1rem;

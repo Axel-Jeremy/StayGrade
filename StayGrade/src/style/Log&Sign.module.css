@@ -5,13 +5,13 @@
     justify-content: center;
     height: 95vh;
     overflow:hidden;
-    background-color: #EAF4F4; /* Azure Mist */
+    background-color: #EAF4F4;
 }
 
 h1{
     margin: 2vh 0 0 0;
     font-size: 2.5rem;
-    color: #3a5d4e; /* Jungle Teal */
+    color: #3a5d4e; 
 }
 
 .mainContainer {
@@ -19,9 +19,9 @@ h1{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #F6FFF8; /* Mint Cream */
+    background-color: #F6FFF8;
     row-gap: 1rem;
-    border: 2px solid #A4C3B2; /* Muted Teal */
+    border: 2px solid #A4C3B2;
     padding: 0.75rem 2.7rem;
     border-radius: 20px;
 }
@@ -33,7 +33,7 @@ h1{
 
 .textLabel {
     font-weight: bold;
-    color: #3a5d4e; /* Jungle Teal */
+    color: #3a5d4e;
     padding: 0rem;
     margin: 1rem 1rem 0.2rem 0rem;
 }
@@ -50,36 +50,45 @@ h1{
     width: 250px;
     height: 25px;
     padding: 0.5rem;
-    border: 1px solid #CCE3DE; /* Frozen Water */
+    border: 1px solid #CCE3DE; 
     border-radius: 10px;
     font-size: 0.75rem;
-    background: #EAF4F4; /* Azure Mist */
-    color: black; /* Jungle Teal */
+    background: #EAF4F4;
+    color: black; 
 }
 
 .btnsubmit {
     width: 270px;
     height: 41px;
-    border: 1px solid #6B9080; /* Jungle Teal */
+    border: 1px solid #6B9080;
     border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
     margin: 1rem 0 1rem 0;
-    background: #3a5d4e; /* Jungle Teal */
-    color: #F6FFF8; /* Mint Cream */
+    background: #3a5d4e;
+    color: #F6FFF8;
 }
 
 .guest{
-    background: #3a5d4e; /* Jungle Teal */
-    color: #F6FFF8; /* Mint Cream */
-    border: 1px solid #6B9080; /* Jungle Teal */
+    background: #3a5d4e;
+    color: #F6FFF8;
+    border: 1px solid #6B9080;
     border-radius: 5px;
     margin: 8px 0 0 0;
 }
 
+.guest:hover{
+    background: #5A7A6D;
+    color: #F6FFF8;
+    border: 1px solid #6B9080;
+    border-radius: 5px;
+    margin: 8px 0 0 0;
+    cursor: pointer;
+}
+
 .decoLink {
     text-decoration: none;
-    color: #6B9080; /* Jungle Teal */
+    color: #6B9080; 
     font-size: 0.9rem;
 }
 
