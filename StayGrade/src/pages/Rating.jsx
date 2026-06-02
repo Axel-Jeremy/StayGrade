@@ -12,6 +12,7 @@ import "../style/Facility.css";
 import "../style/ReviewModal.css";
 import "../style/ReviewCard.css";
 import style from "../style/Rate.module.css"
+import "../style/body.css"
 
 const fetchHotelDetail = async (id) => {
     const response = await fetch(`http://localhost:5000/api/hotels/${id}`);

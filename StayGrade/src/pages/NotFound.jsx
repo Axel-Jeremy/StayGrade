@@ -1,5 +1,6 @@
 import { A } from "@solidjs/router"
 import style from "../style/NotFound.module.css"
+import "../style/body.css"
 
 function NotFound() {
     return (

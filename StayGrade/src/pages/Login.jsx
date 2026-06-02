@@ -3,6 +3,7 @@ import { createEffect, createSignal } from "solid-js";
 import { useAuth } from "../components/AuthContext";
 import style from "../style/Log&Sign.module.css"
 import "../style/font.css"
+import "../style/body.css"
 import logo from '../style/Asset/Logo/logo.png';
 
 function Login() {

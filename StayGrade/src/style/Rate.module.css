@@ -18,7 +18,7 @@
     bottom: 20px;
     left: 20px;
     z-index: 10;
-    color: rgb(0, 0, 0);
+    color: #F6FFF8; /* Mint Cream */
     font-size: 2rem;
     font-weight: bold;
     margin: 0;
@@ -30,7 +30,11 @@
     left: 0;
     width: 100%;
     height: 25%;
-    background:linear-gradient(to top, rgba(122, 115, 115, 0.7), rgba(0, 0, 0, 0));
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95), /* Jungle Teal Gradient */
+        rgba(108, 139, 125, 0)
+    );
 }
 
 .containerGrid {
@@ -50,8 +54,15 @@
     height: 2.5rem;
     border-radius: 10px;
     cursor: pointer;
-    border: 1px solid #000000;
+    border: 1px solid #A4C3B2; /* Muted Teal */
     font-size: 1rem;
+    background: transparent;
+    color: #6B9080; /* Jungle Teal */
+}
+
+.btnReview:hover {
+    background: rgba(164, 195, 178, 0.2);
+    color: #6B9080;
 }
 
 .containerBottomContent {
