@@ -75,6 +75,7 @@ function Rating(props) {
                             <For each={ratings()}>
                                 {(rating) => (
                                     <ReviewCard
+                                        id={rating.id}
                                         rating={rating.rating}
                                         name={rating.name}
                                         comment={rating.comment}
