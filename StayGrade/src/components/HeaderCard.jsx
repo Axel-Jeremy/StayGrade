@@ -1,30 +1,53 @@
 import { A, useNavigate } from "@solidjs/router";
+import { useAuth } from "./AuthContext";
+import searchIcon from "../style/Asset/search-line.svg";
+import logo from '../style/Asset/Logo/logo.png';
 
-function HeaderCard(props) {
+function HeaderCard() {
     const navigate = useNavigate();
+    const { role, setRole, setName, setEmail, name } = useAuth();
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/api/logout", {
+                method: "POST",
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                setRole("guest");
+                setName("guest");
+                setEmail("guest");
+                navigate("/login");
+            } else {
+                const errorData = await response.json();
+                console.error("Logout gagal:", errorData.message);
+            }
+        } catch (error) {
+            console.error("Gagal melakukan logout:", error);
+        }
+    };
+
     return (
         <div>
-            <div id="Header" style={{ padding: "10px", "padding-left": "50px", "padding-right": "50px", "display": "flex", "flex-direction": "row", "justify-content": "space-between", "justify-items": "center", "padding-top": "20px" }}>
-                <img src="" alt="Logo Aplikasi" />
-                <div>
-                    <img src="" alt="Logo magnifying glass" />
-                    <input type="text" placeholder="Search"></input>
+            <div class="containerHeader">
+                <A href="/"><img class="logoimg" src={logo} alt="Logo Aplikasi" /></A>
+
+                <div class="containerSearch">
+                    <img src={searchIcon} alt="Logo magnifying glass" />
+                    <input type="text" placeholder="Search" class="searchInput"></input>
                 </div>
-                {!props.login ?
-                    (<button style={{ "font-size": "1.2rem" }} onclick={() => navigate("/Login")}>Sign in</button>)
-                    :
-                    (
-                        <div style={{ display: "flex", gap: '10px' }}>
-                            <A href="/yourReview"><u>Your Review</u></A>
-                            <div style={{
-                                "font-weight": "bold", "border-radius": "100%", "background-color": "gray",
-                                width: "30px", height: "30px", display: "flex", "align-items": "center",
-                                "justify-content": "center"
-                            }}
-                            >H</div>
-                        </div>
-                    )
-                }
+                {role() === 'guest' ? (
+                    <button class="btnLogin" onClick={() => navigate("/login")}>Sign in</button>
+                ) : (
+                    <div class="containerCL">
+                        {role() === 'user' && (
+                            <A href="/yourReview" class="link"><u>Your Review</u></A>
+                        )}
+                        <button class="btnLogin" onClick={handleLogout}><div class="containerCircle">{name()[0]}</div> Log out</button>
+                        
+                    </div>
+                )}
             </div>
 
             <hr style={{ "border-color": "black", "border-width": "1px", width: "100%" }} />

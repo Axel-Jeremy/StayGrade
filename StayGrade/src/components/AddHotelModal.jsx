@@ -11,9 +11,8 @@ function AddHotelModal(props) {
     const [price, setPrice] = createSignal("");
 
     async function handleAddHotel(e) {
-        e.preventDefault(); // Mencegah halaman me-refresh otomatis saat form di-submit
+        e.preventDefault();
 
-        // Validasi agar tidak ada yang kosong
         if (!name() || !location() || !image() || !description() || !facilities() || !price()) {
             alert("Semua field bertanda * wajib diisi!");
             return;
@@ -37,8 +36,7 @@ function AddHotelModal(props) {
 
             if (response.ok) {
                 alert("Hotel berhasil ditambahkan!");
-                props.onClose(); 
-                window.location.reload;
+                props.onSuccess();
             } else {
                 alert("Gagal menambahkan hotel: " + data.message);
             }
@@ -47,7 +45,7 @@ function AddHotelModal(props) {
             alert("Terjadi kesalahan pada server");
         }
     }
-    
+
     return (
         <div class="modal-overlay">
             <div class="hotel-modal">

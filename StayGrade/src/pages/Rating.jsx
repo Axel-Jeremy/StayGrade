@@ -12,7 +12,6 @@ import "../style/Facility.css";
 import "../style/ReviewModal.css";
 import "../style/ReviewCard.css";
 import style from "../style/Rate.module.css"
-import catoImage from "../cato.jpg";
 
 // 1. Buat fungsi fetcher untuk Hotel dan Review
 const fetchHotelDetail = async (id) => {
