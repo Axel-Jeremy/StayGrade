@@ -38,14 +38,18 @@ function HeaderCard() {
                     <input type="text" placeholder="Search" class="searchInput"></input>
                 </div>
                 {role() === 'guest' ? (
-                    <button class="btnLogin" onClick={() => navigate("/login")}>Sign in</button>
+                    <button class="btnLogin" onClick={() => navigate("/login")}><div class="textSignIn">Sign in</div></button>
                 ) : (
                     <div class="containerCL">
                         {role() === 'user' && (
                             <A href="/yourReview" class="link"><u>Your Review</u></A>
                         )}
-                        <button class="btnLogin" onClick={handleLogout}><div class="containerCircle">{name()[0]}</div> Log out</button>
-                        
+                        <button class="btnLogin" onClick={handleLogout}>
+                            {role !== 'guest' && (<div class="containerCircle">{name()[0]}
+                            </div>)}
+                            Log out
+                        </button>
+
                     </div>
                 )}
             </div>

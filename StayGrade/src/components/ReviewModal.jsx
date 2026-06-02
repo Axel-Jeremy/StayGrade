@@ -17,10 +17,10 @@ function ReviewModal(props) {
         const templateData = {
             hotelId: props.hotelId,
             rating: rating(),
-            name: props.userName || "Anonim", // <-- Pengaman wajib
+            name: props.userName,
             email: props.userEmail,
             comment: comment(),
-            time : time(),
+            time: time(),
         }
 
         try {
@@ -29,9 +29,9 @@ function ReviewModal(props) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(templateData),
             });
-            if(response.ok) {
+            if (response.ok) {
                 alert("Review berhasil diposting!");
-                props.onSuccess(); // Panggil callback sukses untuk refresh review
+                props.onSuccess(); // panggil callback sukses untuk refresh review
             } else {
                 const errorData = await response.json();
                 alert("Gagal memposting review: " + errorData.message);

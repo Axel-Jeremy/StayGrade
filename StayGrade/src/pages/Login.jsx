@@ -14,13 +14,12 @@ function Login() {
 
     const { role, setRole, setName, setEmail: setAuthEmail } = useAuth();
 
-    // Create signals to store form input
     const [email, setEmail] = createSignal("");
     const [password, setPassword] = createSignal("");
 
     createEffect(() => {
-        if(role() !== 'guest') {
-            navigate('/', {replace:true})
+        if (role() !== 'guest') {
+            navigate('/', { replace: true })
         }
     })
 
@@ -55,7 +54,7 @@ function Login() {
                 setRole(data.role);
                 setName(data.name);
                 setAuthEmail(data.email);
-                navigate('/', {replace: true});
+                navigate('/', { replace: true });
             } else {
                 alert("Login failed: " + data.message);
             }
@@ -70,9 +69,6 @@ function Login() {
             <img class={style.logo} src={logo} alt="Logo Aplikasi" />
             <div class={style.mainContainer}>
                 <h1>Login</h1>
-                {/* <nav>
-                    <A href="/">Home Page</A>
-                </nav> */}
                 <div>
                     <h4 class={style.textLabel}>Email</h4>
                     <input type="text"

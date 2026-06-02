@@ -13,7 +13,6 @@ import "../style/ReviewModal.css";
 import "../style/ReviewCard.css";
 import style from "../style/Rate.module.css"
 
-// 1. Buat fungsi fetcher untuk Hotel dan Review
 const fetchHotelDetail = async (id) => {
     const response = await fetch(`http://localhost:5000/api/hotels/${id}`);
     if (!response.ok) throw new Error("Gagal mengambil data hotel");
@@ -26,7 +25,7 @@ const fetchReviews = async (id) => {
     return response.json();
 };
 
-function Rating(props) {
+function Rating() {
     const [showModal, setShowModal] = createSignal(false);
 
     const { role, name, email } = useAuth();
