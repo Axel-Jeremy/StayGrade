@@ -46,6 +46,61 @@
         "Free Wifi",
         "Parkir Luas"
       ]
+    },
+    {
+      "id": 3,
+      "name": "Ibis Hotel",
+      "location": "Bandung ,Indonesia",
+      "image": "-",
+      "about": "Gacor kang",
+      "facilities": [
+        "Pool",
+        "Ballroom"
+      ],
+      "prices": "100-250",
+      "rating": 0,
+      "reviewCount": 0
+    },
+    {
+      "id": 4,
+      "name": "Artotel",
+      "location": "Pontianak, Indonesia",
+      "image": "-",
+      "about": "Woohoo",
+      "facilities": [
+        "AC",
+        "WiFi"
+      ],
+      "prices": "50-150",
+      "rating": 0,
+      "reviewCount": 0
+    },
+    {
+      "id": 5,
+      "name": "Zigizaga Experience",
+      "location": "Rengasdengklok, Somewhere",
+      "image": "-",
+      "about": "Merdeka",
+      "facilities": [
+        "Selir"
+      ],
+      "prices": "50-100",
+      "rating": 0,
+      "reviewCount": 0
+    },
+    {
+      "id": 6,
+      "name": "Zest",
+      "location": "Surabaya, Indonesia",
+      "image": "-",
+      "about": "Zesty~~",
+      "facilities": [
+        "BDSM",
+        "Ladyboy"
+      ],
+      "prices": "200-350",
+      "rating": 0,
+      "reviewCount": 0
     }
   ],
   "reviews": [
