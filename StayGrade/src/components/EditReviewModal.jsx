@@ -42,7 +42,14 @@ function EditReviewModal(props) {
         <div class="modal-overlay">
             <div class="modal-content">
 
-                <h2>Edit Review</h2>
+                <button
+                    class="close-button"
+                    onClick={props.onClose}
+                >
+                    ✕
+                </button>
+
+                <h2 class="hotel-title">Edit Review</h2>
 
                 <div class="star-container">
                     <For each={stars}>
@@ -73,9 +80,14 @@ function EditReviewModal(props) {
                     }
                 />
 
-                <button onClick={handleSave}>
-                    Save
-                </button>
+                <div class="button-container">
+                    <button class="cancel-button" onClick={props.onClose}>
+                        Cancel
+                    </button>
+                    <button class="post-button" onClick={handleSave}>
+                        Save
+                    </button>
+                </div>
 
             </div>
         </div>
