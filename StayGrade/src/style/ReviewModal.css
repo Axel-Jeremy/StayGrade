@@ -1,23 +1,27 @@
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(107, 144, 128, 0.6); 
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    
 }
 
 .modal-content {
     position: relative;
     width: 850px;
     max-width: 90vw;
-    background: #F6FFF8; 
-    color: #6B9080; 
-    border: 1px solid #A4C3B2; 
+    background: #F6FFF8;
+    color: #6B9080;
+    border: 1px solid #A4C3B2;
     border-radius: 4px;
     padding: 32px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .close-button {
@@ -47,7 +51,7 @@
 .star {
     font-size: 34px;
     cursor: pointer;
-    color: #CCE3DE; 
+    color: #CCE3DE;
 }
 
 .star.active {
@@ -60,9 +64,9 @@
     resize: none;
     padding: 14px;
     font-size: 16px;
-    border: 1px solid #CCE3DE; 
-    background: #EAF4F4; 
-    color: #6B9080; 
+    border: 1px solid #CCE3DE;
+    background: #EAF4F4;
+    color: #6B9080;
     box-sizing: border-box;
 }
 
@@ -83,14 +87,14 @@
 
 .cancel-button {
     background: transparent;
-    border: 1px solid #A4C3B2; 
-    color: #6B9080; 
+    border: 1px solid #A4C3B2;
+    color: #6B9080;
 }
 
 .post-button {
-    background: #6B9080; 
+    background: #6B9080;
     border: 1px solid #6B9080;
-    color: #F6FFF8; 
+    color: #F6FFF8;
 }
 
 .blurred {

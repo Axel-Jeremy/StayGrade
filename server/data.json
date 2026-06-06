@@ -61,20 +61,11 @@
     {
       "id": 2,
       "hotelId": 1,
-      "rating": 3,
-      "name": "Alek",
-      "comment": "Mantap.",
-      "time": "1-2-2025",
-      "email": "alek@gmail.com"
-    },
-    {
-      "id": 3,
-      "hotelId": 2,
       "rating": 5,
-      "name": "Kin",
-      "comment": "Resepsionisnya Mantap.",
-      "time": "3-4-2025",
-      "email": "kin@gmail.com"
+      "name": "Axel",
+      "email": "axel@gmail.com",
+      "comment": "Mantapsss",
+      "time": "6-5-2026"
     }
   ]
 }

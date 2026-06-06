@@ -1,6 +1,7 @@
 import { useNavigate } from "@solidjs/router";
 import { createSignal, Show } from "solid-js";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal"
+import "../style/DeleteCon.css"
 
 function HotelCard(props) {
     const navigate = useNavigate();

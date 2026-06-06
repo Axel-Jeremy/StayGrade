@@ -53,8 +53,6 @@ function HeaderCard() {
                     </div>
                 )}
             </div>
-
-            <hr style={{ "border-color": "black", "border-width": "1px", width: "100%" }} />
         </div>
     )
 }

@@ -4,12 +4,15 @@ import EditIcon from "../style/Asset/edit-line.svg";
 import DelIcon from "../style/Asset/delete-bin-line.svg";
 import { createSignal } from "solid-js";
 import EditReviewModal from "./EditReviewModal";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal"
+import "../style/DeleteCon.css"
 
 function ReviewCard(props) {
   const location = useLocation();
   const { role } = useAuth();
 
   const [showEditModal, setShowEditModal] = createSignal(false);
+  const [showDeleteModal, setShowDeleteModal] = createSignal(false);
 
   return (
     <>
@@ -60,7 +63,7 @@ function ReviewCard(props) {
 
                 <button
                   class="containerProfileBulat"
-                  onClick={() => deleteReview(props.id)}
+                  onClick={() => setShowDeleteModal(true)}
                 >
                   <img
                     src={DelIcon}
@@ -83,7 +86,7 @@ function ReviewCard(props) {
               >
                 <button
                   class="containerProfileBulat"
-                  onClick={() => deleteReview(props.id)}
+                  onClick={() => setShowDeleteModal(true)}
                 >
                   <img
                     src={DelIcon}
@@ -107,6 +110,12 @@ function ReviewCard(props) {
             </span>
           </div>
         </div>
+        <Show when={showDeleteModal()}>
+          <DeleteConfirmationModal
+            onCancel={() => { setShowDeleteModal(false) }}
+            onConfirm={() => deleteReview(props.id)}
+          />
+        </Show>
       </div>
 
       {showEditModal() && (
@@ -128,16 +137,13 @@ function ReviewCard(props) {
 export default ReviewCard;
 
 async function deleteReview(reviewId) {
-  const confirmDelete = confirm("Yakin ingin menghapus review ini?");
-
-  if (!confirmDelete) return;
 
   try {
     const response = await fetch(
       `http://localhost:5000/api/reviews/${reviewId}`,
       {
         method: "DELETE",
-      },
+      }
     );
 
     if (response.ok) {

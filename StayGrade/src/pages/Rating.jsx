@@ -83,7 +83,6 @@ function Rating() {
                                 )}
                             </For>
                         </Show>
-
                     </div>
                 </div>
             </div>

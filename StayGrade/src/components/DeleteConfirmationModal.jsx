@@ -13,8 +13,6 @@ function DeleteHotelModal(props) {
             if (response.ok) {
                 alert("Hotel berhasil dihapus");
                 props.onDeleteSuccess();
-                // Catatan: Jika ingin lebih "SolidJS", alih-alih reload, 
-                // Anda bisa memanggil props.onDeleteSuccess() untuk me-refresh list
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -25,23 +23,23 @@ function DeleteHotelModal(props) {
         }
     }
     return (
-        <div class="modal-overlay">
-            <div class="modal-container">
+        <div class="containerOverlayPopUp">
+            <div class="containerPopUp">
                 
                 <h1 class="modal-title">
                     Konfirmasi Hapus?
                 </h1>
 
-                <div class="button-container">
+                <div class="containerBTNCD">
                     <button 
-                        class="cancel-button" 
+                        class="btnCancel" 
                         onClick={props.onCancel}
                     >
                         Cancel
                     </button>
                     
                     <button 
-                        class="delete-button" 
+                        class="btnConfirmDelete" 
                         onClick={props.onConfirm}
                     >
                         Delete
