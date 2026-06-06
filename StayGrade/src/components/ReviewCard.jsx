@@ -4,6 +4,8 @@ import EditIcon from "../style/Asset/edit-line.svg";
 import DelIcon from "../style/Asset/delete-bin-line.svg";
 import { createSignal } from "solid-js";
 import EditReviewModal from "./EditReviewModal";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal"
+import "../style/DeleteCon.css"
 
 function ReviewCard(props) {
   const location = useLocation();
