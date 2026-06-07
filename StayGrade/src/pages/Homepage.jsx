@@ -1,7 +1,7 @@
 // import { Navigate, useNavigate } from "@solidjs/router";
 import HotelCard from "../components/HotelCard";
 import { useAuth } from "../components/AuthContext";
-import { For, createResource, createSignal } from "solid-js";
+import { For, createResource, createSignal, createEffect } from "solid-js";
 import "../style/Header.css";
 import style from "../style/Home.module.css";
 import "../style/HotelCard.css";
@@ -23,6 +23,23 @@ export default function Homepage() {
   const { role, name } = useAuth();
 
   const [hotels, { refetch }] = createResource(fetchHotels);
+
+  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = createSignal(1);
+
+  const totalPages = () => Math.max(1, Math.ceil(filteredHotels().length / itemsPerPage));
+
+  const paginatedHotels = () => {
+    const list = filteredHotels();
+    const start = (currentPage() - 1) * itemsPerPage;
+    return list.slice(start, start + itemsPerPage);
+  };
+
+  createEffect(() => {
+    // reset page if filtered list shorter than current page
+    const tp = totalPages();
+    if (currentPage() > tp) setCurrentPage(1);
+  });
 
   const filteredHotels = () => {
     if (!hotels()) return [];
@@ -79,7 +96,7 @@ export default function Homepage() {
             )}
             <div class={style.containerCard}>
               {role() === "user" && (
-                <For each={filteredHotels()}>
+                <For each={paginatedHotels()}>
                   {(hotel) => (
                     <div class={style.Card}>
                       <HotelCard
@@ -98,7 +115,7 @@ export default function Homepage() {
               )}
 
               {role() === "guest" && (
-                <For each={filteredHotels()}>
+                <For each={paginatedHotels()}>
                   {(hotel) => (
                     <div class={style.Card}>
                       <HotelCard
@@ -117,7 +134,7 @@ export default function Homepage() {
               )}
 
               {role() === "admin" && (
-                <For each={filteredHotels()}>
+                <For each={paginatedHotels()}>
                   {(hotel) => (
                     <div class={style.Card}>
                       <HotelCard
@@ -136,6 +153,41 @@ export default function Homepage() {
                 </For>
               )}
             </div>
+            {/* Pagination controls */}
+            {filteredHotels().length > itemsPerPage && (
+              <div style={{ display: "flex", "justify-content": "center", gap: "8px", margin: "16px 0" }}>
+                <button
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage() === 1}
+                >
+                  Prev
+                </button>
+
+                {Array.from({ length: totalPages() }).map((_, i) => {
+                  const page = i + 1;
+                  return (
+                    <button
+                      onClick={() => setCurrentPage(page)}
+                      style={{
+                        padding: "4px 8px",
+                        "background-color": currentPage() === page ? "#333" : "#fff",
+                        color: currentPage() === page ? "#fff" : "#000",
+                        border: "1px solid #ccc",
+                      }}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+
+                <button
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages(), p + 1))}
+                  disabled={currentPage() === totalPages()}
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
