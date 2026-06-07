@@ -48,7 +48,10 @@ function Rating() {
         <HeaderCard login={role()} />
 
         <div class={style.hotelBanner}>
-          <img src={hotel().image} alt={hotel().alternative} />
+          <img class={style.imghotel} src={
+            `http://localhost:5000${hotel().image}`
+          }
+            alt={hotel().name} />
           <div class={style.hotelInfo}>
             <h1 class={style.hotelName}>{hotel().name}</h1>
           </div>

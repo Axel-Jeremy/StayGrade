@@ -36,7 +36,12 @@ function HotelCard(props) {
     return (
         <div class="content">
             <div class="containerImg">
-                <img src={props.image} alt={props.name} />
+                <img class="imgHotelCard" src={
+                    props.image && props.image !== "-"
+                    ? `http://localhost:5000${props.image}`
+                    : "https://via.placeholder.com/300x200?text=No+Image"
+                }
+                alt={props.name} />
             </div>
             <div id="deskripsi hotel">
                 <p class="text">{props.name}</p>
