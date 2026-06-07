@@ -5,19 +5,16 @@ function AddHotelModal(props) {
 
     const [name, setName] = createSignal("");
     const [location, setLocation] = createSignal("");
-    const [image, setImage] = createSignal(""); 
+    const [image, setImage] = createSignal(null);
     const [description, setDescription] = createSignal("");
     const [facilities, setFacilities] = createSignal("");
     const [price, setPrice] = createSignal("");
 
     function handleImageUpload(e) {
         const file = e.target.files[0];
+
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+            setImage(file);
         }
     }
 
@@ -29,18 +26,19 @@ function AddHotelModal(props) {
             return;
         }
 
+        const formData = new FormData();
+
+        formData.append("name", name());
+        formData.append("location", location());
+        formData.append("description", description());
+        formData.append("facilities", facilities());
+        formData.append("price", price());
+        formData.append("image", image());
+
         try {
             const response = await fetch(`http://localhost:5000/api/hotels`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: name(),
-                    location: location(),
-                    image: image(),
-                    description: description(),
-                    facilities: facilities(),
-                    price: price(),
-                })
+                body: formData
             });
 
             const data = await response.json();
@@ -102,7 +100,7 @@ function AddHotelModal(props) {
                             onChange={handleImageUpload}
                             style={{ "margin-bottom": "10px" }}
                         />
-                        
+
                         {/* ini gausah kayanya terlalu gede
                         <Show when={image()}>
                             <div style={{ "margin-top": "10px", "text-align": "center" }}>

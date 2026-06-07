@@ -24,6 +24,7 @@
       "id": 1,
       "name": "Hotel A",
       "location": "Menteng, Jakarta",
+      "image": "/Picture/Westin.jpg",
       "prices": "100-200",
       "rating": "4.8",
       "reviewCount": "70",
@@ -38,6 +39,7 @@
       "id": 2,
       "name": "Hotel B",
       "location": "Taman Kopo indah, Bandung",
+      "image": "/Picture/Pullman.jpg",
       "prices": "100-200",
       "rating": "4.3",
       "reviewCount": "10",
@@ -51,7 +53,7 @@
       "id": 3,
       "name": "Ibis Hotel",
       "location": "Bandung ,Indonesia",
-      "image": "-",
+      "image": "/Picture/Ibis.jpg",
       "about": "Gacor kang",
       "facilities": [
         "Pool",
@@ -63,9 +65,9 @@
     },
     {
       "id": 4,
-      "name": "Artotel",
+      "name": "Yellow",
       "location": "Pontianak, Indonesia",
-      "image": "-",
+      "image": "/Picture/Yellow.jpg",
       "about": "Woohoo",
       "facilities": [
         "AC",
@@ -79,12 +81,25 @@
       "id": 6,
       "name": "Hilton",
       "location": "Pasir Kaliki",
-      "image": "-",
+      "image": "/Picture/Hilton.jpg",
       "about": "Merdeka",
       "facilities": [
         "bathub"
       ],
       "prices": "50-100",
+      "rating": 0,
+      "reviewCount": 0
+    },
+    {
+      "id": 7,
+      "name": "Aespa",
+      "location": "Korea,Busan",
+      "image": "/Picture/1780844307391-KarinaHat.jpg",
+      "about": "Hotel yang sering dikunjungi member AESPA",
+      "facilities": [
+        "Wifi"
+      ],
+      "prices": "100",
       "rating": 0,
       "reviewCount": 0
     }

@@ -3,8 +3,23 @@ const fs = require('node:fs');
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const multer = require('multer');
 
 const app = express();
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Picture/');
+    },
+    filename: (req, file, cb) => {
+        const namaUnik = Date.now() + '-' + file.originalname;
+        cb(null, namaUnik);
+    }
+});
+
+const upload = multer({storage});
+
+app.use('/Picture/', express.static(path.join(__dirname, 'Picture')));
 
 app.use(cors({
     origin: 'http://localhost:3000',
@@ -128,8 +143,9 @@ app.post('/api/register', (req, res) => {
     res.status(201).json(newUser);
 });
 
-app.post('/api/hotels', (req, res) => {
-    const { name, location, image, description, facilities, price } = req.body;
+app.post('/api/hotels', upload.single('image'), (req, res) => {
+    const { name, location, description, facilities, price } = req.body;
+    const image = req.file ? `/Picture/${req.file.filename}` : null;
     const data = readDB();
 
     if (!name || !location || !image || !description || !facilities || !price) {

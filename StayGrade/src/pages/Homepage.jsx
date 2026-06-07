@@ -73,7 +73,9 @@ export default function Homepage() {
         <div class={style.containerMain}>
           {role() !== "admin" ? (
             <div class={style.containerImg}>
-              <img src="" alt="GAMBAR IKLAN" />
+              <img class={style.imgIklan} src={
+                `http://localhost:5000/Picture/karinaSprite.jpg`
+              } alt="GAMBAR IKLAN" />
             </div>
           ) : (
             <div>

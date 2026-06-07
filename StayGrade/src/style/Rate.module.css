@@ -72,3 +72,10 @@
     gap: 1rem;
     padding: 0rem 1.4rem;
 }
+
+.imgHotel {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 10px;
+}
