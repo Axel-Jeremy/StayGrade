@@ -1,5 +1,5 @@
-import { A, useLocation } from "@solidjs/router"
-import { For, createResource, Show, createSignal } from "solid-js"
+import { useNavigate } from "@solidjs/router"
+import { createEffect, For, createResource, Show, createSignal } from "solid-js"
 import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import "../style/Header.css";
@@ -20,7 +20,15 @@ const fetchUserReviews = async (userEmail) => {
 };
 
 function YourReview() {
+    const navigate = useNavigate();
+
     const { role, email } = useAuth();
+
+    createEffect(() => {
+        if (role() === 'guest') {
+            navigate('/login', { replace: true })
+        }
+    })
     // const location = useLocation();
 
     const [ratings] = createResource(email, fetchUserReviews);

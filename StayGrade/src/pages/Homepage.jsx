@@ -1,7 +1,7 @@
 // import { Navigate, useNavigate } from "@solidjs/router";
 import HotelCard from "../components/HotelCard";
 import { useAuth } from "../components/AuthContext";
-import { For, createResource, createSignal, createEffect } from "solid-js";
+import { For, createSignal, createEffect, onMount } from "solid-js";
 import "../style/Header.css";
 import style from "../style/Home.module.css";
 import "../style/HotelCard.css";
@@ -10,24 +10,22 @@ import AddHotelModal from "../components/AddHotelModal";
 import GreetingCard from "../components/GreetingCard";
 import "../style/GreetingCard.css";
 import "../style/body.css";
-
-const fetchHotels = async () => {
-  const response = await fetch("http://localhost:5000/api/hotels");
-  if (!response.ok) throw new Error("Gagal mengambil data");
-  return response.json();
-};
+import { hotelStore, setHotelStore } from "../stores/HotelStore";
 
 export default function Homepage() {
   const [showModal, setShowModal] = createSignal(false);
   const [searchTerm, setSearchTerm] = createSignal("");
   const { role, name } = useAuth();
 
-  const [hotels, { refetch }] = createResource(fetchHotels);
+  onMount(() => {
+    loadHotels();
+  });
 
   const itemsPerPage = 5;
   const [currentPage, setCurrentPage] = createSignal(1);
 
-  const totalPages = () => Math.max(1, Math.ceil(filteredHotels().length / itemsPerPage));
+  const totalPages = () =>
+    Math.max(1, Math.ceil(filteredHotels().length / itemsPerPage));
 
   const paginatedHotels = () => {
     const list = filteredHotels();
@@ -42,18 +40,30 @@ export default function Homepage() {
   });
 
   const filteredHotels = () => {
-    if (!hotels()) return [];
-
     const keyword = searchTerm().toLowerCase().trim();
 
-    if (keyword === "") return hotels();
+    if (keyword === "") {
+      return hotelStore.hotels;
+    }
 
-    return hotels().filter(
+    return hotelStore.hotels.filter(
       (hotel) =>
         hotel.name.toLowerCase().includes(keyword) ||
         hotel.location.toLowerCase().includes(keyword),
     );
   };
+
+  async function loadHotels() {
+    try {
+      const response = await fetch("http://localhost:5000/api/hotels");
+
+      const data = await response.json();
+
+      setHotelStore("hotels", data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -106,8 +116,8 @@ export default function Homepage() {
                         location={hotel.location}
                         prices={hotel.prices}
                         rating={hotel.rating}
-                        reviewCount={hotel.reviewCount}
-                        reviewClick={true}
+                        detailClick={true}
+                        deleteClick={true}
                       />
                     </div>
                   )}
@@ -146,7 +156,6 @@ export default function Homepage() {
                         rating={hotel.rating}
                         detailClick={true}
                         deleteClick={true}
-                        refetch={refetch}
                       />
                     </div>
                   )}
@@ -156,7 +165,8 @@ export default function Homepage() {
             {/* Pagination controls */}
             {filteredHotels().length > itemsPerPage && (
               <div class={style.page}>
-                <button class = {style.prevnext}
+                <button
+                  class={style.prevnext}
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage() === 1}
                 >
@@ -166,10 +176,12 @@ export default function Homepage() {
                 {Array.from({ length: totalPages() }).map((_, i) => {
                   const page = i + 1;
                   return (
-                    <button class={style.pagenumber}
+                    <button
+                      class={style.pagenumber}
                       onClick={() => setCurrentPage(page)}
                       style={{
-                        "background-color": currentPage() === page ? "#396552" : "#fff",
+                        "background-color":
+                          currentPage() === page ? "#396552" : "#fff",
                         color: currentPage() === page ? "white" : "black",
                       }}
                     >
@@ -178,8 +190,11 @@ export default function Homepage() {
                   );
                 })}
 
-                <button class = {style.prevnext}
-                  onClick={() => setCurrentPage((p) => Math.min(totalPages(), p + 1))}
+                <button
+                  class={style.prevnext}
+                  onClick={() =>
+                    setCurrentPage((p) => Math.min(totalPages(), p + 1))
+                  }
                   disabled={currentPage() === totalPages()}
                 >
                   Next
@@ -193,7 +208,7 @@ export default function Homepage() {
         <AddHotelModal
           onClose={() => setShowModal(false)}
           onSuccess={() => {
-            refetch();
+            loadHotels();
             setShowModal(false);
           }}
         />

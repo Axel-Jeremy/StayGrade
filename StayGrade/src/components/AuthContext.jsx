@@ -12,7 +12,11 @@ export function AuthProvider(props) {
         try {
             const response = await fetch("http://localhost:5000/api/login", {
                 method: "GET",
-                credentials: "include"
+                credentials: "include",
+                headers: {
+                    "Cache-Control": "no-cache",
+                    "Pragma": "no-cache"
+                }
             });
 
             if (response.ok) {

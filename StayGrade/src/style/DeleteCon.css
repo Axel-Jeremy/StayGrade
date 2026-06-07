@@ -60,6 +60,7 @@
     background: transparent;
     color: #C55A5A;
     border: 1px solid #A63A3A;
+    transition: 0.5s;
 }
 
 .btnConfirmDelete:hover {
