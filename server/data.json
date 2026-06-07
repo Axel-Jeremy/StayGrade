@@ -107,6 +107,15 @@
       "email": "axel@gmail.com",
       "comment": "mantap",
       "time": "6-5-2026"
+    },
+    {
+      "id": 3,
+      "hotelId": 2,
+      "rating": 1,
+      "name": "Axel",
+      "email": "axel@gmail.com",
+      "comment": "bintang limaaaaaaaaaaa",
+      "time": "7-6-2026"
     }
   ]
 }
