@@ -2,11 +2,9 @@ import { createSignal, For } from "solid-js";
 
 function EditReviewModal(props) {
 
-    const [rating, setRating] =
-        createSignal(props.rating);
+    const [rating, setRating] = createSignal(props.rating);
 
-    const [comment, setComment] =
-        createSignal(props.comment);
+    const [comment, setComment] = createSignal(props.comment);
 
     const stars = [1, 2, 3, 4, 5];
 
@@ -56,13 +54,9 @@ function EditReviewModal(props) {
                         {(star) => (
                             <span
                                 class={
-                                    star <= rating()
-                                        ? "star active"
-                                        : "star"
+                                    star <= rating() ? "star active" : "star"
                                 }
-                                onClick={() =>
-                                    setRating(star)
-                                }
+                                onClick={() => setRating(star)}
                             >
                                 ★
                             </span>
@@ -73,10 +67,7 @@ function EditReviewModal(props) {
                 <textarea
                     class="review-input"
                     value={comment()}
-                    onInput={(e) =>
-                        setComment(
-                            e.target.value
-                        )
+                    onInput={(e) =>setComment(e.target.value)
                     }
                 />
 

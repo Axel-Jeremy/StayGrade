@@ -12,6 +12,7 @@ function GreetingCard(props) {
 
 export default GreetingCard;
 
+//buat tentuin good morning, afternoon ato night
 function getCustomGreeting() {
     const currentHour = new Date().getHours();
     let greeting = "";

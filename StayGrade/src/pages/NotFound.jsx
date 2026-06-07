@@ -3,7 +3,8 @@ import style from "../style/NotFound.module.css"
 import "../style/body.css"
 
 function NotFound() {
-    return (
+    return ( 
+        // gausah styling bagus2 not found doang
         <div class={style.container}>
             <h1>404: Page Not Found</h1>
             <A href="/">Back to Homepage</A>
