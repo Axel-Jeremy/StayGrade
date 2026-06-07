@@ -116,8 +116,8 @@ export default function Homepage() {
                         location={hotel.location}
                         prices={hotel.prices}
                         rating={hotel.rating}
-                        detailClick={true}
-                        deleteClick={true}
+                        reviewClick={true}
+                        deleteClick={false}
                       />
                     </div>
                   )}
@@ -137,6 +137,7 @@ export default function Homepage() {
                         rating={hotel.rating}
                         reviewCount={hotel.reviewCount}
                         detailClick={true}
+                        deleteClick={false}
                       />
                     </div>
                   )}
