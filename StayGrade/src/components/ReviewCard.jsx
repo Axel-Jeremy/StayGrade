@@ -2,10 +2,11 @@ import { useLocation } from "@solidjs/router";
 import { useAuth } from "../components/AuthContext";
 import EditIcon from "../style/Asset/edit-line.svg";
 import DelIcon from "../style/Asset/delete-bin-line.svg";
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import EditReviewModal from "./EditReviewModal";
-import DeleteConfirmationModal from "../components/DeleteConfirmationModal"
-import "../style/DeleteCon.css"
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import "../style/DeleteCon.css";
+import { setReviewStore } from "../stores/ReviewStore";
 
 function ReviewCard(props) {
   const location = useLocation();
@@ -18,9 +19,7 @@ function ReviewCard(props) {
     <>
       <div>
         <div class="containerReviewCard">
-
           <div class="containerReviewLeftContent">
-
             <div class="containerProfileBulat">{props.rating}</div>
 
             <div class="containerKomentar">
@@ -37,9 +36,7 @@ function ReviewCard(props) {
             </div>
           </div>
 
-
           <div class="ContainerWaktu">
-
             {location.pathname === "/yourReview" ? (
               <div
                 style={{
@@ -112,8 +109,13 @@ function ReviewCard(props) {
         </div>
         <Show when={showDeleteModal()}>
           <DeleteConfirmationModal
-            onCancel={() => { setShowDeleteModal(false) }}
-            onConfirm={() => deleteReview(props.id)}
+            onCancel={() => {
+              setShowDeleteModal(false);
+            }}
+            onConfirm={async () => {
+              await deleteReview(props.id);
+              setShowDeleteModal(false);
+            }}
           />
         </Show>
       </div>
@@ -137,24 +139,28 @@ function ReviewCard(props) {
 export default ReviewCard;
 
 async function deleteReview(reviewId) {
-
   try {
     const response = await fetch(
       `http://localhost:5000/api/reviews/${reviewId}`,
       {
         method: "DELETE",
-      }
+      },
     );
 
     if (response.ok) {
+      setReviewStore("reviews", (reviews) =>
+        reviews.filter((review) => review.id !== reviewId),
+      );
+
       alert("Review berhasil dihapus");
-      window.location.reload();
     } else {
       const data = await response.json();
+
       alert(data.message);
     }
   } catch (error) {
     console.error(error);
+
     alert("Terjadi kesalahan");
   }
 }
