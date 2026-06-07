@@ -1,5 +1,5 @@
 import { A, useLocation } from "@solidjs/router"
-import { For, createResource, Show } from "solid-js"
+import { For, createResource, Show, createSignal } from "solid-js"
 import HeaderCard from "../components/HeaderCard";
 import ReviewCard from "../components/ReviewCard";
 import "../style/Header.css";
@@ -25,9 +25,28 @@ function YourReview() {
 
     const [ratings] = createResource(email, fetchUserReviews);
 
+    const [searchTerm, setSearchTerm] = createSignal("");
+
+    const filteredReviews = () => {
+        if (!ratings()) return [];
+
+        const keyword = searchTerm().toLowerCase().trim();
+
+        if (keyword === "") return ratings();
+
+        return ratings().filter(
+            (rating) =>
+                // Filter berdasarkan nama hotel (rating.name)
+                (rating.name && rating.name.toLowerCase().includes(keyword))
+        );
+    };
+
     return (
         <div>
-            <HeaderCard login={role()} />
+            <HeaderCard
+                login={role()}
+                onSearch={(value) => setSearchTerm(value)}
+            />
             <div>
                 <div class={style.containerUpperContent}>
                     <h1>Review Kamu</h1>
@@ -36,17 +55,23 @@ function YourReview() {
                 <div class={style.containerBottomContent}>
                     <Show when={ratings()} fallback={<p>Loading reviews...</p>}>
                         <Show when={ratings().length > 0} fallback={<p>Kamu belum menulis review apa pun.</p>}>
-                            <For each={ratings()}>
-                                {(rating) => (
-                                    <ReviewCard
-                                        id={rating.id}
-                                        rating={rating.rating}
-                                        name={rating.name}
-                                        comment={rating.comment}
-                                        time={rating.time}
-                                    />
-                                )}
-                            </For>
+                            <Show
+                                when={filteredReviews().length > 0}
+                                fallback={<p>Tidak ada ulasan yang cocok dengan pencarian "{searchTerm()}".</p>}
+                            >
+                                <For each={filteredReviews()}>
+                                    {(rating) => (
+                                        <ReviewCard
+                                            id={rating.id}
+                                            rating={rating.rating}
+                                            name={rating.name}
+                                            comment={rating.comment}
+                                            time={rating.time}
+                                        />
+                                    )}
+                                </For>
+                            </Show>
+
                         </Show>
 
                     </Show>
