@@ -48,8 +48,27 @@ app.post('/api/logout', (req, res) => {
 app.get('/api/hotels', (req, res) => {
     const data = readDB();
 
+    const hotels = data.hotels.map((hotel) => {
+        const hotelReviews = data.reviews.filter((review) => review.hotelId === hotel.id);
+
+        const totalReviews = hotelReviews.length;
+
+        let finalRating = 0;
+
+        if (totalReviews > 0) {
+            const sumRating = hotelReviews.reduce((sum, current) => sum + current.rating, 0);
+            finalRating = (sumRating / totalReviews).toFixed(1);
+        }
+
+        return {
+            ...hotel,
+            rating: totalReviews > 0 ? finalRating : 0.0,
+            reviewCount: totalReviews
+        };
+    })
+
     res.header('Content-Type', 'application/json');
-    res.json(data.hotels) 
+    res.json(hotels) 
     //res.send(JSON.stringify(data.hotels, null, 2));
 });
 
@@ -181,7 +200,16 @@ app.get('/api/reviews/user/:email', (req, res) => {
     // filter review cuma email yang cocok
     const userReviews = data.reviews.filter(r => r.email === userEmail);
 
-    res.json(userReviews);
+    const reviewsWithHotelName = userReviews.map((review) => {
+        const hotel = data.hotels.find(h => h.id === review.hotelId)
+
+        return {
+            ...review,
+            name: hotel ? hotel.name : "Hotel Tidak Dikenal" 
+        };
+    })
+
+    res.json(reviewsWithHotelName);
 });
 
 app.post('/api/reviews', (req, res) => {
