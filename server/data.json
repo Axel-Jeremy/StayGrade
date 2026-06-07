@@ -90,15 +90,14 @@
     },
     {
       "id": 6,
-      "name": "Zest",
-      "location": "Surabaya, Indonesia",
+      "name": "Hilton",
+      "location": "Pasir Kaliki",
       "image": "-",
-      "about": "Zesty~~",
+      "about": "Merdeka",
       "facilities": [
-        "BDSM",
-        "Ladyboy"
+        "bathub"
       ],
-      "prices": "200-350",
+      "prices": "50-100",
       "rating": 0,
       "reviewCount": 0
     }

@@ -6,7 +6,7 @@
     margin-top: 25px;
 }
 
-h2{
+h2 {
     color: #3a5d4e;
 }
 
@@ -30,7 +30,7 @@ h2{
 }
 
 .Card {
-    border: 2px solid #3a5d4e75; 
+    border: 2px solid #3a5d4e75;
     border-radius: 10px;
     width: 57rem;
     height: 10rem;
@@ -40,10 +40,41 @@ h2{
 
 .btnAddHotel {
     background: #6B9080;
-    color: #000000; 
+    color: #000000;
     border: none;
     box-shadow: 0 4px 15px rgba(107, 144, 128, 0.3);
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 16px 0;
+}
+
+.prevnext {
+    background: #6B9080;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(107, 144, 128, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.prevnext:hover {
+    background: #4e6c5f;
+}
+
+.pagenumber {
+    padding: 4px 8px;
+    border: 1px solid #3a5d4e75;
+    width: 40px;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.3s;
 }

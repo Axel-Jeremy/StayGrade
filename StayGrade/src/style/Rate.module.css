@@ -58,6 +58,7 @@
     font-size: 1rem;
     background: transparent;
     color: #6B9080;
+    transition: 0.3s;
 }
 
 .btnReview:hover {

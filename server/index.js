@@ -20,7 +20,7 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true, // Mencegah pencurian cookie lewat JavaScript di browser
-        secure: false,
+        secure: false, //https
         maxAge: 1000 * 60 * 60 * 24 // 1 hari
     }
 }));

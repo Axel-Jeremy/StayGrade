@@ -67,6 +67,13 @@ h1{
     margin: 1rem 0 1rem 0;
     background: #3a5d4e;
     color: #F6FFF8;
+    transition: 0.3s;
+}
+
+.btnsubmit:hover{
+    background: #5A7A6D;
+    color: #F6FFF8;
+    cursor: pointer;
 }
 
 .guest{
@@ -75,6 +82,7 @@ h1{
     border: 1px solid #6B9080;
     border-radius: 5px;
     margin: 8px 0 0 0;
+    transition: 0.3s;
 }
 
 .guest:hover{
