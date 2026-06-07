@@ -1,14 +1,25 @@
 import "../style/AddHotelModal.css";
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 
 function AddHotelModal(props) {
 
     const [name, setName] = createSignal("");
     const [location, setLocation] = createSignal("");
-    const [image, setImage] = createSignal("");
+    const [image, setImage] = createSignal(""); 
     const [description, setDescription] = createSignal("");
     const [facilities, setFacilities] = createSignal("");
     const [price, setPrice] = createSignal("");
+
+    function handleImageUpload(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
 
     async function handleAddHotel(e) {
         e.preventDefault();
@@ -84,13 +95,24 @@ function AddHotelModal(props) {
                     </div>
 
                     <div class="form-group">
-                        <label>URL Gambar *</label>
-                        <textarea
-                            rows="3"
-                            placeholder="Preview Gambar"
-                            onInput={(e) => setImage(e.target.value)}
-                            value={image()}
+                        <label>Upload Gambar *</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            style={{ "margin-bottom": "10px" }}
                         />
+                        
+                        {/* ini gausah kayanya terlalu gede
+                        <Show when={image()}>
+                            <div style={{ "margin-top": "10px", "text-align": "center" }}>
+                                <img 
+                                    src={image()} 
+                                    alt="Preview" 
+                                    style={{ "max-width": "100%", "max-height": "200px", "border-radius": "8px", "object-fit": "cover" }} 
+                                />
+                            </div>
+                        </Show> */}
                     </div>
 
                     <div class="form-group">
@@ -135,7 +157,7 @@ function AddHotelModal(props) {
                         <button
                             type="submit"
                             class="post-button"
-                            onclick={handleAddHotel}
+                            onClick={handleAddHotel}
                         >
                             Post
                         </button>
