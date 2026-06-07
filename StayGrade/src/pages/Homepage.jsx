@@ -155,8 +155,8 @@ export default function Homepage() {
             </div>
             {/* Pagination controls */}
             {filteredHotels().length > itemsPerPage && (
-              <div style={{ display: "flex", "justify-content": "center", gap: "8px", margin: "16px 0" }}>
-                <button
+              <div class={style.page}>
+                <button class = {style.prevnext}
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage() === 1}
                 >
@@ -166,13 +166,11 @@ export default function Homepage() {
                 {Array.from({ length: totalPages() }).map((_, i) => {
                   const page = i + 1;
                   return (
-                    <button
+                    <button class={style.pagenumber}
                       onClick={() => setCurrentPage(page)}
                       style={{
-                        padding: "4px 8px",
-                        "background-color": currentPage() === page ? "#333" : "#fff",
-                        color: currentPage() === page ? "#fff" : "#000",
-                        border: "1px solid #ccc",
+                        "background-color": currentPage() === page ? "#396552" : "#fff",
+                        color: currentPage() === page ? "white" : "black",
                       }}
                     >
                       {page}
@@ -180,7 +178,7 @@ export default function Homepage() {
                   );
                 })}
 
-                <button
+                <button class = {style.prevnext}
                   onClick={() => setCurrentPage((p) => Math.min(totalPages(), p + 1))}
                   disabled={currentPage() === totalPages()}
                 >
