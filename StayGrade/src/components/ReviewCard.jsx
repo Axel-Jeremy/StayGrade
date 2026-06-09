@@ -114,6 +114,8 @@ function ReviewCard(props) {
             }}
             onConfirm={async () => {
               await deleteReview(props.id);
+
+              if (props.refetch) props.refetch();
               setShowDeleteModal(false);
             }}
           />
@@ -127,8 +129,9 @@ function ReviewCard(props) {
           comment={props.comment}
           onClose={() => setShowEditModal(false)}
           onSuccess={() => {
+            if (props.refetch) props.refetch();
             setShowEditModal(false);
-            window.location.reload();
+            //window.location.reload();
           }}
         />
       )}
