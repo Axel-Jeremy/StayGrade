@@ -59,6 +59,28 @@ const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2)
 //-------------------------------
 
 //Check Status login dari user
+
+//  cek user udah login
+function requireLogin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ message: "Akses ditolak: Anda belum login." });
+    }
+    next(); //lanjut proses berikutnya
+}
+
+//  cek user adalah Admin
+function requireAdmin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ message: "Akses ditolak: Anda belum login." });
+    }
+    
+    if (req.session.user.role !== 'admin') {
+        return res.status(403).json({ message: "Akses ditolak: Anda bukan admin." });
+    }
+    next(); //lanjut ke proses berikutnya
+}
+
+
 app.get('/api/login', (req, res) => {
     if (req.session.user) { //Check sessionnya ada atau engga, kalo ada berarti user udah login
         res.json(req.session.user);
@@ -263,6 +285,51 @@ app.post('/api/hotels', upload.single('image'), (req, res) => {
 
 //Buat nambahin review baru
 app.post('/api/reviews', (req, res) => {
+app.get('/api/hotels/:id', (req, res) => {
+    const data = readDB();
+    const hotelId = parseInt(req.params.id, 10);
+
+    // cari hotel yang id-nya sesuai
+    const hotel = data.hotels.find(h => h.id === hotelId);
+
+    if (!hotel) {
+        return res.status(404).json({ message: "Hotel tidak ditemukan" });
+    }
+
+    res.json(hotel);
+});
+
+app.get('/api/reviews/:hotelId', (req, res) => {
+    const data = readDB();
+    const hotelId = parseInt(req.params.hotelId, 10);
+
+    // filter review sesuai hotel yang dipilih
+    const reviews = data.reviews.filter(r => r.hotelId === hotelId);
+
+    res.json(reviews);
+});
+
+// buat ngambil daftar ulasan berdasarkan email user
+app.get('/api/reviews/user/:email', (req, res) => {
+    const data = readDB();
+    const userEmail = req.params.email;
+
+    // filter review cuma email yang cocok
+    const userReviews = data.reviews.filter(r => r.email === userEmail);
+
+    const reviewsWithHotelName = userReviews.map((review) => {
+        const hotel = data.hotels.find(h => h.id === review.hotelId)
+
+        return {
+            ...review,
+            name: hotel ? hotel.name : "Hotel Tidak Dikenal" 
+        };
+    })
+
+    res.json(reviewsWithHotelName);
+});
+
+app.post('/api/reviews', requireLogin, (req, res) => {
     const data = readDB();
     const { hotelId, rating, name, email, comment, time } = req.body;
     const parsedHotelId = parseInt(hotelId, 10);
