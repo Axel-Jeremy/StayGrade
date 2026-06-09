@@ -8,7 +8,8 @@ import logo from '../style/Asset/Logo/logo.png';
 
 function Register() {
     const navigate = useNavigate();
-    const { role, setRole, setName } = useAuth();
+    const { role, setRole, setName, setEmail: setAuthEmail } = useAuth();
+
 
     const [namaLengkap, setNamaLengkap] = createSignal("");
     const [email, setEmail] = createSignal("");
@@ -75,7 +76,8 @@ function Register() {
 
             if (response.ok) {
                 setRole(data.role);
-                setName(data.name || namaLengkap());
+                setName(data.name);
+                setAuthEmail(data.email);
                 navigate('/', { replace: true });
             } else {
                 alert("Register failed: " + data.message);
