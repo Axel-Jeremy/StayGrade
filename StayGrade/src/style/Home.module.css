@@ -27,6 +27,7 @@ h2 {
     align-items: center;
     flex-direction: column;
     row-gap: 3rem;
+    margin-bottom: 5vh;
 }
 
 .Card {
@@ -40,12 +41,17 @@ h2 {
 
 .btnAddHotel {
     background: #6B9080;
-    color: #000000;
+    color: white;
     border: none;
     box-shadow: 0 4px 15px rgba(107, 144, 128, 0.3);
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.5s;
+}
+
+.btnAddHotel:hover {
+    background: #4e6c5f;
 }
 
 .page {
