@@ -333,6 +333,13 @@ app.delete('/api/reviews/:id', requireLogin, (req, res) => {
         });
     }
 
+    const review = data.reviews[reviewIndex];
+    if (review.email !== req.session.user.email) {
+        return res.status(403).json({ 
+            message: 'Akses ditolak: Anda tidak berhak menghapus review ini.' 
+        });
+    }
+
     //Kalo ada hapus reviewnya
     data.reviews.splice(reviewIndex, 1);
     writeDB(data);
@@ -386,6 +393,12 @@ app.put('/api/reviews/:id', requireLogin, (req, res) => {
     if (!review) {
         return res.status(404).json({
             message: 'Review tidak ditemukan'
+        });
+    }
+
+    if (review.email !== req.session.user.email && req.session.user.role !== 'admin') {
+        return res.status(403).json({ 
+            message: 'Akses ditolak: Anda tidak berhak mengedit review orang lain.' 
         });
     }
 

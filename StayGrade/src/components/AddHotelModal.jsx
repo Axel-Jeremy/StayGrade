@@ -1,5 +1,5 @@
 import "../style/AddHotelModal.css";
-import { createSignal, Show } from "solid-js";
+import { createSignal } from "solid-js";
 
 function AddHotelModal(props) {
 
