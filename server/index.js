@@ -36,8 +36,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-    secret: 'staygrade',
-    resave: false,
+    secret: 'staygrade', //buat encrypt session id
+    resave: false, //biar ga resave kalo tidak ada perubahan data pada sesi tersebut
     saveUninitialized: false,
     cookie: {
         httpOnly: true, // Mencegah pencurian cookie lewat JavaScript di browser

@@ -144,6 +144,7 @@ async function deleteReview(reviewId) {
       `http://localhost:5000/api/reviews/${reviewId}`,
       {
         method: "DELETE",
+        credentials: "include",
       },
     );
 

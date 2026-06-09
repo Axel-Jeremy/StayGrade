@@ -34,7 +34,7 @@ export default function Homepage() {
   };
 
   createEffect(() => {
-    // reset page if filtered list shorter than current page
+    // reset page kalo filtered list lebih pendek than current page
     const tp = totalPages();
     if (currentPage() > tp) setCurrentPage(1);
   });
@@ -118,6 +118,7 @@ export default function Homepage() {
                         location={hotel.location}
                         prices={hotel.prices}
                         rating={hotel.rating}
+                        reviewCount={hotel.reviewCount}
                         reviewClick={true}
                         deleteClick={false}
                       />
@@ -157,6 +158,7 @@ export default function Homepage() {
                         location={hotel.location}
                         prices={hotel.prices}
                         rating={hotel.rating}
+                        reviewCount={hotel.reviewCount}
                         detailClick={true}
                         deleteClick={true}
                       />
