@@ -7,6 +7,7 @@ const multer = require('multer');
 
 const app = express();
 
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'Picture/');
@@ -43,6 +44,28 @@ app.use(session({
 const dbPath = path.resolve(__dirname, 'data.json');
 const readDB = () => JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
+
+
+//  cek user udah login
+function requireLogin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ message: "Akses ditolak: Anda belum login." });
+    }
+    next(); //lanjut proses berikutnya
+}
+
+//  cek user adalah Admin
+function requireAdmin(req, res, next) {
+    if (!req.session.user) {
+        return res.status(401).json({ message: "Akses ditolak: Anda belum login." });
+    }
+    
+    if (req.session.user.role !== 'admin') {
+        return res.status(403).json({ message: "Akses ditolak: Anda bukan admin." });
+    }
+    next(); //lanjut ke proses berikutnya
+}
+
 
 app.get('/api/login', (req, res) => {
     if (req.session.user) {
@@ -143,7 +166,7 @@ app.post('/api/register', (req, res) => {
     res.status(201).json(newUser);
 });
 
-app.post('/api/hotels', upload.single('image'), (req, res) => {
+app.post('/api/hotels', upload.single('image'), requireAdmin, (req, res) => {
     const { name, location, description, facilities, price } = req.body;
     const image = req.file ? `/Picture/${req.file.filename}` : null;
     const data = readDB();
@@ -228,7 +251,7 @@ app.get('/api/reviews/user/:email', (req, res) => {
     res.json(reviewsWithHotelName);
 });
 
-app.post('/api/reviews', (req, res) => {
+app.post('/api/reviews', requireLogin, (req, res) => {
     const data = readDB();
     const { hotelId, rating, name, email, comment, time } = req.body;
     const parsedHotelId = parseInt(hotelId, 10);
@@ -259,7 +282,7 @@ app.post('/api/reviews', (req, res) => {
     res.status(201).json(reviewBaru);
 });
 
-app.delete('/api/reviews/:id', (req, res) => {
+app.delete('/api/reviews/:id', requireLogin, (req, res) => {
     const reviewId = parseInt(req.params.id, 10);
     const data = readDB();
 
@@ -282,7 +305,7 @@ app.delete('/api/reviews/:id', (req, res) => {
     });
 });
 
-app.delete('/api/hotels/:id', (req, res) => {
+app.delete('/api/hotels/:id', requireAdmin, (req, res) => {
     const hotelId = parseInt(req.params.id, 10);
     const data = readDB();
 
@@ -309,7 +332,7 @@ app.delete('/api/hotels/:id', (req, res) => {
     });
 });
 
-app.put('/api/reviews/:id', (req, res) => {
+app.put('/api/reviews/:id', requireLogin, (req, res) => {
     const reviewId = parseInt(req.params.id, 10);
     const { rating, comment } = req.body;
 
