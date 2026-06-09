@@ -101,16 +101,7 @@ function AddHotelModal(props) {
                             style={{ "margin-bottom": "10px" }}
                         />
 
-                        {/* ini gausah kayanya terlalu gede
-                        <Show when={image()}>
-                            <div style={{ "margin-top": "10px", "text-align": "center" }}>
-                                <img 
-                                    src={image()} 
-                                    alt="Preview" 
-                                    style={{ "max-width": "100%", "max-height": "200px", "border-radius": "8px", "object-fit": "cover" }} 
-                                />
-                            </div>
-                        </Show> */}
+                        {}
                     </div>
 
                     <div class="form-group">

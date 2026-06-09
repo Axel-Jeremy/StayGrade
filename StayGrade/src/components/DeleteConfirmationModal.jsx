@@ -28,30 +28,3 @@ function DeleteHotelModal(props) {
 }
 
 export default DeleteHotelModal;
-
-//ini ga dipake, 
-// jadinya dipindahin ke headercard nanti 
-// funct di passing kesini, tinggal panggil
-
-//  // logika buat delete hotel by admin
-//     async function handleDelete() {
-//         try {
-//             const response = await fetch(
-//                 `http://localhost:5000/api/hotels/${props.id}`,
-//                 {
-//                     method: "DELETE",
-//                 }
-//             );
-
-//             if (response.ok) {
-//                 alert("Hotel berhasil dihapus");
-//                 props.onDeleteSuccess();
-//             } else {
-//                 const data = await response.json();
-//                 alert(data.message);
-//             }
-//         } catch (error) {
-//             console.error(error);
-//             alert("Terjadi kesalahan");
-//         }
-//     }

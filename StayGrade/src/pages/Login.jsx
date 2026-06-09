@@ -101,10 +101,7 @@ function Login() {
                         </div>
 
 
-                        {/* nanti yg admin apus
-                        <button onClick={() => { setRole("admin"); handleClick(); }}>
-                            Log In as admin
-                        </button> */}
+                        {}
 
                         <button class={style.guest} onClick={() => { setRole("guest"); handleClick(); }}>
                             Continue as guest
