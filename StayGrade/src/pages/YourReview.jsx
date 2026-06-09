@@ -31,7 +31,7 @@ function YourReview() {
     })
     // const location = useLocation();
 
-    const [ratings] = createResource(email, fetchUserReviews);
+    const [ratings, {refetch}] = createResource(email, fetchUserReviews);
 
     const [searchTerm, setSearchTerm] = createSignal("");
 
@@ -75,6 +75,7 @@ function YourReview() {
                                             name={rating.name}
                                             comment={rating.comment}
                                             time={rating.time}
+                                            refetch={refetch}
                                         />
                                     )}
                                 </For>
