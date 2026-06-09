@@ -161,6 +161,7 @@ export default function Homepage() {
                         reviewCount={hotel.reviewCount}
                         detailClick={true}
                         deleteClick={true}
+                        refetch={loadHotels}
                       />
                     </div>
                   )}

@@ -18,6 +18,7 @@ function EditReviewModal(props) {
           headers: {
             "Content-Type": "application/json",
           },
+          
           body: JSON.stringify({
             rating: rating(),
             comment: comment(),
