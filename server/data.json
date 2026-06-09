@@ -75,6 +75,21 @@
       "prices": "50-100",
       "rating": 0,
       "reviewCount": 0
+    },
+    {
+      "id": 7,
+      "name": "Yello Hotel",
+      "location": "Jakarta, Indonesia",
+      "image": "/Picture/1781012446363-116406034.jpg",
+      "about": "Yello Hotel Jakarta Harmoni",
+      "facilities": [
+        "Wifi",
+        "Breakfast",
+        "AC"
+      ],
+      "prices": "50-100",
+      "rating": 0,
+      "reviewCount": 0
     }
   ],
   "reviews": [

@@ -1,3 +1,4 @@
+import { useNavigate } from "@solidjs/router"
 import { A, useParams } from "@solidjs/router";
 import { For, createResource, Show, createEffect, onMount } from "solid-js";
 import { useAuth } from "../components/AuthContext";
@@ -29,6 +30,7 @@ const fetchReviews = async (id) => {
 
 function Rating() {
   const [showModal, setShowModal] = createSignal(false);
+  const navigate = useNavigate();
 
   const { role, name, email } = useAuth();
   const params = useParams();
@@ -43,7 +45,7 @@ function Rating() {
     }
   });
   return (
-    <Show when={hotel()} fallback={<p>Loading...</p>}>
+    <Show when={hotel()} fallback={<p>Loading...  </p>}>
       <div id="body" class={showModal() ? "blurred" : ""}>
         <HeaderCard login={role()} />
 
