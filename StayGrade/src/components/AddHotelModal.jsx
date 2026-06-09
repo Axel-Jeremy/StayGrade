@@ -38,7 +38,8 @@ function AddHotelModal(props) {
         try {
             const response = await fetch(`http://localhost:5000/api/hotels`, {
                 method: "POST",
-                body: formData
+                body: formData,
+                credentials: "include",
             });
 
             const data = await response.json();

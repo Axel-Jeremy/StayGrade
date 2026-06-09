@@ -14,9 +14,11 @@ function EditReviewModal(props) {
         `http://localhost:5000/api/reviews/${props.id}`,
         {
           method: "PUT",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },
+          
           body: JSON.stringify({
             rating: rating(),
             comment: comment(),

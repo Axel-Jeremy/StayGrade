@@ -118,6 +118,7 @@ export default function Homepage() {
                         location={hotel.location}
                         prices={hotel.prices}
                         rating={hotel.rating}
+                        reviewCount={hotel.reviewCount}
                         reviewClick={true}
                         deleteClick={false}
                       />
@@ -157,8 +158,10 @@ export default function Homepage() {
                         location={hotel.location}
                         prices={hotel.prices}
                         rating={hotel.rating}
+                        reviewCount={hotel.reviewCount}
                         detailClick={true}
                         deleteClick={true}
+                        refetch={loadHotels}
                       />
                     </div>
                   )}
