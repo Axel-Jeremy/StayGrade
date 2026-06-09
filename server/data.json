@@ -50,20 +50,6 @@
       ]
     },
     {
-      "id": 3,
-      "name": "Ibis Hotel",
-      "location": "Bandung ,Indonesia",
-      "image": "/Picture/Ibis.jpg",
-      "about": "Gacor kang",
-      "facilities": [
-        "Pool",
-        "Ballroom"
-      ],
-      "prices": "100-250",
-      "rating": 0,
-      "reviewCount": 0
-    },
-    {
       "id": 4,
       "name": "Yellow",
       "location": "Pontianak, Indonesia",
@@ -89,19 +75,6 @@
       "prices": "50-100",
       "rating": 0,
       "reviewCount": 0
-    },
-    {
-      "id": 7,
-      "name": "Aespa",
-      "location": "Korea,Busan",
-      "image": "/Picture/1780844307391-KarinaHat.jpg",
-      "about": "Hotel yang sering dikunjungi member AESPA",
-      "facilities": [
-        "Wifi"
-      ],
-      "prices": "100",
-      "rating": 0,
-      "reviewCount": 0
     }
   ],
   "reviews": [
@@ -113,15 +86,6 @@
       "comment": "Pengalaman menginap luar biasa.",
       "time": "31-12-2024",
       "email": "fadjar@gmail.com"
-    },
-    {
-      "id": 2,
-      "hotelId": 1,
-      "rating": 5,
-      "name": "Axel",
-      "email": "axel@gmail.com",
-      "comment": "mantap",
-      "time": "6-5-2026"
     },
     {
       "id": 3,

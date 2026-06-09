@@ -13,6 +13,7 @@ function HotelCard(props) {
                 `http://localhost:5000/api/hotels/${props.id}`,
                 {
                     method: "DELETE",
+                    credentials: "include",
                 }
             );
 
