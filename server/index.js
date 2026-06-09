@@ -35,7 +35,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//
 app.use(session({
     secret: 'staygrade',
     resave: false,
@@ -53,12 +52,6 @@ const dbPath = path.resolve(__dirname, 'data.json');
 const readDB = () => JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 //Vaariebel buat nulis data baru ke file json, dengan format yang rapi biar gampang dibaca
 const writeDB = (data) => fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf-8');
-
-// ------------------------------
-// Start Bagian GET
-//-------------------------------
-
-//Check Status login dari user
 
 //  cek user udah login
 function requireLogin(req, res, next) {
@@ -80,7 +73,11 @@ function requireAdmin(req, res, next) {
     next(); //lanjut ke proses berikutnya
 }
 
+// ------------------------------
+// Start Bagian GET
+//-------------------------------
 
+//Check Status login dari user
 app.get('/api/login', (req, res) => {
     if (req.session.user) { //Check sessionnya ada atau engga, kalo ada berarti user udah login
         res.json(req.session.user);
@@ -241,7 +238,7 @@ app.post('/api/register', (req, res) => {
 });
 
 //Buat nambahin list hotel baru ke sistem 
-app.post('/api/hotels', upload.single('image'), (req, res) => {
+app.post('/api/hotels', upload.single('image'), requireAdmin,(req, res) => {
     const { name, location, description, facilities, price } = req.body; //Variebl yang menyimpan input teks
     const image = req.file ? `/Picture/${req.file.filename}` : null; //Varibel yang menyimpan path dari input file gambar
     const data = readDB();
@@ -283,52 +280,6 @@ app.post('/api/hotels', upload.single('image'), (req, res) => {
     res.status(201).json(newHotel);
 });
 
-//Buat nambahin review baru
-app.post('/api/reviews', (req, res) => {
-app.get('/api/hotels/:id', (req, res) => {
-    const data = readDB();
-    const hotelId = parseInt(req.params.id, 10);
-
-    // cari hotel yang id-nya sesuai
-    const hotel = data.hotels.find(h => h.id === hotelId);
-
-    if (!hotel) {
-        return res.status(404).json({ message: "Hotel tidak ditemukan" });
-    }
-
-    res.json(hotel);
-});
-
-app.get('/api/reviews/:hotelId', (req, res) => {
-    const data = readDB();
-    const hotelId = parseInt(req.params.hotelId, 10);
-
-    // filter review sesuai hotel yang dipilih
-    const reviews = data.reviews.filter(r => r.hotelId === hotelId);
-
-    res.json(reviews);
-});
-
-// buat ngambil daftar ulasan berdasarkan email user
-app.get('/api/reviews/user/:email', (req, res) => {
-    const data = readDB();
-    const userEmail = req.params.email;
-
-    // filter review cuma email yang cocok
-    const userReviews = data.reviews.filter(r => r.email === userEmail);
-
-    const reviewsWithHotelName = userReviews.map((review) => {
-        const hotel = data.hotels.find(h => h.id === review.hotelId)
-
-        return {
-            ...review,
-            name: hotel ? hotel.name : "Hotel Tidak Dikenal" 
-        };
-    })
-
-    res.json(reviewsWithHotelName);
-});
-
 app.post('/api/reviews', requireLogin, (req, res) => {
     const data = readDB();
     const { hotelId, rating, name, email, comment, time } = req.body;
@@ -366,7 +317,7 @@ app.post('/api/reviews', requireLogin, (req, res) => {
 
 
 //Buat ngehapus review berdasarkan idnya
-app.delete('/api/reviews/:id', (req, res) => {
+app.delete('/api/reviews/:id', requireLogin, (req, res) => {
     const reviewId = parseInt(req.params.id, 10);
     const data = readDB();
 
@@ -392,7 +343,7 @@ app.delete('/api/reviews/:id', (req, res) => {
 });
 
 //Buat Hapus list hotel berdasarkan idnya
-app.delete('/api/hotels/:id', (req, res) => {
+app.delete('/api/hotels/:id', requireAdmin, (req, res) => {
     const hotelId = parseInt(req.params.id, 10);
     const data = readDB();
 
@@ -422,7 +373,7 @@ app.delete('/api/hotels/:id', (req, res) => {
 });
 
 //Buat ngedit atau ngeupdate review berdasarkan idnya
-app.put('/api/reviews/:id', (req, res) => {
+app.put('/api/reviews/:id', requireLogin, (req, res) => {
     const reviewId = parseInt(req.params.id, 10);
     const { rating, comment } = req.body;
 
