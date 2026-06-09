@@ -17,6 +17,24 @@
       "email": "axel123@gmail.com",
       "password": "axel123",
       "role": "user"
+    },
+    {
+      "name": "Axel Jeremy",
+      "email": "axelj@gmail.com",
+      "password": "a",
+      "role": "user"
+    },
+    {
+      "name": "TEMP",
+      "email": "temp@gmail.com",
+      "password": "temp",
+      "role": "user"
+    },
+    {
+      "name": "temp2",
+      "email": "temp2@gmail.com",
+      "password": "temp2",
+      "role": "user"
     }
   ],
   "hotels": [
@@ -118,6 +136,33 @@
       "name": "Axel",
       "email": "axel@gmail.com",
       "comment": "mantaps",
+      "time": "9-6-2026"
+    },
+    {
+      "id": 5,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "Axel Jeremy",
+      "email": "guest",
+      "comment": "mantap",
+      "time": "9-6-2026"
+    },
+    {
+      "id": 6,
+      "hotelId": 2,
+      "rating": 5,
+      "name": "Axel Jeremy",
+      "email": "guest",
+      "comment": "tes",
+      "time": "9-6-2026"
+    },
+    {
+      "id": 7,
+      "hotelId": 1,
+      "rating": 5,
+      "name": "TEMP",
+      "email": "temp@gmail.com",
+      "comment": "temp",
       "time": "9-6-2026"
     }
   ]
